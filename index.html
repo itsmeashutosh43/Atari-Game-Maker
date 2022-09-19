@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>GameMaker</title>
+    <!-- resets browser defaults -->
+    <link rel="stylesheet" type="text/css" href="./src/css/normalize.css">
+    <!-- custom styles -->
+    <link rel="stylesheet" type="text/css" href="./src/css/styles.css">
+</head>
+
+<body>
+    <h1>Game Maker</h1>
+    <h2>Sprite Editor</h2>
+    <h3>Play Game<button id="update-entity">&#8635;</button></h3> 
+    <h4>Save Game To File: <button id="save-game-file">Save Game</button></h4>
+    <h4>Upload Game File: <input id='load-game-file', type="file", accept=".json"> <button id="read-game-file" disabled="true">Load Game</button></h4>
+    <label for="bType">Select Background:</label>
+    <select id="bType" name="bType">
+        <!--Do not need empty option-->
+        <!--option disabled selected value> -- select an option -- </option-->
+        <option value="https://i.imgur.com/fIwPBZw.png">CLIFF</option>
+        <option value="https://i.imgur.com/t6cUFsI.png">FROZEN</option>
+        <option value="https://i.imgur.com/gDbubJF.png">DISCO_BEAR</option>
+    </select><br>
+    
+    
+
+
+    
+    
+
+    <table class="sprite-editor">
+        <tr>
+            <th>Editor Form</th>
+            <th>Sprite List</th>
+            <th>Event List</th>
+        </tr>
+        <tr>
+            <td class="editor-Form" width="60%">
+                <table>
+                    <tr>
+                        <td>
+                            <div id="create-object">
+                                <form id="creation-form">
+                                    <label for="aType">Action Type:</label>
+                                    <select id="aType" name="aType">
+                                        <!--Do not need empty option-->
+                                        <!--option disabled selected value> -- select an option -- </option-->
+                                        <option value="nSprite">Create Non-Playable Sprite</option>
+                                        <option id="create-p-sprite" value="pSprite">Create/Update Playable Sprite</option>
+                                    </select><br>
+                                </form>
+                                <button id="init-settings" style="width:100%;">↓</button>
+                                <br>
+                            </div>
+                            <br>
+                            <div id="dynamic-form"></div>
+                            <br>
+                            <div id="dimensions"></div>
+
+                        </td>
+                        <td>
+                            <div id="create-event"></div>
+                            <br>
+                            <div id="event-settings"></div>
+                        </td>
+                    </tr>
+
+                </table>
+
+            </td>
+            <td class="editor-sprite" width="20%">
+                <ul id="sprite-list"></ul>
+            </td>
+            <td class="editor-event" width="20%">
+                <ul id="event-list"></ul>
+            </td>
+        </tr>
+    </table>
+
+
+    <div id="canvasDiv" style="padding:20px;"><canvas id="game" height="500" width="800"></canvas></div>
+
+    <script src="./dist/main.js"></script>
+</body>
+
+
+</html>
