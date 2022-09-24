@@ -8,13 +8,17 @@ import { loadFIle, saveToFile } from "./game-maker/save-to-file";
 import Collision from "./game-runner/entities/collision-checker";
 import { FileParser } from "./game-runner/utils/game-parser";
 
-
+//this deals with everything in the canvas Could use this to display the all the sprites before the game starts
 const layout = new CanvasLayout();
 
 export const COLLISION = Collision.getInstance();
 export const CANVAS = layout.canvas;
 export const CTX = <CanvasRenderingContext2D>CANVAS.getContext("2d");
+
+
+//part of the game runner logic for (Non) Playable entitys is here including the update function
 export let ENTITIES: Entity[] = [];
+//part of game maker stores all the sprites and user events 
 export let GAME_VAR: GameVariable = new GameVariable();
 export let fileContent: string;
 
@@ -23,8 +27,9 @@ export const setGameVar = (gameVar: GameVariable): void => {
   GAME_VAR = gameVar;
 }
 
-
+//background stops updating if this line is commented out???? 
 layout.updateBackground(CANVAS_BG_IMAGES.CLIFF);
+
 let file_parser:FileParser = new FileParser()
 file_parser.readFile()
 file_parser.printFile()
@@ -32,6 +37,7 @@ file_parser.printFile()
 
 const loop = (): void => {
   layout.clearCanvas();
+  //updates postions of all sprites
   ENTITIES.forEach((e) => { e.update() })
   requestAnimationFrame(() => loop());
 }
@@ -40,11 +46,14 @@ const loop = (): void => {
 const main = (): void => {
 
   refreshSpriteList(GAME_VAR);
+
+  //this is the ↓ button
   actionbtn.addEventListener("click", function(){
     let aType = actType.value
     clearAllForm();
     createForm(aType, GAME_VAR);
   })
+  //this is the play game button
   updatebtn.addEventListener("click", function(){
     ENTITIES = [];
     ENTITIES = GAME_VAR.generateEntityList();
@@ -53,10 +62,12 @@ const main = (): void => {
   saveBtn.addEventListener("click",function(){
     saveToFile(bgType.value,GAME_VAR);
   })
+  //select background button
   bgType.addEventListener("change",function(){
     layout.updateBackground(bgType.value);
   })
-
+  
+  //unsure why these two are seperate: lines 64-77
   loadBtn.addEventListener("change",function(){
     
   })
@@ -70,6 +81,7 @@ const main = (): void => {
     }
     fileContent = await loadBtn.files[0].text();
   }
+
 
   readBtn.addEventListener("click", function(){
     let loadContent = loadFIle(fileContent);
