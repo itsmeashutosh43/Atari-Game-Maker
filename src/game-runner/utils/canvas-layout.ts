@@ -15,7 +15,7 @@ export default class CanvasLayout {
     }
 
     //could add methods to add and draw sprites.
-
+    
     
 }
 
