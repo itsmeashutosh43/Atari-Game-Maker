@@ -11,4 +11,5 @@ export interface IModel {
   set_drawable(drawable: IDrawable): void;
   set_position(position: position): void;
   set_id(id: string): void;
+  
 }

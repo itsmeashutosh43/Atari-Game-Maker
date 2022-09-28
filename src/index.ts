@@ -1,3 +1,4 @@
+/*
 import { clearAllForm, createForm } from "./game-maker/form-editor";
 import { refreshSpriteList } from "./game-maker/form-list";
 import { GameVariable } from "./game-maker/game-variable";
@@ -86,3 +87,4 @@ const main = (): void => {
 
 
 main();
+*/

@@ -1,132 +1,42 @@
-/* natural box model */
-html {
-  box-sizing: border-box;
+#container{
+  display: flex;
+  flex-direction: column;
+  height: 90vh;
 }
-*, *:before, *:after {
-  box-sizing: inherit;
-}
-
-/* UTILITIES */
-
-/* hides an element on screen, but not from screen readers */
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  border: 0;
-}
-
-/* no break */
-.nobr {
-  white-space: nowrap;
-}
-
-body{
-  margin-left: 2%;
-  margin-right: 2%;
-}
-
-h1 {
-  text-align: center;
-}
-
-ul {
-  list-style-type: none;
-}
-/*
-ul li {
-  border: 1px solid #fff;
-  margin-top: -1px; 
-  background-color: #ffffff;
-  padding: 12px;
-  text-decoration: none;
-  font-size: 18px;
-  color: black;
-  display: block;
-  position: relative;
-}
-
-ul li:hover {
-  background-color: #eef;
-}*/
-
-/* Style the close button (span) */
-
-.sprite-editor {
+#top{
+  display: flex;
+  flex-direction: row;
   width: 100%;
+  height: 80vh;
+
+}
+#property{
+  display: flex;
+  width: 15%;
+  border: 2px solid black;
+}
+#options{
+  display: flex;
+  flex-direction: column;
+  width: 20%;
+  border: 2px solid black;
 }
 
-.editor-form {
-  display: block;
+#gamewindow{
+  width: 80%;
+  border: 2px solid black;
+  
 }
 
-.closebtn {
-  cursor: pointer;
-  position: absolute;
-  font-size: 18px;
-  top: 50%;
-  right: 0%;
-  padding: 12px 16px;
-  transform: translate(0%, -50%);
+#bottom{
+  display: flex;
+  width: 99.5%;
+  border: 4px solid black;
+  height: 20vh;
 }
 
-.closebtn:hover {
-  background: #444;
-  color: #fff;
-}
-
-.closebtn-A {
-  cursor: pointer;
-  position: absolute;
-  font-size: 18px;
-  top: 50%;
-  right: 0%;
-  padding: 12px 16px;
-  transform: translate(0%, -50%);
-}
-
-.closebtn-A:hover {
-  background: #444;
-  color: #fff;
-}
-
-canvas {
-  background: #eeeeee;
-  display: block;
-  margin: 0 auto;
-}
-
-.sprite-list {
-  display: block;
-}
-
-.sprite-item {
-  border: 1px solid #fff;
-  margin-top: -1px;
-  background-color: #ffffff;
-  padding: 12px;
-  text-decoration: none;
-  font-size: 18px;
-  color: black;
-  display: block;
-  position: relative;
-}
-
-.sprite-item:hover {
-  background-color: #eef;
-}
-
-form {
-  position: relative;
-  top: 0;
-}
-
-ul {
-  height: 300px;
-  overflow: hidden;
-  overflow-y: scroll;
+#nav{
+  display: flex;
+  flex-direction: row;
+  height: 5vh;
 }
