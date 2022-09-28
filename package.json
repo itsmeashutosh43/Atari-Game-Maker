@@ -1,45 +1,76 @@
 {
-  "name": "breakout-game",
+  "name": "refactored-game-builder",
   "version": "1.0.0",
-  "description": "Simple breakout game made using typescript",
+  "description": "Refactored OOSD W4T2 Game Builder by W5T2",
   "main": "./dist/main.js",
   "scripts": {
     "build": "webpack",
     "build:cp-public": "cp ./public/** ./dist",
     "type": "tsc --noEmit",
-    "test": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' mocha -r ts-node/register 'src/tests/**/*.ts'"
+    "test": "mocha -r ts-node/register 'tests/**/*.ts'",
+    "test:coverage": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' nyc npm run test"
   },
   "keywords": [
-    "Breakout",
-    "game"
+    "Game",
+    "Builder",
+    "Player"
   ],
   "exclude": [
     "./tests/",
     "./node_modules/",
     "./dist/"
   ],
+  "nyc": {
+    "extends": "@istanbuljs/nyc-config-typescript",
+    "reporter": [
+      "lcov",
+      "cobertura",
+      "text",
+      "text-summary"
+    ],
+    "include": [
+      "**/*.ts"
+    ],
+    "exclude": [
+      "**/index.ts",
+      "config/**/*.ts",
+      "**/*.test.ts"
+    ],
+    "check-coverage": true,
+    "sourceMap": true,
+    "instrument": true,
+    "cache": true,
+    "all": true,
+    "branches": 20,
+    "functions": 20,
+    "lines": 20,
+    "statements": 20
+  },
   "license": "MIT",
   "devDependencies": {
+    "@istanbuljs/nyc-config-typescript": "^1.0.2",
     "@types/chai": "^4.3.3",
+    "@types/jsdom": "^20.0.0",
     "@types/mocha": "^9.1.1",
     "@typescript-eslint/eslint-plugin": "^5.36.1",
     "@typescript-eslint/parser": "^5.36.1",
+    "chai": "^4.3.6",
     "eslint": "^8.23.0",
     "eslint-plugin-react": "^7.31.1",
     "husky": "^8.0.1",
+    "jsdom": "^20.0.0",
     "lint-staged": "^13.0.3",
+    "mocha": "^10.0.0",
+    "nyc": "^15.1.0",
     "prettier": "^2.7.1",
-    "ts-loader": "^9.3.1",
+    "ts-loader": "^9.4.1",
+    "ts-node": "^10.9.1",
     "typescript": "^4.7.4",
     "webpack": "^5.74.0",
     "webpack-cli": "^4.10.0"
   },
   "dependencies": {
-    "chai": "^4.3.6",
-    "mocha": "^10.0.0",
-    "mocha-istanbul": "^0.3.0",
     "resolve-cwd": "^3.0.0",
-    "ts-node": "^10.9.1",
     "write-json-file": "^5.0.0"
   },
   "husky": {
