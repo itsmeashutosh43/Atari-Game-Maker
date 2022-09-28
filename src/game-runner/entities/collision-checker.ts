@@ -110,6 +110,9 @@ export const setDisplayOff = (b:Behavior,e: Entity): void => {
     e.display = false;
 }
 
+
+
+//this function reverses the current direction of the sprite.
 export const reflect = (behavior: Behavior,entity:Entity): Behavior => {
 
     if (behavior instanceof DoNothing || behavior instanceof SetPosition)

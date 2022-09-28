@@ -70,6 +70,7 @@ export class Move extends Behavior {
         this.traveled = 0;
     }
 
+    //This functions moves the sprite according to its direction. 
     execute(e: Entity): void {
         if (this.executionComplete)
             return

@@ -13,10 +13,14 @@ export default class CanvasLayout {
     updateBackground(name: string) {
         this.canvas.setAttribute("style", `background: url('${name}');`);
     }
+
+    //could add methods to add and draw sprites.
+    
+    
 }
 
 export enum CANVAS_BG_IMAGES {
-    CLIFF = "https://i.imgur.com/fIwPBZw.png",
-    FROZEN = "https://i.imgur.com/t6cUFsI.png",
-    DISCO_BEAR = "https://i.imgur.com/gDbubJF.png",
+    CLIFF = "./src/images/cliff.png",
+    FROZEN = "./src/images/frozen.png",
+    DISCO_BEAR = "./src/images/disco.png",
 }

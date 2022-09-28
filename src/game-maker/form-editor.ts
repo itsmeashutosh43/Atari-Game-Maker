@@ -6,6 +6,15 @@ import { Behavior, DIRECTION, Move, SetPosition } from "../game-runner/behaviors
 import { KEYCODE, UserKeydownEvent } from "../game-runner/user-events/user-event";
 
 
+
+
+//Im going to need help cleaning up this nightmare. Atype refers to non playable sprite
+/*
+Line 142 is where the next button is
+Line 213 and 263 is where the createSprite button and addeventlistener is located. they both call addToSprite which is on Line 314
+
+
+*/
 export function createForm(formType: string, container: GameVariable){
     switch(formType){
         case typeNSprite:
@@ -301,7 +310,6 @@ export function editNPSprite(index: number, container: GameVariable){
 
 
 }
-
 
 export function addToSprite(type: string, spType: string,sName: string , color: string, size: Array<number>, posX: number, posY: number, cType: string, sound: string, container: GameVariable){
 
