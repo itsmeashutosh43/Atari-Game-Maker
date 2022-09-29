@@ -1,49 +1,72 @@
-#container{
-  display: flex;
-  flex-direction: column;
-  height: 90vh;
+#app {
+  margin: 1%;
 }
-#top{
-  display: flex;
+
+.container {
+	display: flex;
+}
+
+.vertical { 
+  flex-direction: column;
+}
+
+.horizontal {
   flex-direction: row;
-  width: 100%;
+}
+
+.text-center {
+  text-align: center;
+  margin: 50% auto 50% auto;
+}
+
+.center-horizontal {
+  margin-left: 50%;
+  margin-right: 50%;
+}
+
+.flex-one {
+  flex: 1;
+}
+
+#top {
   height: 80vh;
+}
 
-}
-#property{
-  display: flex;
-  width: 15%;
+#property {
+  flex: 1;
   border: 2px solid black;
+  background-color: green;
 }
-#options{
+
+#options {
   display: flex;
-  overflow-y:auto;
+  overflow-y: auto;
   flex-direction: column;
-  width: 20%;
+  flex: 1;
   border: 2px solid black;
+  background-color: red;
 }
 
-#gamewindow{
-  width: 80%;
+#gameView {
+  flex: 3;
   border: 2px solid black;
-  
+  background-color: blue;
 }
 
-#bottom{
-  display: flex;
+#bottom {
   align-items: center;
-  width: 99.5%;
   border: 4px solid black;
   height: 50vh;
   overflow-x: auto
 }
 
-#nav{
-  display: flex;
-  flex-direction: row;
+#nav {
   height: 5vh;
 }
-#displayedImg{
+
+
+
+#displayedImg {
   width: 100%;
   height: 10%;
   margin-top: 20px;
@@ -53,7 +76,7 @@
 
 }
 
-#bottomDisplayedImg{
+#bottomDisplayedImg {
   width: 3%;
   height: 100%;
   margin-left: 20px;
@@ -61,4 +84,40 @@
   background-position: center;
   background-size: contain;
 
+}
+
+#objectConfig {
+  flex: 1;
+}
+
+#objectConfigButton {
+  width: 100%;
+}
+
+#interactionsConfigButton {
+  width: 100%;
+}
+
+#settingsConfigButton {
+  width: 100%;
+}
+
+#interactionsConfig {
+  flex: 1;
+}
+
+#settingsConfig {
+  flex: 1;
+}
+
+#objectConfigMenu {
+  display: none;
+}
+
+#interactionsConfigMenu {
+  display: none;
+}
+
+#settingsConfigMenu {
+  display: none;
 }

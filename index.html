@@ -2,37 +2,76 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>GameMaker</title>
-    <!-- resets browser defaults -->
-    <link rel="stylesheet" type="text/css" href="./src/css/normalize.css">
-    <!-- custom styles -->
-    <link rel="stylesheet" type="text/css" href="./src/css/styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>GameMaker</title>
+  <!-- resets browser defaults -->
+  <link rel="stylesheet" type="text/css" href="./src/css/normalize.css">
+  <!-- custom styles -->
+  <link rel="stylesheet" type="text/css" href="./src/css/styles.css">
 </head>
 
 <body>
-    
-    <div id="container">
-        <div id = "nav">
-            <button id = "start"> Start Game</button>
-            <button id = "stop"> Stop Game</button>
-            <button id = "backgroundImage">Change Background Image</button>
-            <button id = "backgroundSound">Change Background Music </button>
-            <button id = "save">Save Game</button>
-            <button id = "load">Load Game</button>
-
-        </div>
-        <div id = 'top'>
-            <div id ="options"></div>
-            <canvas id ="gamewindow"></canvas>
-            <div id="property"></div>
-        </div>
-        <div id = bottom> </div>
-        
+  <!-- Root div -->
+  <div id="app" class="container vertical">
+    <!-- Nav bar -->
+    <div id="nav" class="container">
+      <div id="title" class="flex-one">
+        <p>GameBuilder</p>
+      </div>
+      <div id="playPauseGame" class="flex-one"> <!-- center-horizontal container -->
+        <button id = "start"> Start Game</button>
+        <button id = "stop"> Stop Game</button>
+      </div>
+      <div id="saveLoadButtons" class="flex-one"> <!-- center-horizontal container -->
+        <button id = "save">Save Game</button>
+        <button id = "load">Load Game</button>
+      </div>
     </div>
-    <script src="./dist/main.js"></script>
+    <!-- Three columns for palette, canvas, and properties -->
+    <div id="paletteCanvasPropertiesContainer" class="container">
+      <!-- palette -->
+      <div id="options">
+
+      </div>
+      <!-- div for canvas -->
+      <div id="gameView">
+        <canvas id="gamewindow"></canvas>
+      </div>
+      <!-- properties multi-tab view -->
+      <div id="property" class="container vertical">
+        <div id="propertyTabs" class="container">
+          <div id="objectConfig">
+            <button id="objectConfigButton">O</button>
+          </div>
+          <div id="interactionsConfig">
+            <button id="interactionsConfigButton">I</button>
+          </div>
+          <div id="settingsConfig">
+            <button id="settingsConfigButton">S</button>
+          </div>
+        </div>
+        <div id="propertyMenus">
+          <div id="objectConfigMenu">
+            <p>Object Configuration</p>
+          </div>
+          <div id="interactionsConfigMenu">
+            <p>Interactions Configuration</p>
+          </div>
+          <div id="settingsConfigMenu">
+            <p>Game Settings Configuration</p>
+          </div>
+          <div id="blankConfigMenu">
+            <p class="text-center">Select a Sprite to configure its properties here, or choose the game configuration menu.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Bottom panel -->
+    <div id="bottom"> </div>
+  </div>
+  <script src="./dist/main.js"></script>
 </body>
 
 
