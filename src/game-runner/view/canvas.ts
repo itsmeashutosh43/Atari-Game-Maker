@@ -39,19 +39,19 @@ export class CanvasLayout {
   }
 
   handleDragEvent(event: MouseEvent) {
-    console.log("Called")
+    console.log("Called");
     let x: number, y: number, dx: number, dy: number;
     ({ x, y } = { x: event.offsetX, y: event.offsetY });
     [dx, dy] = [x - this.lastX, y - this.lastY];
     if (this.lastX == -1) {
       dx = dy = 0;
     }
-    
+
     let hover: IModel = this.model.observables.filter((e) =>
       this.isWithin(e, x, y, dx, dy)
     )[0];
     if (hover) {
-      console.log("Test")
+      console.log("Test");
       let newPos: position = {
         x: hover.get_position().x + dx,
         y: hover.get_position().y + dy,
@@ -76,7 +76,7 @@ export class CanvasLayout {
 
     let box: BoundingBox = dimention.getBoundingBox(position);
 
-    return x < box.right && x > box.left && y < box.down && y > box.up;
+    return x < box.right && x > box.left && y > box.down && y < box.up;
   }
 
   getCanvasWidth(): number {
