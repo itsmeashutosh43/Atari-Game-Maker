@@ -1,5 +1,5 @@
 import { GameModel } from "../model/gameModel";
-import { IModel } from "../model/imodel";
+import { IModel } from "../model/interfaces/imodel";
 import { position } from "../model/objects/iposition";
 import { Size } from "../model/objects/isize";
 import { BoundingBox } from "../model/objects/isize";

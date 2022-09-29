@@ -1,6 +1,6 @@
-import { position } from "./objects/iposition";
-import { Size } from "./objects/isize";
-import { IDrawable } from "../view/idrawable";
+import { position } from "../objects/iposition";
+import { Size } from "../objects/isize";
+import { IDrawable } from "../../view/idrawable";
 
 export interface IModel {
   get_drawable(): IDrawable;

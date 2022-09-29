@@ -2,7 +2,7 @@ import { Size } from "../model/objects/isize";
 import { position } from "../model/objects/iposition";
 import { RectangleSize } from "../model/objects/rectangleSize";
 import { CanvasLayout } from "./canvas";
-export class ImageDrawable {
+export class defaultImageDrawable {
   source:string
 
   constructor(source: string){
@@ -16,4 +16,9 @@ export class ImageDrawable {
     image.src = this.source
     CanvasLayout.getInstance().drawImage(image, pos.x, pos.y, width, height);
   }
+
+  get_source():string{
+    return this.source
+  }
 }
+

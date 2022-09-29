@@ -1,4 +1,4 @@
-//import {randomMove, reflect } from "../game-runner/entities/collision-checker";
+//import {randomMove, reflect } froEm "../game-runner/entities/collision-checker";
 import { Shape } from "../game-runner/drawables/drawable";
 //import { Entity, NonPlayableEntity, PlayableEntity } from "../game-runner/entities/entity";
 import { UserKeydownEvent } from "../game-runner/user-events/user-event";

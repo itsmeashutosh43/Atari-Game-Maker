@@ -1,6 +1,7 @@
 import { isModuleDeclaration } from "typescript";
 import { GameModel } from "../model/gameModel";
-import { ImageDrawable } from "../view/imageDrawable";
+import { defaultImageDrawable } from "../view/imageDrawable";
+
 
 
 export class Controller {
@@ -9,16 +10,19 @@ export class Controller {
     this.model = model;
   }
 
-  handleSpriteSelection(id: string,) {
+  handleSpriteSelection(id: string) {
     /*
     This will handle the sprite that is being clicked. This should delegate to a
     function that initializes and draws the sprite to the screen with default 
     parameters. As well as adding the sprite to the created sprites list.
     */
+
+    //lines of code draws to the GameCanvas
     let spriteModel: GameModel = new GameModel()
-    let drawable = new ImageDrawable(id)
+    let drawable = new defaultImageDrawable(id)
     spriteModel.set_drawable(drawable)
     this.model.add(spriteModel)
+    this.model.updateSelectedSpriteList()
 
   }
 

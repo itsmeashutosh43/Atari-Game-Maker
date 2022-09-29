@@ -1,12 +1,11 @@
-import { IModel } from "./imodel";
+import { IModel } from "./interfaces/imodel";
 import { position } from "./objects/iposition";
 import { Size } from "./objects/isize";
-import { Observables } from "./observable";
+import { Observables } from "./interfaces/observable";
 import { IDrawable } from "../view/idrawable";
-import { CircleDrawable } from "../view/circleDrawable";
 import { RectangleSize } from "./objects/rectangleSize";
-import { ImageDrawable } from "../view/imageDrawable";
-
+import { defaultImageDrawable } from "../view/imageDrawable";
+import { appendToSpriteList } from "./components/addToSpriteList";
 export class GameModel implements Observables, IModel {
   drawable: IDrawable;
   position: position;
@@ -15,7 +14,7 @@ export class GameModel implements Observables, IModel {
   observables: IModel[];
 
   constructor(){
-    this.drawable = new ImageDrawable("")
+    this.drawable = new defaultImageDrawable("")
     this.position = {x: 50, y: 50}
     this.size = new RectangleSize(50,50)
     this.observables =  []
@@ -43,7 +42,7 @@ export class GameModel implements Observables, IModel {
   get_id(): string {
     return this.id;
   }
-
+  
   set_drawable(drawable: IDrawable): void {
     this.drawable = drawable;
   }
@@ -53,4 +52,15 @@ export class GameModel implements Observables, IModel {
   set_id(id: string): void {
     this.id = id;
   }
+
+  updateSelectedSpriteList(): void{
+    const idList :string[] = [];
+    
+    this.observables.forEach((obs) => {
+      idList.push(obs.get_drawable().get_source())
+    });
+    appendToSpriteList(idList)
+  }
+
+  
 }

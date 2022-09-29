@@ -12,4 +12,5 @@ const layout = new CanvasLayout("gamewindow", gamemodel);
 
 setInterval(() => gamemodel.notify(), 1000 / 60);
 let control: Controller = new Controller(gamemodel);
-initAssets(spriteList,spriteSelection,control,selectedSpriteList);
+
+initAssets(spriteList,spriteSelection,control);
