@@ -1,6 +1,6 @@
 import { createSpriteAction, eventList, spriteList } from "./util/form-const";
 import { GameVariable } from "./game-variable";
-import { clearAllForm, editBehaviorForm, editNPSprite, editPSprite, editUserEvent } from "./form-editor";
+//import { clearAllForm, editBehaviorForm, editNPSprite, editPSprite, editUserEvent } from "./form-editor";
 
 
 // clear()
@@ -30,7 +30,7 @@ export function refreshSpriteList(container: GameVariable){
             spriteList.removeChild(li);
             removeAllChildNodes(eventList);
             refreshSpriteList(container);
-            clearAllForm();
+            //clearAllForm();
             let pOption = document.createElement("option");
             pOption.innerText = "Create Playable Sprite";
             pOption.setAttribute('id',"create-p-sprite");
@@ -39,9 +39,9 @@ export function refreshSpriteList(container: GameVariable){
         })
         li.appendChild(closebtn);
         li.addEventListener("click", function() {
-            clearAllForm();
+            //clearAllForm();
             displayUEvent(container);
-            editPSprite(container);
+            //editPSprite(container);
             // user Event
         })
     })
@@ -60,9 +60,9 @@ export function refreshSpriteList(container: GameVariable){
         })
         li.appendChild(closebtn);
         li.addEventListener("click", function() {
-            clearAllForm();
+            //clearAllForm();
             displayEvent(index, container);
-            editNPSprite(index, container);
+            //editNPSprite(index, container);
         })
       })
 }
@@ -73,7 +73,7 @@ export function removeItem(itemId: number, container: GameVariable){
     spriteList.removeChild(document.getElementById(itemId.toString()+"-s"));
     removeAllChildNodes(eventList);
     refreshSpriteList(container);
-    clearAllForm();
+    //clearAllForm();
 }
 
 // display item in event list
@@ -95,7 +95,7 @@ export function displayEvent(index: number, container: GameVariable){
             ali.appendChild(closebtn);
             ali.addEventListener("click", function(){
                 //generate the form to edit behavior
-                editBehaviorForm(index,aindex,container);
+                //editBehaviorForm(index,aindex,container);
             })
         })
     }
@@ -134,7 +134,7 @@ export function displayUEvent(container: GameVariable){
             ali.appendChild(closebtn);
             ali.addEventListener("click", function(){
                 //generate the form to edit user event
-                editUserEvent(aindex,container);
+                //editUserEvent(aindex,container);
             })
         })
     }

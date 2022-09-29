@@ -3,6 +3,9 @@ import { position } from "./objects/iposition";
 import { Size } from "./objects/isize";
 import { Observables } from "./observable";
 import { IDrawable } from "../view/idrawable";
+import { CircleDrawable } from "../view/circleDrawable";
+import { RectangleSize } from "./objects/rectangleSize";
+import { ImageDrawable } from "../view/imageDrawable";
 
 export class GameModel implements Observables, IModel {
   drawable: IDrawable;
@@ -10,6 +13,13 @@ export class GameModel implements Observables, IModel {
   size: Size;
   id: string;
   observables: IModel[];
+
+  constructor(){
+    this.drawable = new ImageDrawable("")
+    this.position = {x: 50, y: 50}
+    this.size = new RectangleSize(50,50)
+    this.observables =  []
+  }
 
   add(obs: IModel): void {
     this.observables.push(obs);

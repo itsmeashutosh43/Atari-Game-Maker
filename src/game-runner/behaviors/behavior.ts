@@ -1,5 +1,5 @@
 import { Cooridnates } from "../drawables/drawable";
-import { Entity } from "../entities/entity";
+//import { Entity } from "../entities/entity";
 
 export enum DIRECTION {
     LEFT = "LEFT",
@@ -18,12 +18,12 @@ export enum DIRECTION {
 export abstract class Behavior {
     executionComplete: Boolean;
     dir: DIRECTION = DIRECTION.NOWHERE;
-    abstract execute(e: Entity): void;
+    //abstract execute(e: Entity): void;
     abstract resetBehavior(): void;
 }
 
 export class DoNothing extends Behavior {
-    execute(e: Entity): void { }
+    //execute(e: Entity): void { }
     resetBehavior(): void { }
 }
 
@@ -39,13 +39,14 @@ export class SetPosition extends Behavior {
     resetBehavior(): void {
         this.executionComplete = true;
     }
-
+/*
     execute(e: Entity): void {
         if (this.executionComplete)
             return;
         e.shape.origin = { x: this.coords.x, y: this.coords.y }
         this.resetBehavior()
     }
+    */
 }
 
 export class Move extends Behavior {
@@ -69,7 +70,7 @@ export class Move extends Behavior {
         this.executionComplete = true;
         this.traveled = 0;
     }
-
+    /*
     execute(e: Entity): void {
         if (this.executionComplete)
             return
@@ -119,5 +120,6 @@ export class Move extends Behavior {
                 break;
         }
     }
+    */
 
 }
