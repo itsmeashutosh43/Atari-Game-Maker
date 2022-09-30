@@ -24,11 +24,25 @@
   margin-right: 50%;
 }
 
+.center-vertical {
+  margin-top: 50%;
+  margin-bottom: 50%;
+}
+
+.align-bottom {
+  margin-top: 50%;
+  margin-bottom: 0%;
+}
+
 .flex-one {
   flex: 1;
 }
 
 #top {
+  height: 10vh;
+}
+
+#paletteCanvasPropertiesContainer {
   height: 80vh;
 }
 
@@ -86,7 +100,19 @@
 
 }
 
-#objectConfig {
+#title {
+  background-color: magenta;
+}
+
+#playPauseButtons {
+  background-color: yellow;
+}
+
+#saveLoadButtons {
+  background-color: cyan;
+}
+
+#objectConfigTab {
   flex: 1;
 }
 
@@ -102,15 +128,23 @@
   width: 100%;
 }
 
-#interactionsConfig {
+#behaviorConfigTab {
   flex: 1;
 }
 
-#settingsConfig {
+#interactionsConfigTab {
+  flex: 1;
+}
+
+#settingsConfigTab {
   flex: 1;
 }
 
 #objectConfigMenu {
+  display: none;
+}
+
+#behaviorConfigMenu {
   display: none;
 }
 
