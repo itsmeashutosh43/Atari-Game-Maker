@@ -19,12 +19,14 @@ export interface IModel {
   get_move_behavior(): MoveBehavior;
   get_external_controller(): ExternalController;
   get_background_sound(): SoundBehavior;
+  get_selectedId(): string;
 
   set_drawable(drawable: IDrawable): void;
   set_size(size: Size): void;
   set_position(position: position): void;
   set_id(id: string): void;
   set_background_sound(backgroundSound: SoundBehavior): void;
+  set_selectedId(id: string): void;
 
   set_move_behavior(moveBehavior: MoveBehavior): void;
   set_external_controller(externalController: ExternalController): void;
