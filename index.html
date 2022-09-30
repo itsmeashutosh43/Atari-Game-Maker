@@ -2,49 +2,131 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>GameMaker</title>
-    <!-- resets browser defaults -->
-    <link rel="stylesheet" type="text/css" href="./src/css/normalize.css">
-    <!-- custom styles -->
-    <link rel="stylesheet" type="text/css" href="./src/css/styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>GameMaker</title>
+  <!-- resets browser defaults -->
+  <link rel="stylesheet" type="text/css" href="./src/css/normalize.css">
+  <!-- custom styles -->
+  <link rel="stylesheet" type="text/css" href="./src/css/styles.css">
 </head>
 
 <body>
-    
-    <div id="container">
-        <div id = "nav">
-            <button id = "start"> Start Game</button>
-            <button id = "stop"> Stop Game</button>
-            <button id = "backgroundImage">Change Background Image</button>
-            <button id = "backgroundSound">Change Background Music </button>
-            <button id = "save">Save Game</button>
-            <button id = "load">Load Game</button>
-
-        </div>
-        <div id = 'top'>
-            <div id ="options"></div>
-            <canvas id ="gamewindow" width="828" height="621"></canvas>
-            <div id="property">
-
-                <div id = "test">
-                    <p>Enter width</p>
-                    <input type="number" id="width">
-                </div>
-
-                <div id = "test">
-                    <p>Enter Height</p>
-                    <input type="number" id="height">
-                </div>
-                 
-            </div>
-        </div>
-        <div id = bottom> </div>
-        
+  <!-- Root div -->
+  <div id="app" class="container vertical">
+    <!-- Nav bar -->
+    <div id="nav" class="container">
+      <div id="title" class="flex-one">
+        <p>GameBuilder</p>
+      </div>
+      <div id="playPauseButtons" class="flex-one"> <!-- center-horizontal container -->
+        <button id = "start"> Start Game</button>
+        <button id = "stop"> Stop Game</button>
+      </div>
+      <div id="saveLoadButtons" class="flex-one"> <!-- center-horizontal container -->
+        <button id = "save">Save Game</button>
+        <button id = "load">Load Game</button>
+      </div>
     </div>
-    <script src="./dist/main.js"></script>
+    <!-- Three columns for palette, canvas, and properties -->
+    <div id="paletteCanvasPropertiesContainer" class="container">
+      <!-- palette -->
+      <div id="options">
+
+      </div>
+      <!-- div for canvas -->
+      <div id="gameView">
+        <canvas id="gamewindow"></canvas>
+      </div>
+      <!-- properties multi-tab view -->
+      <div id="property" class="container vertical">
+        <div id="propertyTabs" class="container">
+          <div id="objectConfigTab">
+            <button id="objectConfigButton">O</button>
+          </div>
+          <div id="behaviorConfigTab">
+            <button id="objectConfigButton">B</button>
+          </div>
+          <div id="interactionsConfigTab">
+            <button id="interactionsConfigButton">I</button>
+          </div>
+          <div id="settingsConfigTab">
+            <button id="settingsConfigButton">S</button>
+          </div>
+        </div>
+        <!-- end tabs div -->
+        <!-- Overall property menu div. Inside are several divs, only one of which is displayed at a time for the current form -->
+        <div id="propertyMenus">
+          <div id="objectConfigMenu">
+            <p>Object Appearance Configuration</p>
+            <form>
+              <label for="xPosition">X Position:</label>
+              <input type="text" id="xPosition" name="xPosition" /><br />
+              <label for="yPosition">Y Position:</label>
+              <input type="text" id="yPosition" name="yPosition" /><br />
+              <label for="">Sprite Width:</label>
+              <input type="text" id="spriteWidth" name="spriteWidth" /><br />
+              <label for="">Sprite Height:</label>
+              <input type="text" id="spriteHeight" name="spriteHeight" /><br />
+              <input type="submit" value="Update" /> <!-- replace this button with onChange methods for each input? -->
+            </form>
+          </div>
+          <div id="behaviorConfigMenu">
+            <p>Behavior Configuration</p>
+            <form>
+              <label for="moveBehavior">Initial Movement Behavior:</label>
+              <select id="moveBehavior" name="moveBehavior">
+                <option value="noMoveBehavior">Still</option>
+                <option value="rightMoveBehavior">Moves Right</option>
+                <option value="leftMoveBehavior">Moves Left</option>
+                <option value="upMoveBehavior">Moves Up</option>
+                <option value="downMoveBehavior">Moves Down</option>
+              </select><br />
+              <label for="hasGravity">Affected by Gravity?</label>
+              <input type="checkbox" id="hasGravity" name="hasGravity" /><br />
+              <input type="submit" value="Update" />
+            </form>
+          </div>
+          <div id="interactionsConfigMenu">
+            <p>Interactions Configuration</p>
+            <form>
+              <label for="eventChoice">When</label>
+              <select id="eventChoice" name="eventChoice">
+                <option value="collidesInteraction">I collide</option>
+              </select><br />
+              <label for="otherSpriteChoice">with</label> <!-- TODO: also allow a collision group to be selected here -->
+              <button id="otherSpriteInteractionSelect">...</button><br /> <!-- TODO: insert image of other sprite here when selected, or label of CGroup -->
+              <label for="">I will</label>
+              <select id="selfEffect">
+                <option value="reflectEffect">reflect</option>
+                <option value="destroyEffect">be destroyed</option>
+                <option value="moveUpEffect">move up</option>
+                <!-- TODO: add more -->
+              </select><br />
+              <input type="submit" value="Update" />
+            </form>
+          </div>
+          <div id="settingsConfigMenu">
+            <p>Game Settings Configuration</p>
+            <form>
+
+            </form>
+          </div>
+          <div id="blankConfigMenu">
+            <p class="text-center">Select a Sprite to configure its properties here, or choose the game configuration menu.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Bottom panel -->
+    <div id="bottom"> </div>
+  </div>
+  <script src="./dist/main.js"></script>
+  <script>
+    // TODO: move to separate file
+    // Set display property of different property menus based on tab button pressed
+  </script>
 </body>
 
 
