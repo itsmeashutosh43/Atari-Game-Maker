@@ -1,45 +1,88 @@
-#container{
-  display: flex;
-  flex-direction: column;
-  height: 90vh;
+#app {
+  margin: 1%;
 }
-#top{
-  display: flex;
+
+.container {
+	display: flex;
+}
+
+.vertical { 
+  flex-direction: column;
+}
+
+.horizontal {
   flex-direction: row;
-  width: 100%;
+}
+
+.text-center {
+  text-align: center;
+  margin: 50% auto 50% auto;
+}
+
+.center-horizontal {
+  margin-left: 50%;
+  margin-right: 50%;
+}
+
+.center-vertical {
+  margin-top: 50%;
+  margin-bottom: 50%;
+}
+
+.align-bottom {
+  margin-top: 50%;
+  margin-bottom: 0%;
+}
+
+.flex-one {
+  flex: 1;
+}
+
+#top {
+  height: 10vh;
+}
+
+#paletteCanvasPropertiesContainer {
   height: 80vh;
-
 }
-#property{
-  display: flex;
-  flex-direction: column;
-  width: 15%;
+
+#property {
+  flex: 1;
   border: 2px solid black;
+  background-color: green;
 }
-#options{
+
+#options {
   display: flex;
-  overflow-y:auto;
+  overflow-y: auto;
   flex-direction: column;
-  width: 20%;
+  flex: 1;
   border: 2px solid black;
+  background-color: red;
 }
 
+#gameView {
+  flex: 3;
+  border: 2px solid black;
+  background-color: blue;
+}
 
-#bottom{
+#bottom {
   display: flex;
   align-items: center;
-  width: 99.5%;
+  flex-direction: row;
   border: 4px solid black;
-  height: 50vh;
+  height: 20vh;
   overflow-x: auto
 }
 
-#nav{
-  display: flex;
-  flex-direction: row;
+#nav {
   height: 5vh;
 }
-#displayedImg{
+
+
+
+#displayedImg {
   width: 100%;
   height: 10%;
   margin-top: 20px;
@@ -49,7 +92,7 @@
 
 }
 
-#bottomDisplayedImg{
+#bottomDisplayedImg {
   width: 3%;
   height: 100%;
   margin-left: 20px;
@@ -58,6 +101,59 @@
   background-size: contain;
 
 }
-#test{
-  visibility: hidden;
+
+#title {
+  background-color: magenta;
+}
+
+#playPauseButtons {
+  background-color: yellow;
+}
+
+#saveLoadButtons {
+  background-color: cyan;
+}
+
+#objectConfigTab {
+  flex: 1;
+}
+
+#objectConfigButton {
+  width: 100%;
+}
+
+#interactionsConfigButton {
+  width: 100%;
+}
+
+#settingsConfigButton {
+  width: 100%;
+}
+
+#behaviorConfigTab {
+  flex: 1;
+}
+
+#interactionsConfigTab {
+  flex: 1;
+}
+
+#settingsConfigTab {
+  flex: 1;
+}
+
+#objectConfigMenu {
+  display: none;
+}
+
+#behaviorConfigMenu {
+  display: none;
+}
+
+#interactionsConfigMenu {
+  display: none;
+}
+
+#settingsConfigMenu {
+  display: none;
 }
