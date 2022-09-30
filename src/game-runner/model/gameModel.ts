@@ -13,18 +13,18 @@ export class GameModel implements Observables, IModel {
   id: string;
   observables: IModel[];
 
-  constructor(){
-    this.drawable = new defaultImageDrawable("")
-    this.position = {x: 50, y: 50}
-    this.size = new RectangleSize(50,50)
-    this.observables =  []
+  constructor() {
+    this.drawable = new defaultImageDrawable("");
+    this.position = { x: 150, y: 150 };
+    this.size = new RectangleSize(50, 50);
+    this.observables = [];
   }
 
   add(obs: IModel): void {
     this.observables.push(obs);
   }
   remove(obs: IModel): void {}
-  
+
   notify(): void {
     this.observables.forEach((obs) => {
       obs.get_drawable().draw(obs.get_size(), obs.get_position());
@@ -42,7 +42,7 @@ export class GameModel implements Observables, IModel {
   get_id(): string {
     return this.id;
   }
-  
+
   set_drawable(drawable: IDrawable): void {
     this.drawable = drawable;
   }
@@ -53,14 +53,12 @@ export class GameModel implements Observables, IModel {
     this.id = id;
   }
 
-  updateSelectedSpriteList(): void{
-    const idList :string[] = [];
-    
-    this.observables.forEach((obs) => {
-      idList.push(obs.get_drawable().get_source())
-    });
-    appendToSpriteList(idList)
-  }
+  updateSelectedSpriteList(): void {
+    const idList: string[] = [];
 
-  
+    this.observables.forEach((obs) => {
+      idList.push(obs.get_drawable().get_source());
+    });
+    appendToSpriteList(idList);
+  }
 }

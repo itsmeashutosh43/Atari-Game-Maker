@@ -23,4 +23,12 @@ export class CircleSize implements Size {
   getColor(): string {
     return this.color;
   }
+
+  getX(): number {
+    return this.radius;
+  }
+
+  getY(): number {
+    return this.radius;
+  }
 }

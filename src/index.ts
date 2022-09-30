@@ -1,7 +1,18 @@
 import { GameModel } from "./game-runner/model/gameModel";
 import { CanvasLayout } from "./game-runner/view/canvas";
-import {saveBtn, loadBtn, startBtn, stopBtn, changeBackgroundSoundBtn, changeBackgroundBtn, spriteSelection,selectedSpriteList, propertys, spriteList} from "./game-maker/util/view-const"
-import {initAssets} from "./game-runner/view/intitlization"
+import {
+  saveBtn,
+  loadBtn,
+  startBtn,
+  stopBtn,
+  changeBackgroundSoundBtn,
+  changeBackgroundBtn,
+  spriteSelection,
+  selectedSpriteList,
+  propertys,
+  spriteList,
+} from "./game-maker/util/view-const";
+import { initAssets } from "./game-runner/view/intitlization";
 import { Controller } from "./game-runner/controller/controller";
 let gamemodel: GameModel = new GameModel();
 
@@ -13,4 +24,4 @@ const layout = new CanvasLayout("gamewindow", gamemodel);
 setInterval(() => gamemodel.notify(), 1000 / 60);
 let control: Controller = new Controller(gamemodel);
 
-initAssets(spriteList,spriteSelection,control);
+initAssets(spriteList, spriteSelection, control);

@@ -9,6 +9,9 @@ export interface BoundingBox {
 
 export interface Size {
   getDimention(): Size;
-  getBoundingBox(pos:position): BoundingBox;
+  getBoundingBox(pos: position): BoundingBox;
   getColor(): string;
+
+  getX(): number;
+  getY(): number;
 }

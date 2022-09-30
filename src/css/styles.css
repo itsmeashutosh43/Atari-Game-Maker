@@ -23,11 +23,6 @@
   border: 2px solid black;
 }
 
-#gamewindow{
-  width: 80%;
-  border: 2px solid black;
-  
-}
 
 #bottom{
   display: flex;

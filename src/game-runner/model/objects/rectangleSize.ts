@@ -5,8 +5,8 @@ import { BoundingBox } from "./isize";
 export class RectangleSize implements Size {
   width: number;
   height: number;
-  color: string
-  
+  color: string;
+
   constructor(width: number, height: number, color?: string) {
     this.width = width;
     this.height = height;
@@ -25,5 +25,13 @@ export class RectangleSize implements Size {
   }
   getColor(): string {
     return this.color;
+  }
+
+  getX(): number {
+    return this.width;
+  }
+
+  getY(): number {
+    return this.height;
   }
 }
