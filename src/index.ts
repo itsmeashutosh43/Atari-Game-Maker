@@ -14,6 +14,8 @@ import {
 } from "./game-maker/util/view-const";
 import { initAssets } from "./game-runner/view/intitlization";
 import { Controller } from "./game-runner/controller/controller";
+import { userInterfaceListeners } from "./game-runner/view/userInterfaceListeners";
+
 let gamemodel: GameModel = new GameModel();
 
 export const layout = new CanvasLayout("gamewindow", gamemodel);
@@ -25,3 +27,5 @@ setInterval(() => gamemodel.notify(), 1000 / 60);
 let control: Controller = new Controller(gamemodel);
 
 initAssets(spriteList, spriteSelection, control);
+
+userInterfaceListeners.addFormEventListeners();
