@@ -9,6 +9,11 @@ import { appendToSpriteList } from "./components/addToSpriteList";
 import { Drawable } from "../drawables/drawable";
 import { MoveBehavior } from "../controller/MovementBehaviors/moveBehavior";
 import { ExternalController } from "../controller/ExternalController/externalController";
+import { SoundBehavior } from "../../sound-effects/SoundBehaviors/soundBehavior";
+import { NoSoundBehavior } from "../../sound-effects/SoundBehaviors/noSoundBehavior";
+import { MODE } from "../..";
+import { NoMoveBehavior } from "../controller/MovementBehaviors/noMoveBehavior";
+import { NoController } from "../controller/ExternalController/noController";
 export class GameModel implements Observables, IModel {
   drawable: IDrawable;
   position: position;
@@ -19,6 +24,7 @@ export class GameModel implements Observables, IModel {
   externalController: ExternalController;
   selectedId: string;
   
+  backgroundSound: SoundBehavior;
 
   constructor(id?: string) {
     this.drawable = new defaultImageDrawable("");
@@ -26,6 +32,9 @@ export class GameModel implements Observables, IModel {
     this.size = new RectangleSize(50, 50);
     this.id = id;
     this.observables = [];
+    this.moveBehavior = new NoMoveBehavior();
+    this.externalController = new NoController();
+    this.backgroundSound = new NoSoundBehavior();
   }
 
   clone(drawable: IDrawable, position: position, size: Size, id: string) {
@@ -52,10 +61,24 @@ export class GameModel implements Observables, IModel {
     */
   }
 
-  notify(): void {
+  notify(mode: MODE): void {
     this.observables.forEach((obs) => {
       obs.get_drawable().draw(obs.get_size(), obs.get_position());
     });
+
+    // register to external events
+
+    // move only in mode == game
+
+    if (mode == MODE.GAME) {
+      this.observables.forEach((obs) => {
+        this.get_move_behavior().move(obs);
+      });
+    }
+  }
+
+  get_background_sound(): SoundBehavior {
+    return this.backgroundSound;
   }
 
   get_move_behavior(): MoveBehavior {
@@ -96,6 +119,10 @@ export class GameModel implements Observables, IModel {
   }
   set_id(id: string): void {
     this.id = id;
+  }
+
+  set_background_sound(backgroundSound: SoundBehavior): void {
+    this.backgroundSound = backgroundSound;
   }
 
   set_size(size: Size): void {

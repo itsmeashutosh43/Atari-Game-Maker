@@ -4,6 +4,7 @@ import { position } from "../../model/objects/iposition";
 export class NoMoveBehavior implements Behavior {
   dx: number = 2;
   dy: number = 2;
+  reverse: boolean;
 
   move(model: IModel) {}
 

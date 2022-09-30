@@ -2,6 +2,7 @@ import { GameModel } from "../model/gameModel";
 import { RectangleSize } from "../model/objects/rectangleSize";
 import { defaultImageDrawable } from "../view/imageDrawable";
 import { layout } from "../..";
+import { MusicBehavior } from "../../sound-effects/SoundBehaviors/MusicBehavior";
 import { tmpdir } from "os";
 import { Size } from "../model/objects/isize";
 

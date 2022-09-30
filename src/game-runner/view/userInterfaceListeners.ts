@@ -49,7 +49,6 @@ export class userInterfaceListeners {
 	}
 
 	private static addObjectConfigListeners(): void {
-		// The "input" HTMLEvent is the one we want, not "change"
 		// X position field
 		document.getElementById("xPosition").addEventListener("input", (e) => {
 			const newValue = (<HTMLInputElement>e.currentTarget).value;
@@ -83,6 +82,18 @@ export class userInterfaceListeners {
 	private static addBehaviorConfigListeners(): void {
 		// Movement behavior
 		document.getElementById("moveBehavior").addEventListener("change", (e) => {
+			const newValue = (<HTMLInputElement>e.currentTarget).value;
+			console.log(newValue); // your logic goes here
+		});
+
+		// Player movement control scheme
+		document.getElementById("playerMoveBehavior").addEventListener("change", (e) => {
+			const newValue = (<HTMLInputElement>e.currentTarget).value;
+			console.log(newValue); // your logic goes here
+		});
+
+		// Collision group tag
+		document.getElementById("collisionGroupTag").addEventListener("input", (e) => {
 			const newValue = (<HTMLInputElement>e.currentTarget).value;
 			console.log(newValue); // your logic goes here
 		});
