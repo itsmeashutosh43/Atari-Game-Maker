@@ -72,6 +72,7 @@ export class GameModel implements Observables, IModel {
       this.observables.forEach((obs) => {
         this.get_move_behavior().move(obs);
       });
+      
     }
   }
 
