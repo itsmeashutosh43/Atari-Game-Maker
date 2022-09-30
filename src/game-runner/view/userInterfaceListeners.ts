@@ -2,6 +2,7 @@ export class userInterfaceListeners {
 	static addAllEventListeners(): void {
 		this.addFormTabListeners();
 		this.addObjectConfigListeners();
+		this.addBehaviorConfigListeners();
 	}
 
 	private static addFormTabListeners(): void {
@@ -51,18 +52,35 @@ export class userInterfaceListeners {
 			console.log(newValue); // your logic goes here
 		});
 
+		// Y position field
 		document.getElementById("yPosition").addEventListener("input", (e) => {
 			const newValue = (<HTMLInputElement>e.currentTarget).value;
 			console.log(newValue); // your logic goes here
 		});
 
+		// Width field
 		document.getElementById("spriteWidth").addEventListener("input", (e) => {
 			const newValue = (<HTMLInputElement>e.currentTarget).value;
 			console.log(newValue); // your logic goes here
 		});
 
+		// Height field
 		document.getElementById("spriteHeight").addEventListener("input", (e) => {
 			const newValue = (<HTMLInputElement>e.currentTarget).value;
+			console.log(newValue); // your logic goes here
+		});
+	}
+
+	private static addBehaviorConfigListeners(): void {
+		// Movement behavior
+		document.getElementById("moveBehavior").addEventListener("change", (e) => {
+			const newValue = (<HTMLInputElement>e.currentTarget).value;
+			console.log(newValue); // your logic goes here
+		});
+
+		// Gravity toggle
+		document.getElementById("hasGravity").addEventListener("change", (e) => {
+			const newValue = (<HTMLInputElement>e.currentTarget).checked;
 			console.log(newValue); // your logic goes here
 		});
 	}
