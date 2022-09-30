@@ -7,12 +7,16 @@ import { RectangleSize } from "./objects/rectangleSize";
 import { defaultImageDrawable } from "../view/imageDrawable";
 import { appendToSpriteList } from "./components/addToSpriteList";
 import { Drawable } from "../drawables/drawable";
+import { MoveBehavior } from "../controller/MovementBehaviors/moveBehavior";
+import { ExternalController } from "../controller/ExternalController/externalController";
 export class GameModel implements Observables, IModel {
   drawable: IDrawable;
   position: position;
   size: Size;
   id: string;
   observables: IModel[];
+  moveBehavior: MoveBehavior;
+  externalController: ExternalController;
 
   constructor(id?: string) {
     this.drawable = new defaultImageDrawable("");
@@ -51,6 +55,13 @@ export class GameModel implements Observables, IModel {
       obs.get_drawable().draw(obs.get_size(), obs.get_position());
     });
   }
+
+  get_move_behavior(): MoveBehavior {
+    return this.moveBehavior;
+  }
+  get_external_controller(): ExternalController {
+    return this.externalController;
+  }
   get_drawable(): IDrawable {
     return this.drawable;
   }
@@ -76,6 +87,13 @@ export class GameModel implements Observables, IModel {
 
   set_size(size: Size): void {
     this.size = size;
+  }
+
+  set_move_behavior(moveBehavior: MoveBehavior): void {
+    this.moveBehavior = moveBehavior;
+  }
+  set_external_controller(externalController: ExternalController): void {
+    this.externalController = externalController;
   }
 
   updateSelectedSpriteList(): void {

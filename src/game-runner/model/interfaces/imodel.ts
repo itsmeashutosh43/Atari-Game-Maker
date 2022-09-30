@@ -1,6 +1,8 @@
 import { position } from "../objects/iposition";
 import { Size } from "../objects/isize";
 import { IDrawable } from "../../view/idrawable";
+import { MoveBehavior } from "../../controller/MovementBehaviors/moveBehavior";
+import { ExternalController } from "../../controller/ExternalController/externalController";
 
 export interface IModel {
   clone(
@@ -13,9 +15,14 @@ export interface IModel {
   get_position(): position;
   get_size(): Size;
   get_id(): string;
+  get_move_behavior(): MoveBehavior;
+  get_external_controller(): ExternalController;
 
   set_drawable(drawable: IDrawable): void;
   set_size(size: Size): void;
   set_position(position: position): void;
   set_id(id: string): void;
+
+  set_move_behavior(moveBehavior:MoveBehavior): void;
+  set_external_controller(externalController:ExternalController): void;
 }

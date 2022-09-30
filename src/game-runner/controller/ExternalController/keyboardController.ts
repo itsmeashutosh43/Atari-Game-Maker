@@ -13,6 +13,7 @@ export class KeyboardController implements ExternalController {
   registered: boolean = false;
   constructor() {}
   register(): void {
+    // you need to register in play mode
     if (this.registered) return;
     document.addEventListener("keydown", this.handleKeyDown);
     document.addEventListener("keyup", this.handleKeyUp);
@@ -20,27 +21,26 @@ export class KeyboardController implements ExternalController {
   }
 
   handleKeyUp = (e: KeyboardEvent): void => {
-    // for now our controller can be either up down or right left
-    if (e.code === "ArrowLeft") {
+    if (e.code === "ArrowLeft" || e.code === "a") {
       this.left = false;
-    } else if (e.code === "ArrowRight") {
+    } else if (e.code === "ArrowRight" || e.code === "d") {
       this.right = false;
-    } else if (e.code === "ArrowUp") {
+    } else if (e.code === "ArrowUp" || e.code === "w") {
       this.up = false;
-    } else if (e.code === "ArrowDown") {
+    } else if (e.code === "ArrowDown" || e.code === "s") {
       this.down = false;
     }
   };
 
   handleKeyDown = (e: KeyboardEvent): void => {
     console.log(e.code);
-    if (e.code === "ArrowLeft") {
+    if (e.code === "ArrowLeft" || e.code === "a") {
       this.left = true;
-    } else if (e.code === "ArrowRight") {
+    } else if (e.code === "ArrowRight" || e.code === "d") {
       this.right = true;
-    } else if (e.code === "ArrowUp") {
+    } else if (e.code === "ArrowUp" || e.code === "w") {
       this.up = true;
-    } else if (e.code === "ArrowDown") {
+    } else if (e.code === "ArrowDown" || e.code === "s") {
       this.down = true;
     }
   };
