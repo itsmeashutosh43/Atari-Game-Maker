@@ -72,9 +72,9 @@ export class CanvasLayout {
     const position: position = model.get_position();
 
     return (
-      x < position.x + dimention.getX() &&
+      x < position.x + dimention.getWidth() &&
       x > position.x &&
-      y < position.y + dimention.getY() &&
+      y < position.y + dimention.getHeight() &&
       y > position.y
     );
   }

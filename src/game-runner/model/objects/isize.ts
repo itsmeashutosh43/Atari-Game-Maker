@@ -12,6 +12,6 @@ export interface Size {
   getBoundingBox(pos: position): BoundingBox;
   getColor(): string;
 
-  getX(): number;
-  getY(): number;
+  getWidth(): number;
+  getHeight(): number;
 }

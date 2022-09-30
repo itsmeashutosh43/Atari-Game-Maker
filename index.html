@@ -37,16 +37,16 @@
       </div>
       <!-- div for canvas -->
       <div id="gameView">
-        <canvas id="gamewindow"></canvas>
+        <canvas id="gamewindow" width="800" height="800"></canvas>
       </div>
       <!-- properties multi-tab view -->
       <div id="property" class="container vertical">
         <div id="propertyTabs" class="container">
           <div id="objectConfigTab">
-            <button id="objectConfigButton">O</button>
+            <button id="objectConfigButton" onclick="">O</button>
           </div>
           <div id="behaviorConfigTab">
-            <button id="objectConfigButton">B</button>
+            <button id="behaviorConfigButton">B</button>
           </div>
           <div id="interactionsConfigTab">
             <button id="interactionsConfigButton">I</button>
@@ -62,14 +62,13 @@
             <p>Object Appearance Configuration</p>
             <form>
               <label for="xPosition">X Position:</label>
-              <input type="text" id="xPosition" name="xPosition" /><br />
+              <input type="number" id="xPosition" name="xPosition" /><br />
               <label for="yPosition">Y Position:</label>
-              <input type="text" id="yPosition" name="yPosition" /><br />
-              <label for="">Sprite Width:</label>
-              <input type="text" id="spriteWidth" name="spriteWidth" /><br />
+              <input type="number" id="yPosition" name="yPosition" /><br />
+              <label for="spriteWidth">Sprite Width:</label>
+              <input type="number" id="spriteWidth" name="spriteWidth" /><br />
               <label for="">Sprite Height:</label>
-              <input type="text" id="spriteHeight" name="spriteHeight" /><br />
-              <input type="submit" value="Update" /> <!-- replace this button with onChange methods for each input? -->
+              <input type="number" id="spriteHeight" name="spriteHeight" /><br />
             </form>
           </div>
           <div id="behaviorConfigMenu">
@@ -83,9 +82,16 @@
                 <option value="upMoveBehavior">Moves Up</option>
                 <option value="downMoveBehavior">Moves Down</option>
               </select><br />
+              <label for="playerMoveBehavior">Sprite Control Scheme:</label>
+              <select id="playerMoveBehavior" name="playerMoveBehavior">
+                <option value="wasdSpace">WASD: Move, Space: Fire</option>
+                <option value="mouseLMB">Mouse: Move, Click: Fire</option>
+                <!-- TODO: more? -->
+              </select><br />
+              <label for="collisionGroupTag">Collision Group Tag:</label>
+              <input type="text" id="collisionGroupTag" name="collisionGroupTag" /><br />
               <label for="hasGravity">Affected by Gravity?</label>
               <input type="checkbox" id="hasGravity" name="hasGravity" /><br />
-              <input type="submit" value="Update" />
             </form>
           </div>
           <div id="interactionsConfigMenu">

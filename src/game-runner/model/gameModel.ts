@@ -22,6 +22,8 @@ export class GameModel implements Observables, IModel {
   observables: IModel[];
   moveBehavior: MoveBehavior;
   externalController: ExternalController;
+  selectedId: string;
+  
   backgroundSound: SoundBehavior;
 
   constructor(id?: string) {
@@ -93,14 +95,25 @@ export class GameModel implements Observables, IModel {
     return this.position;
   }
   get_size(): Size {
+    
     return this.size;
   }
   get_id(): string {
     return this.id;
   }
+  
+
+  get_selectedId(): string{
+    return this.selectedId;
+  }
 
   set_drawable(drawable: IDrawable): void {
     this.drawable = drawable;
+  }
+
+
+  set_selectedId(id:string):void{
+    this.selectedId = id
   }
   set_position(position: position): void {
     this.position = position;
