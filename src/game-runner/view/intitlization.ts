@@ -1,6 +1,8 @@
 import { Controller } from "../controller/controller";
 
+let viewControl: Controller;
 export function initAssets(images:string [], selectionWindow: HTMLElement, control:Controller){
+    viewControl = control
     images.forEach( (element) =>{
         let curImage = document.createElement('div');
         curImage.setAttribute("id","displayedImg");
@@ -10,7 +12,7 @@ export function initAssets(images:string [], selectionWindow: HTMLElement, contr
         curImage.style.backgroundPosition = 'center'
 
         curImage.addEventListener("click",function (){
-            control.handleSpriteSelection(`./src/sprites/${element}.png`)
+            viewControl.handleSpriteSelection(`./src/sprites/${element}.png`)
             //curImage.setAttribute("id","bottomDisplayedImg")
             
         })
@@ -30,8 +32,8 @@ export function drawSpriteList(images:string [], selectedWindow:HTMLElement){
         curImage.style.backgroundPosition = 'center'
 
         curImage.addEventListener("click",function (){
-          
-            console.log("clicked")
+            
+            viewControl.handleClickSpriteList(element)
             
         })
         selectedWindow.appendChild(curImage)

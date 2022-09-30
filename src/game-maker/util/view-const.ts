@@ -7,6 +7,7 @@ export let changeBackgroundSoundBtn = document.getElementById("backgroundSound")
 export let spriteSelection = document.getElementById("options") as HTMLElement;
 export let selectedSpriteList = document.getElementById("bottom") as HTMLElement;
 export let propertys = document.getElementById("property") as HTMLElement;
+export let sizetests = document.querySelectorAll("test")
 export let spriteList: string[] = 
 [
 "enemyBlack1",

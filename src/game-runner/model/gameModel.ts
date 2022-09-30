@@ -23,8 +23,17 @@ export class GameModel implements Observables, IModel {
   add(obs: IModel): void {
     this.observables.push(obs);
   }
-  remove(obs: IModel): void {}
-
+  remove(obs: IModel): void {
+    /*
+    let count: number = 0;
+    this.observables.forEach((obs) => {
+        if(id == obs.get_drawable().get_source()){
+          this.observables.
+        }
+    });
+    */
+  }
+  
   notify(): void {
     this.observables.forEach((obs) => {
       obs.get_drawable().draw(obs.get_size(), obs.get_position());

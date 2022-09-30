@@ -12,6 +12,7 @@
 }
 #property{
   display: flex;
+  flex-direction: column;
   width: 15%;
   border: 2px solid black;
 }
@@ -56,4 +57,7 @@
   background-position: center;
   background-size: contain;
 
+}
+#test{
+  visibility: hidden;
 }

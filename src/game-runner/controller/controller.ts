@@ -1,4 +1,4 @@
-import { isModuleDeclaration } from "typescript";
+
 import { GameModel } from "../model/gameModel";
 import { defaultImageDrawable } from "../view/imageDrawable";
 
@@ -18,10 +18,12 @@ export class Controller {
     */
 
     //lines of code draws to the GameCanvas
-    let spriteModel: GameModel = new GameModel()
+    let nullspriteModel: GameModel = new GameModel()
     let drawable = new defaultImageDrawable(id)
-    spriteModel.set_drawable(drawable)
-    this.model.add(spriteModel)
+    nullspriteModel.set_drawable(drawable)
+    this.model.add(nullspriteModel)
+
+    //this ca
     this.model.updateSelectedSpriteList()
 
   }
@@ -40,6 +42,9 @@ export class Controller {
     for example if you set the size to 40 the user dosen't have to click confirm to see the change in size.
 
    */
+    let customspriteModel: GameModel = new GameModel()
+    //this.model.remove(id)
+
   }
 
   handleClickPropertyConfirm(id:string){
