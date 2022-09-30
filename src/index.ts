@@ -16,7 +16,7 @@ import { initAssets } from "./game-runner/view/intitlization";
 import { Controller } from "./game-runner/controller/controller";
 let gamemodel: GameModel = new GameModel();
 
-const layout = new CanvasLayout("gamewindow", gamemodel);
+export const layout = new CanvasLayout("gamewindow", gamemodel);
 
 // initialize form controllers.
 // initialize some other controllers

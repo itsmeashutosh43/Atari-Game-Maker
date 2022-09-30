@@ -1,8 +1,7 @@
-
 import { GameModel } from "../model/gameModel";
+import { RectangleSize } from "../model/objects/rectangleSize";
 import { defaultImageDrawable } from "../view/imageDrawable";
-
-
+import { layout } from "../..";
 
 export class Controller {
   model: GameModel;
@@ -18,18 +17,17 @@ export class Controller {
     */
 
     //lines of code draws to the GameCanvas
-    let nullspriteModel: GameModel = new GameModel()
-    let drawable = new defaultImageDrawable(id)
-    nullspriteModel.set_drawable(drawable)
-    this.model.add(nullspriteModel)
+    let nullspriteModel: GameModel = new GameModel(id);
+    let drawable = new defaultImageDrawable(id);
+    nullspriteModel.set_drawable(drawable);
+    this.model.add(nullspriteModel);
 
     //this ca
-    this.model.updateSelectedSpriteList()
-
+    this.model.updateSelectedSpriteList();
   }
 
   handleClickSpriteList(id: string) {
-   /*
+    /*
     this will handle the sprite that is being clicked in the sprite list.
     When this is clicked a properties tab should appear which will allow the user to 
     customize the properties of the sprite. 
@@ -42,12 +40,21 @@ export class Controller {
     for example if you set the size to 40 the user dosen't have to click confirm to see the change in size.
 
    */
-    let customspriteModel: GameModel = new GameModel()
     //this.model.remove(id)
 
+    // movements
+    // keyboard inputs
+
+    layout.clearScreen();
+
+    this.model.observables
+      .filter((obs) => obs.get_id() == id)
+      .forEach((obs) => {
+        obs.set_size(new RectangleSize(500, 500));
+      });
   }
 
-  handleClickPropertyConfirm(id:string){
+  handleClickPropertyConfirm(id: string) {
     /* Depending on the implementation of the above function  it can do one of two things/
     1.
     This should delegate to setter functions that belong to the sprite in order to updates its values
@@ -57,22 +64,21 @@ export class Controller {
     */
   }
 
-  handleBackGroundChange(image:string){
+  handleBackGroundChange(image: string) {
     //this one will just handle the background image and update the list of dictionarys in the model. which will be used
     //for saving and loading.
   }
 
-  handleMainGameMusicChange(song:string){
+  handleMainGameMusicChange(song: string) {
     //this one will display the audio to the game on repeat update the list of dictionarys in the model which will be used
     //for saving and loading.
   }
 
- 
-  handleSaveEvent(){
+  handleSaveEvent() {
     //these should save the list and or map of objects storing the entire game
   }
 
-  handleLoadEvent(){
+  handleLoadEvent() {
     //i wonder what this one is gonna do?!??!?!
   }
 }

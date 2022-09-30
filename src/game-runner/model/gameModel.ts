@@ -6,6 +6,7 @@ import { IDrawable } from "../view/idrawable";
 import { RectangleSize } from "./objects/rectangleSize";
 import { defaultImageDrawable } from "../view/imageDrawable";
 import { appendToSpriteList } from "./components/addToSpriteList";
+import { Drawable } from "../drawables/drawable";
 export class GameModel implements Observables, IModel {
   drawable: IDrawable;
   position: position;
@@ -13,11 +14,22 @@ export class GameModel implements Observables, IModel {
   id: string;
   observables: IModel[];
 
-  constructor() {
+  constructor(id?: string) {
     this.drawable = new defaultImageDrawable("");
     this.position = { x: 150, y: 150 };
     this.size = new RectangleSize(50, 50);
+    this.id = id;
     this.observables = [];
+  }
+
+  clone(drawable: IDrawable, position: position, size: Size, id: string) {
+    let o = new GameModel();
+
+    o.set_drawable(drawable);
+    o.set_position(position);
+    o.set_size(size);
+    o.set_id(id);
+    return o;
   }
 
   add(obs: IModel): void {
@@ -33,7 +45,7 @@ export class GameModel implements Observables, IModel {
     });
     */
   }
-  
+
   notify(): void {
     this.observables.forEach((obs) => {
       obs.get_drawable().draw(obs.get_size(), obs.get_position());
@@ -62,10 +74,15 @@ export class GameModel implements Observables, IModel {
     this.id = id;
   }
 
+  set_size(size: Size): void {
+    this.size = size;
+  }
+
   updateSelectedSpriteList(): void {
     const idList: string[] = [];
 
     this.observables.forEach((obs) => {
+      console.log(obs.get_drawable().get_source());
       idList.push(obs.get_drawable().get_source());
     });
     appendToSpriteList(idList);
