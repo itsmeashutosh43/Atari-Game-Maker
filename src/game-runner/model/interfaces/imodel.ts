@@ -3,6 +3,7 @@ import { Size } from "../objects/isize";
 import { IDrawable } from "../../view/idrawable";
 import { MoveBehavior } from "../../controller/MovementBehaviors/moveBehavior";
 import { ExternalController } from "../../controller/ExternalController/externalController";
+import { SoundBehavior } from "../../../sound-effects/SoundBehaviors/soundBehavior";
 
 export interface IModel {
   clone(
@@ -17,12 +18,14 @@ export interface IModel {
   get_id(): string;
   get_move_behavior(): MoveBehavior;
   get_external_controller(): ExternalController;
+  get_background_sound(): SoundBehavior;
 
   set_drawable(drawable: IDrawable): void;
   set_size(size: Size): void;
   set_position(position: position): void;
   set_id(id: string): void;
+  set_background_sound(backgroundSound: SoundBehavior): void;
 
-  set_move_behavior(moveBehavior:MoveBehavior): void;
-  set_external_controller(externalController:ExternalController): void;
+  set_move_behavior(moveBehavior: MoveBehavior): void;
+  set_external_controller(externalController: ExternalController): void;
 }
