@@ -3,6 +3,8 @@ export class userInterfaceListeners {
 		this.addFormTabListeners();
 		this.addObjectConfigListeners();
 		this.addBehaviorConfigListeners();
+		this.addInteractionConfigListeners();
+		this.addSettingsConfigListeners();
 	}
 
 	private static addFormTabListeners(): void {
@@ -83,5 +85,28 @@ export class userInterfaceListeners {
 			const newValue = (<HTMLInputElement>e.currentTarget).checked;
 			console.log(newValue); // your logic goes here
 		});
+	}
+
+	private static addInteractionConfigListeners(): void {
+		// TODO: this one will be complicated, since there will be n sets of fields, 
+		// but this would be the logic if there was just one interaction per sprite
+		// Event choice (collides with, etc.)
+		document.getElementById("eventChoice").addEventListener("change", (e) => {
+			const newValue = (<HTMLInputElement>e.currentTarget).value;
+			console.log(newValue); // your logic goes here
+		});
+
+		// TODO: 
+		// Other sprite
+
+		// Self effect choice
+		document.getElementById("selfEffect").addEventListener("change", (e) => {
+			const newValue = (<HTMLInputElement>e.currentTarget).value;
+			console.log(newValue); // your logic goes here
+		});
+	}
+
+	private static addSettingsConfigListeners(): void {
+		// Currently no fields in settings menu
 	}
 }
