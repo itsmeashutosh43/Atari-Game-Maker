@@ -2,6 +2,7 @@ import { GameModel } from "../model/gameModel";
 import { RectangleSize } from "../model/objects/rectangleSize";
 import { defaultImageDrawable } from "../view/imageDrawable";
 import { layout } from "../..";
+import { MusicBehavior } from "../../sound-effects/SoundBehaviors/MusicBehavior";
 
 export class Controller {
   model: GameModel;
@@ -72,6 +73,8 @@ export class Controller {
   handleMainGameMusicChange(song: string) {
     //this one will display the audio to the game on repeat update the list of dictionarys in the model which will be used
     //for saving and loading.
+    // song is complete path to the song
+    this.model.set_background_sound(new MusicBehavior(song));
   }
 
   handleSaveEvent() {

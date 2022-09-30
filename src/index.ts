@@ -21,7 +21,34 @@ export const layout = new CanvasLayout("gamewindow", gamemodel);
 // initialize form controllers.
 // initialize some other controllers
 
-setInterval(() => gamemodel.notify(), 1000 / 60);
+export enum MODE {
+  BUILD,
+  GAME,
+}
+
+let mode: MODE = MODE.BUILD;
+
+setInterval(() => gamemodel.notify(mode), 1000 / 60);
 let control: Controller = new Controller(gamemodel);
 
 initAssets(spriteList, spriteSelection, control);
+
+const gameStartButton: HTMLButtonElement = document.getElementById(
+  "start"
+) as HTMLButtonElement;
+
+gameStartButton.addEventListener("click", () => {
+  if (mode == MODE.GAME) {
+    mode = MODE.BUILD;
+    gameStartButton.innerHTML = "play";
+    gamemodel.get_background_sound().pause_sound();
+    // TODO: de-register external events
+  } else {
+    // register to external events
+    // play music here
+    gamemodel.get_background_sound().make_sound();
+    gamemodel.get_external_controller().register();
+    mode = MODE.GAME;
+    gameStartButton.innerHTML = "build";
+  }
+});
