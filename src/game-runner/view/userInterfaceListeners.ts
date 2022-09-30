@@ -1,3 +1,5 @@
+import { viewControl } from "./intitlization";
+
 export class userInterfaceListeners {
 	static addAllEventListeners(): void {
 		this.addFormTabListeners();
@@ -51,6 +53,7 @@ export class userInterfaceListeners {
 		// X position field
 		document.getElementById("xPosition").addEventListener("input", (e) => {
 			const newValue = (<HTMLInputElement>e.currentTarget).value;
+			
 			console.log(newValue); // your logic goes here
 		});
 
@@ -63,13 +66,17 @@ export class userInterfaceListeners {
 		// Width field
 		document.getElementById("spriteWidth").addEventListener("input", (e) => {
 			const newValue = (<HTMLInputElement>e.currentTarget).value;
-			console.log(newValue); // your logic goes here
+			let store = viewControl.handleGetSize();
+			
+			viewControl.handleSetSize(parseInt(newValue),store.getHeight())
 		});
 
-		// Height field
+		// Height fieldnu
 		document.getElementById("spriteHeight").addEventListener("input", (e) => {
 			const newValue = (<HTMLInputElement>e.currentTarget).value;
-			console.log(newValue); // your logic goes here
+			let store = viewControl.handleGetSize();
+			
+			viewControl.handleSetSize(store.getWidth(),parseInt(newValue))
 		});
 	}
 
