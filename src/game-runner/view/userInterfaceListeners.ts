@@ -1,6 +1,7 @@
 export class userInterfaceListeners {
 	static addAllEventListeners(): void {
 		this.addFormTabListeners();
+		this.addObjectConfigListeners();
 	}
 
 	private static addFormTabListeners(): void {
@@ -39,6 +40,30 @@ export class userInterfaceListeners {
 				document.getElementById(menu).style.display = "none";
 			});
 			document.getElementById("settingsConfigMenu").style.display = "block";
+		});
+	}
+
+	private static addObjectConfigListeners(): void {
+		// The "input" HTMLEvent is the one we want, not "change"
+		// X position field
+		document.getElementById("xPosition").addEventListener("input", (e) => {
+			const newValue = (<HTMLInputElement>e.currentTarget).value;
+			console.log(newValue); // your logic goes here
+		});
+
+		document.getElementById("yPosition").addEventListener("input", (e) => {
+			const newValue = (<HTMLInputElement>e.currentTarget).value;
+			console.log(newValue); // your logic goes here
+		});
+
+		document.getElementById("spriteWidth").addEventListener("input", (e) => {
+			const newValue = (<HTMLInputElement>e.currentTarget).value;
+			console.log(newValue); // your logic goes here
+		});
+
+		document.getElementById("spriteHeight").addEventListener("input", (e) => {
+			const newValue = (<HTMLInputElement>e.currentTarget).value;
+			console.log(newValue); // your logic goes here
 		});
 	}
 }
