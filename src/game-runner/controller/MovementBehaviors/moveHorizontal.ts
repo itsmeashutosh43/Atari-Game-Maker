@@ -1,10 +1,15 @@
 import { IModel } from "../../model/interfaces/imodel";
 import { position } from "../../model/objects/iposition";
+import { Effect } from "./ieffects";
 import { Behavior } from "./positionBehavior";
 
-export class MoveHorizontal implements Behavior {
+export class MoveHorizontal implements Behavior, Effect {
   dx: number = 2;
   reverse: boolean = false;
+
+  do(model: IModel) {
+    this.move(model);
+  }
 
   move(model: IModel) {
     let pos: position = model.get_position();
