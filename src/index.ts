@@ -28,4 +28,4 @@ let control: Controller = new Controller(gamemodel);
 
 initAssets(spriteList, spriteSelection, control);
 
-userInterfaceListeners.addFormEventListeners();
+userInterfaceListeners.addAllEventListeners();

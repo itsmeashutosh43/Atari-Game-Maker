@@ -1,5 +1,9 @@
 export class userInterfaceListeners {
-	static addFormEventListeners(): void {
+	static addAllEventListeners(): void {
+		this.addFormTabListeners();
+	}
+
+	private static addFormTabListeners(): void {
 		// TODO: needs some logic to restrict changing tabs unless an object is selected
 		//       clicking the first three buttons should just display the blank menu
 		// TODO: should populate each tab with correct values from model
