@@ -207,6 +207,7 @@ export class userInterfaceListeners {
     document.getElementById("selfEffect").addEventListener("change", (e) => {
       const newValue = (<HTMLInputElement>e.currentTarget).value;
       console.log(newValue); // your logic goes here
+      viewControl.set_effect(newValue);
     });
   }
 

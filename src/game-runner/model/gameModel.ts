@@ -17,6 +17,8 @@ import { NoController } from "../controller/ExternalController/noController";
 import { Colission } from "../controller/colission_detector/colission";
 import { MoveVertical } from "../controller/MovementBehaviors/moveVertical";
 import { MoveHorizontal } from "../controller/MovementBehaviors/moveHorizontal";
+import { Effect } from "../controller/MovementBehaviors/ieffects";
+import { NoEffect } from "../controller/MovementBehaviors/noEffect";
 export class GameModel implements Observables, IModel {
   drawable: IDrawable;
   position: position;
@@ -25,6 +27,7 @@ export class GameModel implements Observables, IModel {
   observables: IModel[];
   moveBehavior: MoveBehavior;
   externalController: ExternalController;
+  interactions: Map<string, Effect>;
   selectedId: string;
   gravity: boolean;
   collisionId: string;
@@ -48,6 +51,8 @@ export class GameModel implements Observables, IModel {
     this.moveBehavior = new NoMoveBehavior();
     this.externalController = new NoController();
     this.backgroundSound = new NoSoundBehavior();
+    this.collisionId = id; // at the beginning each thing is it own colission group
+    this.interactions = new Map<string, Effect>();
   }
 
   clone(drawable: IDrawable, position: position, size: Size, id: string) {
@@ -186,6 +191,14 @@ export class GameModel implements Observables, IModel {
 
   set_CollissionGroup(collisionId: string): void {
     this.collisionId = collisionId;
+  }
+
+  set_interactions(collisionId: string, effect: Effect) {
+    this.interactions.set(collisionId, effect);
+  }
+
+  get_interactions(collisionId: string): Effect {
+    return this.interactions.get(collisionId) || new NoEffect();
   }
 
   set_initialMovement(initialMovement: string): void {
