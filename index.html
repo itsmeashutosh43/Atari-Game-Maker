@@ -82,12 +82,25 @@
                 <option value="upMoveBehavior">Moves Up</option>
                 <option value="downMoveBehavior">Moves Down</option>
               </select><br />
-              <label for="playerMoveBehavior">Sprite Control Scheme:</label>
-              <select id="playerMoveBehavior" name="playerMoveBehavior">
-                <option value="wasdSpace">WASD: Move, Space: Fire</option>
-                <option value="mouseLMB">Mouse: Move, Click: Fire</option>
-                <!-- TODO: more? -->
-              </select><br />
+              <label for="playerMoveEnabled">Sprite is Controlled by Player</label>
+              <input type="checkbox" id="playerMoveEnabled" name="playerMoveEnabled" />
+              <br />
+              <div id="playerMoveOptions">
+                <label for="playerMoveBehavior">Sprite Control Scheme:</label>
+                <select id="playerMoveBehavior" name="playerMoveBehavior">
+                  <option value="wasdSpace">WASD: Move, Space: Fire</option>
+                  <option value="mouseLMB">Mouse: Move, Click: Fire</option>
+                  <!-- TODO: more? -->
+                </select><br />
+                <label for="playerMoveRight">Move Right</label>
+                <input type="checkbox" id="playerMoveRight" name="playerMoveRight" /><br />
+                <label for="playerMoveLeft">Move Left</label>
+                <input type="checkbox" id="playerMoveLeft" name="playerMoveLeft" /><br />
+                <label for="playerMoveUp">Move Up</label>
+                <input type="checkbox" id="playerMoveUp" name="playerMoveUp" /><br />
+                <label for="playerMoveDown">Move Down</label>
+                <input type="checkbox" id="playerMoveDown" name="playerMoveDown" /><br />
+              </div>
               <label for="collisionGroupTag">Collision Group Tag:</label>
               <input type="text" id="collisionGroupTag" name="collisionGroupTag" /><br />
               <label for="hasGravity">Affected by Gravity?</label>

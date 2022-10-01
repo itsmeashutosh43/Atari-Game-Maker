@@ -171,3 +171,7 @@ body{
 #otherSpriteInteractionHelperText {
   display: none;
 }
+
+#playerMoveOptions {
+  display: none;
+}

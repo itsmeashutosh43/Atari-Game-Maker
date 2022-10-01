@@ -1,3 +1,4 @@
+import { Block } from "../drawables/drawable";
 import { viewControl } from "./intitlization";
 
 export class userInterfaceListeners {
@@ -88,9 +89,40 @@ export class userInterfaceListeners {
 			console.log(newValue); // your logic goes here
 		});
 
+		// Player movement enabled checkbox
+		document.getElementById("playerMoveEnabled").addEventListener("change", (e) => {
+			const newValue = (<HTMLInputElement>e.currentTarget).checked;
+			if (newValue) {
+				document.getElementById("playerMoveOptions").style.display = "block";
+			} else {
+				document.getElementById("playerMoveOptions").style.display = "none";
+			}
+		});
+
 		// Player movement control scheme
 		document.getElementById("playerMoveBehavior").addEventListener("change", (e) => {
 			const newValue = (<HTMLInputElement>e.currentTarget).value;
+			console.log(newValue); // your logic goes here
+		});
+
+		// Player movement in each orthogonal direction checkboxes
+		document.getElementById("playerMoveRight").addEventListener("change", (e) => {
+			const newValue = (<HTMLInputElement>e.currentTarget).checked;
+			console.log(newValue); // your logic goes here
+		});
+
+		document.getElementById("playerMoveLeft").addEventListener("change", (e) => {
+			const newValue = (<HTMLInputElement>e.currentTarget).checked;
+			console.log(newValue); // your logic goes here
+		});
+
+		document.getElementById("playerMoveUp").addEventListener("change", (e) => {
+			const newValue = (<HTMLInputElement>e.currentTarget).checked;
+			console.log(newValue); // your logic goes here
+		});
+
+		document.getElementById("playerMoveDown").addEventListener("change", (e) => {
+			const newValue = (<HTMLInputElement>e.currentTarget).checked;
 			console.log(newValue); // your logic goes here
 		});
 
