@@ -169,7 +169,7 @@ export class userInterfaceListeners {
 		// Background image
 		document.getElementById("backgroundImageSelect").addEventListener("change", (e) => {
 			const newValue = (<HTMLInputElement>e.currentTarget).value;
-			console.log(newValue); // your logic goes here
+			viewControl.handleBackGroundChange(newValue)
 		});
 
 		// Background music

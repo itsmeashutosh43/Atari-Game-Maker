@@ -6,7 +6,7 @@ import { MusicBehavior } from "../../sound-effects/SoundBehaviors/MusicBehavior"
 import { tmpdir } from "os";
 import { Size } from "../model/objects/isize";
 import { position } from "../model/objects/iposition";
-
+import { gameCanvas } from "../../game-maker/util/view-const";
 
 import { IModel } from "../model/interfaces/imodel";
 import { fetchFromModel } from "../view/fetchFromModel";
@@ -266,8 +266,8 @@ export class Controller {
   }
 
   handleBackGroundChange(image: string) {
-    //this one will just handle the background image and update the list of dictionarys in the model. which will be used
-    //for saving and loading.
+    console.log(image)
+    gameCanvas.style.background = image
   }
 
   handleMainGameMusicChange(song: string) {
