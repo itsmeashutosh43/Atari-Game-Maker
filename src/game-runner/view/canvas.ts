@@ -1,5 +1,5 @@
 import { GameModel } from "../model/gameModel";
-import { IModel } from "../model/imodel";
+import { IModel } from "../model/interfaces/imodel";
 import { position } from "../model/objects/iposition";
 import { Size } from "../model/objects/isize";
 import { BoundingBox } from "../model/objects/isize";
@@ -71,9 +71,12 @@ export class CanvasLayout {
     const dimention: Size = model.get_size();
     const position: position = model.get_position();
 
-    let box: BoundingBox = dimention.getBoundingBox(position);
-
-    return x < box.right && x > box.left && y < box.down && y > box.up;
+    return (
+      x < position.x + dimention.getWidth() &&
+      x > position.x &&
+      y < position.y + dimention.getHeight() &&
+      y > position.y
+    );
   }
 
   getCanvasWidth(): number {

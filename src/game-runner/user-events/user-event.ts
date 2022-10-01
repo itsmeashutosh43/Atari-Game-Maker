@@ -1,5 +1,5 @@
 import { Behavior } from "../behaviors/behavior";
-import { Entity } from "../entities/entity";
+//import { Entity } from "../entities/entity";
 
 export enum KEYCODE {
     ARROWLEFT = "ArrowLeft",
@@ -10,16 +10,16 @@ export enum KEYCODE {
 
 export abstract class UserEvent {
     behavior: Behavior;
-    entity: Entity;
+    //entity: Entity;
     abstract handler(e: KeyboardEvent): void;
-    abstract attachEntity(entity: Entity): void;
+    //abstract attachEntity(entity: Entity): void;
     abstract attachBehavior(behavior: Behavior): void;
 }
 
 export class UserKeydownEvent implements UserEvent {
 
     behavior: Behavior;
-    entity: Entity;
+    //entity: Entity;
     keyCode: KEYCODE;
 
     constructor(b: Behavior, keyCode: KEYCODE) {
@@ -33,7 +33,7 @@ export class UserKeydownEvent implements UserEvent {
         e.preventDefault();
         
         if (e.key == this.keyCode){
-            this.behavior.execute(this.entity);
+            //this.behavior.execute(this.entity);
         }
     }
 
@@ -41,7 +41,7 @@ export class UserKeydownEvent implements UserEvent {
         this.behavior = behavior;
     }
 
-    attachEntity(entity: Entity) {
-        this.entity = entity;
-    }
+    //attachEntity(entity: Entity) {
+       // this.entity = entity;
+    //}
 }

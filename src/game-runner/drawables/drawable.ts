@@ -1,4 +1,4 @@
-import { CANVAS } from "../..";
+//import { CANVAS} from "../..";
 import { cCircle, cSquare } from "../../game-maker/util/form-const";
 
 export interface Cooridnates {

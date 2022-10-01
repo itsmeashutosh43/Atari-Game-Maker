@@ -2,11 +2,14 @@ import { Size } from "./isize";
 import { position } from "./iposition";
 import { BoundingBox } from "./isize";
 
-export class CircleSize implements Size {
-  radius: number;
+export class RectangleSize implements Size {
+  width: number;
+  height: number;
   color: string;
-  constructor(radius: number, e: number, color: string) {
-    this.radius = radius;
+
+  constructor(width: number, height: number, color?: string) {
+    this.width = width;
+    this.height = height;
     this.color = color;
   }
   getDimention(): Size {
@@ -14,10 +17,10 @@ export class CircleSize implements Size {
   }
   getBoundingBox(pos: position): BoundingBox {
     return {
-      up: pos.y - this.radius,
-      down: pos.y + this.radius,
-      left: pos.x - this.radius,
-      right: pos.x + this.radius,
+      up: pos.y,
+      down: pos.y + this.height,
+      left: pos.x,
+      right: pos.x + this.width,
     };
   }
   getColor(): string {
@@ -25,10 +28,10 @@ export class CircleSize implements Size {
   }
 
   getWidth(): number {
-    return this.radius;
+    return this.width;
   }
 
   getHeight(): number {
-    return this.radius;
+    return this.height;
   }
 }

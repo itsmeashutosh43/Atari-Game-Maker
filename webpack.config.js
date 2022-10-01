@@ -29,5 +29,7 @@ module.exports = {
                 exclude: /node_modules/,
             }
         ]
-    }
+    },
+
+    watch:true
 };

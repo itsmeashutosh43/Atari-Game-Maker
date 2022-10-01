@@ -1,6 +1,6 @@
-import {randomMove, reflect } from "../game-runner/entities/collision-checker";
+//import {randomMove, reflect } froEm "../game-runner/entities/collision-checker";
 import { Shape } from "../game-runner/drawables/drawable";
-import { Entity, NonPlayableEntity, PlayableEntity } from "../game-runner/entities/entity";
+//import { Entity, NonPlayableEntity, PlayableEntity } from "../game-runner/entities/entity";
 import { UserKeydownEvent } from "../game-runner/user-events/user-event";
 import { refreshSpriteList } from "./form-list";
 import { Behavior } from "../game-runner/behaviors/behavior";
@@ -136,7 +136,7 @@ export class GameVariable{
         this.pspriteEvents.splice(itemIndex,1);
         this.userEvents.splice(itemIndex,1);
     }
-
+    /*
     generateEntityList(): Array<Entity> {
         let eList: Array<Entity> = []
         if(this.pSprites.length != 0){
@@ -160,6 +160,7 @@ export class GameVariable{
         }
         return eList;
     }
+    */
 
     getpSpriteNames(): Array<string>{
         return this.pspriteNames;

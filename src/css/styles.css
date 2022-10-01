@@ -1,42 +1,173 @@
-#container{
-  display: flex;
-  flex-direction: column;
-  height: 90vh;
+#app {
+  margin: 1%;
 }
-#top{
-  display: flex;
+
+body{
+  background-color: #DFD3C3;
+}
+
+.container {
+	display: flex;
+}
+
+.vertical { 
+  flex-direction: column;
+}
+
+.horizontal {
   flex-direction: row;
-  width: 100%;
+}
+
+.text-center {
+  text-align: center;
+  margin: 50% auto 50% auto;
+}
+
+.center-horizontal {
+  margin-left: 50%;
+  margin-right: 50%;
+}
+
+.center-vertical {
+  margin-top: 50%;
+  margin-bottom: 50%;
+}
+
+.align-bottom {
+  margin-top: 50%;
+  margin-bottom: 0%;
+}
+
+.flex-one {
+  flex: 1;
+}
+
+#top {
+  height: 10vh;
+}
+
+#paletteCanvasPropertiesContainer {
   height: 80vh;
+}
 
-}
-#property{
-  display: flex;
-  width: 15%;
+#property {
+  flex: 1;
   border: 2px solid black;
+  background-color: #DFD3C3;
 }
-#options{
+
+#options {
   display: flex;
+  overflow-y: auto;
   flex-direction: column;
-  width: 20%;
+  flex: 1;
   border: 2px solid black;
+  background-color: #DFD3C3;
 }
 
-#gamewindow{
-  width: 80%;
+#gameView {
+  flex: 3;
   border: 2px solid black;
+  background-color: #7D6E83;
+}
+
+#bottom {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  border: 4px solid black;
+  height: 20vh;
+  overflow-x: auto;
+  background-color: #DFD3C3;
   
 }
 
-#bottom{
-  display: flex;
-  width: 99.5%;
-  border: 4px solid black;
-  height: 20vh;
+#nav {
+  height: 5vh;
 }
 
-#nav{
-  display: flex;
-  flex-direction: row;
-  height: 5vh;
+
+
+#displayedImg {
+  width: 100%;
+  height: 10%;
+  margin-top: 20px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+
+}
+
+#bottomDisplayedImg {
+  width: 3%;
+  height: 100%;
+  margin-left: 20px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+
+}
+
+#title {
+  background-color: #DFD3C3;
+}
+
+#playPauseButtons {
+  background-color: #DFD3C3;
+}
+
+#saveLoadButtons {
+  background-color: #DFD3C3;
+}
+
+#objectConfigTab {
+  flex: 1;
+}
+
+#objectConfigButton {
+  width: 100%;
+}
+
+#behaviorConfigButton {
+  width: 100%;
+}
+
+#interactionsConfigButton {
+  width: 100%;
+}
+
+#settingsConfigButton {
+  
+}
+
+#behaviorConfigTab {
+  flex: 1;
+}
+
+#interactionsConfigTab {
+  flex: 1;
+}
+
+#objectConfigMenu {
+  display: none;
+}
+
+#behaviorConfigMenu {
+  display: none;
+}
+
+#interactionsConfigMenu {
+  display: none;
+}
+
+#settingsConfigMenu {
+  display: none;
+}
+
+#otherSpriteInteractionHelperText {
+  display: none;
+}
+
+#playerMoveOptions {
+  display: none;
 }
