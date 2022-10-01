@@ -166,6 +166,16 @@ export class userInterfaceListeners {
 	}
 
 	private static addSettingsConfigListeners(): void {
-		// Currently no fields in settings menu
+		// Background image
+		document.getElementById("backgroundImageSelect").addEventListener("change", (e) => {
+			const newValue = (<HTMLInputElement>e.currentTarget).value;
+			console.log(newValue); // your logic goes here
+		});
+
+		// Background music
+		document.getElementById("backgroundMusicSelect").addEventListener("change", (e) => {
+			const newValue = (<HTMLInputElement>e.currentTarget).value;
+			console.log(newValue); // your logic goes here
+		});
 	}
 }
