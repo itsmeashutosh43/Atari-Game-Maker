@@ -5,6 +5,8 @@ import { layout } from "../..";
 import { MusicBehavior } from "../../sound-effects/SoundBehaviors/MusicBehavior";
 import { tmpdir } from "os";
 import { Size } from "../model/objects/isize";
+import { IModel } from "../model/interfaces/imodel";
+import { fetchFromModel } from "../view/fetchFromModel";
 
 export class Controller {
   model: GameModel;
@@ -30,16 +32,21 @@ export class Controller {
     this.model.updateSelectedSpriteList();
   }
 
+  // Handles clicks on sprite divs in the bottom view
   handleClickSpriteList(id: string, uniq_id: string) {
-    // I clicked at palette count
     this.clicked_id = uniq_id;
 
-	// // TODO: change this. This is really, really hacky
-	// const spriteHTMLElement = document.getElementById(`${event.target}`);
-	// if (document.getElementById("otherSpriteInteractionHelperText").style.display == 'block') {
-	// 	console.log(`${id} selected: ${spriteHTMLElement}`);
-	// 	document.getElementById("otherSpriteInteractionHelperText").style.display = 'none';
-	// }
+	// TODO: change this. This is really, really hacky
+	const spriteHTMLElement = document.getElementsByName(uniq_id)[0];
+	//console.log(spriteHTMLElement);
+	if (document.getElementById("otherSpriteInteractionHelperText").style.display == 'block') {
+		console.log(`${id} selected: ${spriteHTMLElement}`);
+		document.getElementById("otherSpriteInteractionHelperText").style.display = 'none';
+	} else {
+		// Arrow function body wrapped with {} implicitly tries to return, which is bad for filter
+		fetchFromModel.updateFormFieldsFromModel(<GameModel>this.model.observables
+			.filter((obs: GameModel) => obs.get_selectedId() == this.clicked_id)[0]);
+	}
   }
 
   handleSetSize(xval: number, yval: number) {
@@ -53,7 +60,6 @@ export class Controller {
 
   handleGetSize(): Size {
     let tmp: Size;
-    console.log(this.model.observables);
     this.model.observables
       .filter((obs) => obs.get_selectedId() == this.clicked_id)
       .forEach((obs) => {

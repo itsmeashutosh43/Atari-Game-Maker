@@ -29,6 +29,8 @@ export function drawSpriteList(images: string[], selectedWindow: HTMLElement) {
   console.log(images);
 
   images.forEach((element) => {
+	// TODO: The unique identifier should be in the "id" tag, NOT the "name" tag
+	// However this requires refactoring that isn't trivial
     let curImage = document.createElement("div");
     curImage.setAttribute("id", "bottomDisplayedImg");
     curImage.style.background = `url(${element})`;
@@ -37,7 +39,6 @@ export function drawSpriteList(images: string[], selectedWindow: HTMLElement) {
     curImage.style.backgroundPosition = "center";
     curImage.setAttribute("name", element + count);
     count += 1;
-    console.log(count);
 
     curImage.addEventListener("click", function () {
       viewControl.handleClickSpriteList(element, curImage.getAttribute("name"));
