@@ -110,9 +110,26 @@ export class Controller {
       });
     return tmp
   }
+  handleGetPlayerCanMove(canMove: boolean):void{
+    let tmp;
+    this.model.observables
+      .filter((obs) => obs.get_selectedId() == this.clicked_id)
+      .forEach((obs) => {
+        tmp = obs.get_gravity();
+      });
+    return tmp
+  }
 
 
 
+  handleSetPlayerCanMove(canMove: boolean):void{
+    this.model.observables
+      .filter((obs) => obs.get_selectedId() == this.clicked_id)
+      .forEach((obs) => {
+        obs.set_playerMove(canMove)
+      });
+      
+  }
   handleSetCollissionGroup(collisionId: string): void{
     this.model.observables
       .filter((obs) => obs.get_selectedId() == this.clicked_id)

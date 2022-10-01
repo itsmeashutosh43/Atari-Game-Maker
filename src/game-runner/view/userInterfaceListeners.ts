@@ -95,9 +95,12 @@ export class userInterfaceListeners {
 			const newValue = (<HTMLInputElement>e.currentTarget).checked;
 			if (newValue) {
 				document.getElementById("playerMoveOptions").style.display = "block";
+				
 			} else {
 				document.getElementById("playerMoveOptions").style.display = "none";
+				
 			}
+			viewControl.handleGetPlayerCanMove(newValue);
 		});
 
 		// Player movement control scheme

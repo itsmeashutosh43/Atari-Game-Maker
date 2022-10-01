@@ -27,10 +27,11 @@ export class GameModel implements Observables, IModel {
   gravity: boolean;
   collisionId: string;
   initialMovement:string;
-  moveLeft: boolean
-  moveRight: boolean
-  moveUp: boolean
-  moveDown: boolean
+  moveLeft: boolean;
+  moveRight: boolean;
+  moveUp: boolean;
+  moveDown: boolean;
+  canPlayerMove: boolean;
   count: number = 0;
   dead: boolean = false;
 
@@ -139,6 +140,10 @@ export class GameModel implements Observables, IModel {
     return this.moveUp
   }
 
+  get_playerMove(): boolean {
+    return this.canPlayerMove;
+  }
+
   get_moveRight(): boolean {
     return this.moveRight
   }
@@ -169,6 +174,10 @@ export class GameModel implements Observables, IModel {
 
   set_gravity(gravityOn: boolean): void {
     this.gravity = gravityOn
+  }
+
+  set_playerMove(canMove: boolean): void {
+    this.canPlayerMove = canMove
   }
 
   set_CollissionGroup(collisionId: string): void {
