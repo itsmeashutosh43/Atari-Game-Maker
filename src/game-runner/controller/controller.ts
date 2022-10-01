@@ -7,9 +7,10 @@ import { tmpdir } from "os";
 import { Size } from "../model/objects/isize";
 import { position } from "../model/objects/iposition";
 
-
 import { IModel } from "../model/interfaces/imodel";
 import { fetchFromModel } from "../view/fetchFromModel";
+import { KeyboardController } from "./ExternalController/keyboardController";
+import { MouseController } from "./ExternalController/mouseController";
 
 export class Controller {
   model: GameModel;
@@ -39,17 +40,27 @@ export class Controller {
   handleClickSpriteList(id: string, uniq_id: string) {
     this.clicked_id = uniq_id;
 
-	// TODO: change this. This is really, really hacky
-	const spriteHTMLElement = document.getElementsByName(uniq_id)[0];
-	//console.log(spriteHTMLElement);
-	if (document.getElementById("otherSpriteInteractionHelperText").style.display == 'block') {
-		console.log(`${id} selected: ${spriteHTMLElement}`);
-		document.getElementById("otherSpriteInteractionHelperText").style.display = 'none';
-	} else {
-		// Arrow function body wrapped with {} implicitly tries to return, which is bad for filter
-		fetchFromModel.updateFormFieldsFromModel(<GameModel>this.model.observables
-			.filter((obs: GameModel) => obs.get_selectedId() == this.clicked_id)[0]);
-	}
+    // TODO: change this. This is really, really hacky
+    const spriteHTMLElement = document.getElementsByName(uniq_id)[0];
+    //console.log(spriteHTMLElement);
+    if (
+      document.getElementById("otherSpriteInteractionHelperText").style
+        .display == "block"
+    ) {
+      console.log(`${id} selected: ${spriteHTMLElement}`);
+      document.getElementById(
+        "otherSpriteInteractionHelperText"
+      ).style.display = "none";
+    } else {
+      // Arrow function body wrapped with {} implicitly tries to return, which is bad for filter
+      fetchFromModel.updateFormFieldsFromModel(
+        <GameModel>(
+          this.model.observables.filter(
+            (obs: GameModel) => obs.get_selectedId() == this.clicked_id
+          )[0]
+        )
+      );
+    }
   }
 
   handleSetSize(xval: number, yval: number) {
@@ -77,7 +88,7 @@ export class Controller {
     this.model.observables
       .filter((obs) => obs.get_selectedId() == this.clicked_id)
       .forEach((obs) => {
-        obs.set_position({ x:xPos, y: yPos});
+        obs.set_position({ x: xPos, y: yPos });
       });
   }
 
@@ -92,7 +103,7 @@ export class Controller {
     return tmp;
   }
 
-  handleSetGravity(isGravity:boolean){
+  handleSetGravity(isGravity: boolean) {
     this.model.observables
       .filter((obs) => obs.get_selectedId() == this.clicked_id)
       .forEach((obs) => {
@@ -100,37 +111,33 @@ export class Controller {
       });
   }
 
-
-  handleGetGravity(){
+  handleGetGravity() {
     let tmp;
     this.model.observables
       .filter((obs) => obs.get_selectedId() == this.clicked_id)
       .forEach((obs) => {
         tmp = obs.get_gravity();
       });
-    return tmp
+    return tmp;
   }
-  handleGetPlayerCanMove(canMove: boolean):void{
+  handleGetPlayerCanMove(canMove: boolean): void {
     let tmp;
     this.model.observables
       .filter((obs) => obs.get_selectedId() == this.clicked_id)
       .forEach((obs) => {
         tmp = obs.get_gravity();
       });
-    return tmp
+    return tmp;
   }
 
-
-
-  handleSetPlayerCanMove(canMove: boolean):void{
+  handleSetPlayerCanMove(canMove: boolean): void {
     this.model.observables
       .filter((obs) => obs.get_selectedId() == this.clicked_id)
       .forEach((obs) => {
-        obs.set_playerMove(canMove)
+        obs.set_playerMove(canMove);
       });
-      
   }
-  handleSetCollissionGroup(collisionId: string): void{
+  handleSetCollissionGroup(collisionId: string): void {
     this.model.observables
       .filter((obs) => obs.get_selectedId() == this.clicked_id)
       .forEach((obs) => {
@@ -138,22 +145,18 @@ export class Controller {
       });
   }
 
-  handlegetCollissionGroup(): void{
+  handlegetCollissionGroup(): void {
     let tmp;
     this.model.observables
       .filter((obs) => obs.get_selectedId() == this.clicked_id)
       .forEach((obs) => {
-       tmp = obs.get_CollissionGroup();
+        tmp = obs.get_CollissionGroup();
       });
 
-    return tmp
+    return tmp;
   }
 
-
-
-
-
-  handleSetInitialMovement(initialMovement: string): void{
+  handleSetInitialMovement(initialMovement: string): void {
     this.model.observables
       .filter((obs) => obs.get_selectedId() == this.clicked_id)
       .forEach((obs) => {
@@ -161,75 +164,97 @@ export class Controller {
       });
   }
 
-  handlegetInitialMovement(): void{
+  handlegetInitialMovement(): void {
     let tmp;
     this.model.observables
       .filter((obs) => obs.get_selectedId() == this.clicked_id)
       .forEach((obs) => {
-       tmp = obs.get_initialMovement();
+        tmp = obs.get_initialMovement();
       });
 
-    return tmp
+    return tmp;
   }
 
-
-  handleGetCanMoveRight():void{
+  handleGetCanMoveRight(): void {
     let tmp;
     this.model.observables
       .filter((obs) => obs.get_selectedId() == this.clicked_id)
       .forEach((obs) => {
-       tmp = obs.get_moveRight();
+        tmp = obs.get_moveRight();
       });
 
-    return tmp
+    return tmp;
   }
 
-
-  handleGetCanMoveLeft():void{
+  handleGetCanMoveLeft(): void {
     let tmp;
     this.model.observables
       .filter((obs) => obs.get_selectedId() == this.clicked_id)
       .forEach((obs) => {
-       tmp = obs.get_moveLeft();
+        tmp = obs.get_moveLeft();
       });
 
-    return tmp
+    return tmp;
   }
 
-  handleGetCanMoveUp():void{
+  handleGetCanMoveUp(): void {
     let tmp;
     this.model.observables
       .filter((obs) => obs.get_selectedId() == this.clicked_id)
       .forEach((obs) => {
-       tmp = obs.get_moveUp();
+        tmp = obs.get_moveUp();
       });
 
-    return tmp
+    return tmp;
   }
 
-  handleGetCanMoveDown():void{
+  handleGetCanMoveDown(): void {
+    console.log("Move down");
     let tmp;
     this.model.observables
       .filter((obs) => obs.get_selectedId() == this.clicked_id)
       .forEach((obs) => {
-       tmp = obs.get_moveDown();
+        tmp = obs.get_moveDown();
       });
 
-    return tmp
+    return tmp;
   }
 
-
-
-  handleSetCanMoveRight(canMove:boolean):void{
+  handleSetCanMoveRight(canMove: boolean): void {
     this.model.observables
-    .filter((obs) => obs.get_selectedId() == this.clicked_id)
-    .forEach((obs) => {
-      obs.set_moveRight(canMove);
-    });
+      .filter((obs) => obs.get_selectedId() == this.clicked_id)
+      .forEach((obs) => {
+        obs.set_moveRight(canMove);
+      });
   }
 
+  handlePlayerMoveInput(externalInput: string): void {
+    this.model.observables
+      .filter((obs) => obs.get_selectedId() == this.clicked_id)
+      .forEach((obs) => {
+        switch (externalInput) {
+          case "wasdSpace":
+            console.log("Setting a new keyboard controller");
+            obs.set_external_controller(new KeyboardController());
+            console.log(obs);
+            break;
+          case "mouseLMB":
+            obs.set_external_controller(new MouseController());
+            break;
+        }
+        console.log(externalInput);
+      });
+  }
 
-  handleSetCanMoveLeft(canMove:boolean):void{
+  set_game_background(sound: string): void {
+    console.log(sound);
+
+    this.model.set_background_sound(
+      new MusicBehavior(`./src/sound-effects/${sound}.mp3`)
+    );
+  }
+
+  handleSetCanMoveLeft(canMove: boolean): void {
     this.model.observables
       .filter((obs) => obs.get_selectedId() == this.clicked_id)
       .forEach((obs) => {
@@ -237,7 +262,7 @@ export class Controller {
       });
   }
 
-  handleSetCanMoveUp(canMove:boolean):void{
+  handleSetCanMoveUp(canMove: boolean): void {
     this.model.observables
       .filter((obs) => obs.get_selectedId() == this.clicked_id)
       .forEach((obs) => {
@@ -245,15 +270,13 @@ export class Controller {
       });
   }
 
-  handleSetCanMoveDown(canMove:boolean):void{
+  handleSetCanMoveDown(canMove: boolean): void {
     this.model.observables
       .filter((obs) => obs.get_selectedId() == this.clicked_id)
       .forEach((obs) => {
         obs.set_moveDown(canMove);
       });
   }
-
-
 
   handleClickPropertyConfirm(id: string) {
     /* Depending on the implementation of the above function  it can do one of two things/
@@ -282,5 +305,4 @@ export class Controller {
   handleLoadEvent() {
     //i wonder what this one is gonna do?!??!?!
   }
-
 }

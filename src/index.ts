@@ -30,7 +30,10 @@ export enum MODE {
 
 let mode: MODE = MODE.BUILD;
 
-setInterval(() => gamemodel.notify(mode), 1000 / 60);
+setInterval(() => {
+  layout.clearScreen();
+  gamemodel.notify(mode), 1000 / 60;
+});
 let control: Controller = new Controller(gamemodel);
 
 initAssets(spriteList, spriteSelection, control);
@@ -48,6 +51,9 @@ gameStartButton.addEventListener("click", () => {
     // TODO: de-register external events
   } else {
     // register to external events
+    gamemodel.observables.forEach((obs) =>
+      obs.get_external_controller().register()
+    );
     // play music here
     gamemodel.get_background_sound().make_sound();
     gamemodel.get_external_controller().register();

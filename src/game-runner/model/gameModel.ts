@@ -15,6 +15,8 @@ import { MODE } from "../..";
 import { NoMoveBehavior } from "../controller/MovementBehaviors/noMoveBehavior";
 import { NoController } from "../controller/ExternalController/noController";
 import { Colission } from "../controller/colission_detector/colission";
+import { MoveVertical } from "../controller/MovementBehaviors/moveVertical";
+import { MoveHorizontal } from "../controller/MovementBehaviors/moveHorizontal";
 export class GameModel implements Observables, IModel {
   drawable: IDrawable;
   position: position;
@@ -26,7 +28,7 @@ export class GameModel implements Observables, IModel {
   selectedId: string;
   gravity: boolean;
   collisionId: string;
-  initialMovement:string;
+  initialMovement: string;
   moveLeft: boolean;
   moveRight: boolean;
   moveUp: boolean;
@@ -84,7 +86,10 @@ export class GameModel implements Observables, IModel {
 
     if (mode == MODE.GAME) {
       this.observables.forEach((obs) => {
-        if (!obs.am_i_dead()) this.get_move_behavior().move(obs);
+        if (!obs.am_i_dead()) {
+          obs.get_move_behavior().move(obs);
+          obs.get_external_controller().getMovement(obs);
+        }
       });
 
       this.observables.forEach((obs1) => {
@@ -132,12 +137,11 @@ export class GameModel implements Observables, IModel {
   }
 
   get_gravity(): boolean {
-    return this.gravity
+    return this.gravity;
   }
 
-
   get_moveDown(): boolean {
-    return this.moveUp
+    return this.moveUp;
   }
 
   get_playerMove(): boolean {
@@ -145,13 +149,13 @@ export class GameModel implements Observables, IModel {
   }
 
   get_moveRight(): boolean {
-    return this.moveRight
+    return this.moveRight;
   }
   get_moveUp(): boolean {
-    return this.moveUp
+    return this.moveUp;
   }
   get_moveLeft(): boolean {
-    return this.moveLeft
+    return this.moveLeft;
   }
 
   get_CollissionGroup(): string {
@@ -173,18 +177,35 @@ export class GameModel implements Observables, IModel {
   }
 
   set_gravity(gravityOn: boolean): void {
-    this.gravity = gravityOn
+    this.gravity = gravityOn;
   }
 
   set_playerMove(canMove: boolean): void {
-    this.canPlayerMove = canMove
+    this.canPlayerMove = canMove;
   }
 
   set_CollissionGroup(collisionId: string): void {
-    this.collisionId = collisionId
+    this.collisionId = collisionId;
   }
 
   set_initialMovement(initialMovement: string): void {
+    console.log("setting movements", initialMovement);
+    switch (initialMovement) {
+      case "downMoveBehavior":
+        this.set_move_behavior(new MoveVertical("down"));
+        break;
+      case "upMoveBehavior":
+        this.set_move_behavior(new MoveVertical("up"));
+        break;
+      case "rightMoveBehavior":
+        this.set_move_behavior(new MoveHorizontal("right"));
+        break;
+      case "leftMoveBehavior":
+        this.set_move_behavior(new MoveHorizontal("left"));
+        break;
+      default:
+        this.set_move_behavior(new NoMoveBehavior());
+    }
     this.initialMovement = initialMovement;
   }
 
@@ -200,18 +221,27 @@ export class GameModel implements Observables, IModel {
     this.moveBehavior = moveBehavior;
   }
 
-  set_moveDown(canMove:boolean): void {
-     this.moveDown = canMove
+  set_moveDown(canMove: boolean): void {
+    this.externalController.getMovementDirection().down = canMove;
+    console.log(this);
+    this.moveDown = canMove;
   }
 
-  set_moveRight(canMove:boolean): void{
-    this.moveRight = canMove
+  set_moveRight(canMove: boolean): void {
+    // these are for the external controllers
+    this.externalController.getMovementDirection().right = canMove;
+    this.moveRight = canMove;
   }
-  set_moveUp(canMove:boolean): void {
-    this.moveUp = canMove
+  set_moveUp(canMove: boolean): void {
+    this.externalController.getMovementDirection().up = canMove;
+    // these are for the external controllers
+    this.moveUp = canMove;
   }
-  set_moveLeft(canMove:boolean): void {
-    this.moveLeft = canMove
+  set_moveLeft(canMove: boolean): void {
+    // these are for the external controllers
+
+    this.externalController.getMovementDirection().left = canMove;
+    this.moveLeft = canMove;
   }
   set_external_controller(externalController: ExternalController): void {
     this.externalController = externalController;

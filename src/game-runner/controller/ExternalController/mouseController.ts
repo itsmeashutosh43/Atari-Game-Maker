@@ -1,7 +1,10 @@
 import { IModel } from "../../model/interfaces/imodel";
 import { position } from "../../model/objects/iposition";
 import { ExternalController } from "./externalController";
-import { MovementDirection } from "./movement_direction";
+import {
+  MovementDirection,
+  MovementDirectionEnabled,
+} from "./movement_direction";
 
 export class MouseController implements ExternalController {
   private left: boolean = false;
@@ -11,7 +14,10 @@ export class MouseController implements ExternalController {
   private static speed: number = 50;
   controlType: number;
   registered: boolean = false;
-  constructor() {}
+  movement_direction_enabled: MovementDirectionEnabled;
+  constructor() {
+    this.movement_direction_enabled = new MovementDirectionEnabled();
+  }
   register(): void {
     if (this.registered) return;
     document.addEventListener("mousedown", this.handleKeyDown);
@@ -60,5 +66,9 @@ export class MouseController implements ExternalController {
     model.set_position({ x: x, y: y });
 
     return dir;
+  }
+
+  getMovementDirection(): MovementDirectionEnabled {
+    return this.movement_direction_enabled;
   }
 }
