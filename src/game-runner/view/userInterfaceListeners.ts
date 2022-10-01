@@ -116,6 +116,9 @@ export class userInterfaceListeners {
 
 		// TODO: 
 		// Other sprite
+		document.getElementById("otherSpriteInteractionButton").addEventListener("click", () => {
+			document.getElementById("otherSpriteInteractionHelperText").style.display = "block";
+		});
 
 		// Self effect choice
 		document.getElementById("selfEffect").addEventListener("change", (e) => {
