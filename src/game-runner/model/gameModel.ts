@@ -80,14 +80,16 @@ export class GameModel implements Observables, IModel {
       });
 
       this.observables.forEach((obs1) => {
-        this.observables.forEach((obs2) => {
-          if (obs1 != obs2) {
-            Colission.checkColissionAndHandleEffect(obs1, obs2);
-          }
-        });
+        if (!obs1.am_i_dead()) {
+          this.observables.forEach((obs2) => {
+            if (!obs2.am_i_dead()) {
+              if (obs1 != obs2) {
+                Colission.checkColissionAndHandleEffect(obs1, obs2);
+              }
+            }
+          });
+        }
       });
-
-      //model1 , model2 ==> model1.do([]) , model2.do([])
     }
   }
 
