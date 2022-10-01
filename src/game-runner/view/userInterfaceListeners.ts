@@ -86,7 +86,8 @@ export class userInterfaceListeners {
 		// Movement behavior
 		document.getElementById("moveBehavior").addEventListener("change", (e) => {
 			const newValue = (<HTMLInputElement>e.currentTarget).value;
-			console.log(newValue); // your logic goes here
+			
+			viewControl.handleSetInitialMovement(newValue);
 		});
 
 		// Player movement enabled checkbox
@@ -129,13 +130,13 @@ export class userInterfaceListeners {
 		// Collision group tag
 		document.getElementById("collisionGroupTag").addEventListener("input", (e) => {
 			const newValue = (<HTMLInputElement>e.currentTarget).value;
-			console.log(newValue); // your logic goes here
+			viewControl.handleSetCollissionGroup(newValue);
 		});
 
 		// Gravity toggle
 		document.getElementById("hasGravity").addEventListener("change", (e) => {
 			const newValue = (<HTMLInputElement>e.currentTarget).checked;
-			console.log(newValue); // your logic goes here
+			viewControl.handleSetGravity(newValue)
 		});
 	}
 

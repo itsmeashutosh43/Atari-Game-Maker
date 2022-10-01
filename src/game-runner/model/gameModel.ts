@@ -24,6 +24,9 @@ export class GameModel implements Observables, IModel {
   moveBehavior: MoveBehavior;
   externalController: ExternalController;
   selectedId: string;
+  gravity: boolean;
+  collisionId: string;
+  initialMovement:string;
   count: number = 0;
   dead: boolean = false;
 
@@ -119,6 +122,17 @@ export class GameModel implements Observables, IModel {
   get_selectedId(): string {
     return this.selectedId;
   }
+  get_initialMovement(): string {
+    return this.initialMovement;
+  }
+
+  get_gravity(): boolean {
+    return this.gravity
+  }
+
+  get_CollissionGroup(): string {
+    return this.collisionId;
+  }
 
   set_drawable(drawable: IDrawable): void {
     this.drawable = drawable;
@@ -132,6 +146,18 @@ export class GameModel implements Observables, IModel {
   }
   set_id(id: string): void {
     this.id = id;
+  }
+
+  set_gravity(gravityOn: boolean): void {
+    this.gravity = gravityOn
+  }
+
+  set_CollissionGroup(collisionId: string): void {
+    this.collisionId = collisionId
+  }
+
+  set_initialMovement(initialMovement: string): void {
+    this.initialMovement = initialMovement;
   }
 
   set_background_sound(backgroundSound: SoundBehavior): void {

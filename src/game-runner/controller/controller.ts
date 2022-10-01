@@ -92,6 +92,69 @@ export class Controller {
     return tmp;
   }
 
+  handleSetGravity(isGravity:boolean){
+    this.model.observables
+      .filter((obs) => obs.get_selectedId() == this.clicked_id)
+      .forEach((obs) => {
+        obs.set_gravity(isGravity);
+      });
+  }
+
+
+  handleGetGravity(){
+    let tmp;
+    this.model.observables
+      .filter((obs) => obs.get_selectedId() == this.clicked_id)
+      .forEach((obs) => {
+        tmp = obs.get_gravity();
+      });
+    return tmp
+  }
+
+
+
+  handleSetCollissionGroup(collisionId: string): void{
+    this.model.observables
+      .filter((obs) => obs.get_selectedId() == this.clicked_id)
+      .forEach((obs) => {
+        obs.set_CollissionGroup(collisionId);
+      });
+  }
+
+  handlegetCollissionGroup(): void{
+    let tmp;
+    this.model.observables
+      .filter((obs) => obs.get_selectedId() == this.clicked_id)
+      .forEach((obs) => {
+       tmp = obs.get_CollissionGroup();
+      });
+
+    return tmp
+  }
+
+
+
+
+
+  handleSetInitialMovement(initialMovement: string): void{
+    this.model.observables
+      .filter((obs) => obs.get_selectedId() == this.clicked_id)
+      .forEach((obs) => {
+        obs.set_initialMovement(initialMovement);
+      });
+  }
+
+  handlegetInitialMovement(): void{
+    let tmp;
+    this.model.observables
+      .filter((obs) => obs.get_selectedId() == this.clicked_id)
+      .forEach((obs) => {
+       tmp = obs.get_initialMovement();
+      });
+
+    return tmp
+  }
+
   handleClickPropertyConfirm(id: string) {
     /* Depending on the implementation of the above function  it can do one of two things/
     1.

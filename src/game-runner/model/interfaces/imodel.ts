@@ -20,6 +20,9 @@ export interface IModel {
   get_external_controller(): ExternalController;
   get_background_sound(): SoundBehavior;
   get_selectedId(): string;
+  get_CollissionGroup():string;
+  get_initialMovement():string;
+  get_gravity():boolean;
   i_am_dead(): void;
   am_i_dead(): boolean;
 
@@ -29,6 +32,9 @@ export interface IModel {
   set_id(id: string): void;
   set_background_sound(backgroundSound: SoundBehavior): void;
   set_selectedId(id: string): void;
+  set_CollissionGroup(collisionId: string):void;
+  set_initialMovement(initialMovement:string):void;
+  set_gravity(gravityOn: boolean):void;
 
   set_move_behavior(moveBehavior: Behavior): void;
   set_external_controller(externalController: ExternalController): void;
