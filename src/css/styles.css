@@ -161,3 +161,7 @@
 #settingsConfigMenu {
   display: none;
 }
+
+#otherSpriteInteractionHelperText {
+  display: none;
+}

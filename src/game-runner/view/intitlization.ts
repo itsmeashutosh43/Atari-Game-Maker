@@ -32,9 +32,9 @@ export function drawSpriteList(images:string [], selectedWindow:HTMLElement){
         curImage.style.backgroundPosition = 'center'
 
         curImage.addEventListener("click",function (){
-            
+
             viewControl.handleClickSpriteList(element)
-            
+
         })
         selectedWindow.appendChild(curImage)
     })

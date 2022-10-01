@@ -48,11 +48,19 @@ export class Controller {
 
     layout.clearScreen();
 
-    this.model.observables
+	// TODO: change this. This is really, really hacky
+	console.log(event.target);
+	const spriteHTMLElement = document.getElementById(`${event.target}`);
+	if (document.getElementById("otherSpriteInteractionHelperText").style.display == 'block') {
+		console.log(`${id} selected: ${spriteHTMLElement}`);
+		document.getElementById("otherSpriteInteractionHelperText").style.display = 'none';
+	} else {
+		this.model.observables
       .filter((obs) => obs.get_id() == id)
       .forEach((obs) => {
         obs.set_size(new RectangleSize(500, 500));
       });
+	}
   }
 
   handleClickPropertyConfirm(id: string) {
