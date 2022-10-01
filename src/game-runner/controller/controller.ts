@@ -5,6 +5,9 @@ import { layout } from "../..";
 import { MusicBehavior } from "../../sound-effects/SoundBehaviors/MusicBehavior";
 import { tmpdir } from "os";
 import { Size } from "../model/objects/isize";
+import { position } from "../model/objects/iposition";
+
+
 
 export class Controller {
   model: GameModel;
@@ -55,6 +58,27 @@ export class Controller {
     return tmp;
   }
 
+  handleSetPostion(xPos: number, yPos: number) {
+    layout.clearScreen();
+
+    this.model.observables
+      .filter((obs) => obs.get_selectedId() == this.clicked_id)
+      .forEach((obs) => {
+        obs.set_position({ x:xPos, y: yPos});
+      });
+  }
+
+  handleGetPostion(): position {
+    let tmp: position;
+    console.log(this.model.observables);
+    this.model.observables
+      .filter((obs) => obs.get_selectedId() == this.clicked_id)
+      .forEach((obs) => {
+        tmp = obs.get_position();
+      });
+    return tmp;
+  }
+
   handleClickPropertyConfirm(id: string) {
     /* Depending on the implementation of the above function  it can do one of two things/
     1.
@@ -83,8 +107,4 @@ export class Controller {
     //i wonder what this one is gonna do?!??!?!
   }
 
-  getCorrectObservable(id: string): any {
-    let tmp = null;
-    return tmp;
-  }
 }

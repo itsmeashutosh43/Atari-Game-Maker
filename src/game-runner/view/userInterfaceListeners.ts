@@ -52,14 +52,16 @@ export class userInterfaceListeners {
 		// X position field
 		document.getElementById("xPosition").addEventListener("input", (e) => {
 			const newValue = (<HTMLInputElement>e.currentTarget).value;
-			
-			console.log(newValue); // your logic goes here
+			let store = viewControl.handleGetPostion();
+			viewControl.handleSetPostion(parseInt(newValue),store.y)
 		});
 
 		// Y position field
 		document.getElementById("yPosition").addEventListener("input", (e) => {
 			const newValue = (<HTMLInputElement>e.currentTarget).value;
-			console.log(newValue); // your logic goes here
+		
+			let store = viewControl.handleGetPostion();
+			viewControl.handleSetPostion(store.x,parseInt(newValue))
 		});
 
 		// Width field
@@ -70,7 +72,7 @@ export class userInterfaceListeners {
 			viewControl.handleSetSize(parseInt(newValue),store.getHeight())
 		});
 
-		// Height fieldnu
+		// Height field
 		document.getElementById("spriteHeight").addEventListener("input", (e) => {
 			const newValue = (<HTMLInputElement>e.currentTarget).value;
 			let store = viewControl.handleGetSize();
