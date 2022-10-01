@@ -27,6 +27,10 @@ export class GameModel implements Observables, IModel {
   gravity: boolean;
   collisionId: string;
   initialMovement:string;
+  moveLeft: boolean
+  moveRight: boolean
+  moveUp: boolean
+  moveDown: boolean
   count: number = 0;
   dead: boolean = false;
 
@@ -130,6 +134,21 @@ export class GameModel implements Observables, IModel {
     return this.gravity
   }
 
+
+  get_moveDown(): boolean {
+    return this.moveUp
+  }
+
+  get_moveRight(): boolean {
+    return this.moveRight
+  }
+  get_moveUp(): boolean {
+    return this.moveUp
+  }
+  get_moveLeft(): boolean {
+    return this.moveLeft
+  }
+
   get_CollissionGroup(): string {
     return this.collisionId;
   }
@@ -170,6 +189,20 @@ export class GameModel implements Observables, IModel {
 
   set_move_behavior(moveBehavior: MoveBehavior): void {
     this.moveBehavior = moveBehavior;
+  }
+
+  set_moveDown(canMove:boolean): void {
+     this.moveDown = canMove
+  }
+
+  set_moveRight(canMove:boolean): void{
+    this.moveRight = canMove
+  }
+  set_moveUp(canMove:boolean): void {
+    this.moveUp = canMove
+  }
+  set_moveLeft(canMove:boolean): void {
+    this.moveLeft = canMove
   }
   set_external_controller(externalController: ExternalController): void {
     this.externalController = externalController;

@@ -109,22 +109,22 @@ export class userInterfaceListeners {
 		// Player movement in each orthogonal direction checkboxes
 		document.getElementById("playerMoveRight").addEventListener("change", (e) => {
 			const newValue = (<HTMLInputElement>e.currentTarget).checked;
-			console.log(newValue); // your logic goes here
+			viewControl.handleSetCanMoveRight(newValue)
 		});
 
 		document.getElementById("playerMoveLeft").addEventListener("change", (e) => {
 			const newValue = (<HTMLInputElement>e.currentTarget).checked;
-			console.log(newValue); // your logic goes here
+			viewControl.handleSetCanMoveLeft(newValue)
 		});
 
 		document.getElementById("playerMoveUp").addEventListener("change", (e) => {
 			const newValue = (<HTMLInputElement>e.currentTarget).checked;
-			console.log(newValue); // your logic goes here
+			viewControl.handleSetCanMoveUp(newValue)
 		});
 
 		document.getElementById("playerMoveDown").addEventListener("change", (e) => {
 			const newValue = (<HTMLInputElement>e.currentTarget).checked;
-			console.log(newValue); // your logic goes here
+			viewControl.handleSetCanMoveDown(newValue)
 		});
 
 		// Collision group tag
