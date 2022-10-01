@@ -14,6 +14,7 @@ import { NoSoundBehavior } from "../../sound-effects/SoundBehaviors/noSoundBehav
 import { MODE } from "../..";
 import { NoMoveBehavior } from "../controller/MovementBehaviors/noMoveBehavior";
 import { NoController } from "../controller/ExternalController/noController";
+import { Colission } from "../controller/colission_detector/colission";
 export class GameModel implements Observables, IModel {
   drawable: IDrawable;
   position: position;
@@ -76,6 +77,14 @@ export class GameModel implements Observables, IModel {
     if (mode == MODE.GAME) {
       this.observables.forEach((obs) => {
         if (!obs.am_i_dead()) this.get_move_behavior().move(obs);
+      });
+
+      this.observables.forEach((obs1) => {
+        this.observables.forEach((obs2) => {
+          if (obs1 != obs2) {
+            Colission.checkColissionAndHandleEffect(obs1, obs2);
+          }
+        });
       });
 
       //model1 , model2 ==> model1.do([]) , model2.do([])
