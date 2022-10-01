@@ -10,6 +10,7 @@ export class Colission {
       )
     ) {
       // get all effects and do something!
+      console.log("Two objects are colliding");
     }
   }
 
