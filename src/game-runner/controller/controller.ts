@@ -155,6 +155,89 @@ export class Controller {
     return tmp
   }
 
+
+  handleGetCanMoveRight():void{
+    let tmp;
+    this.model.observables
+      .filter((obs) => obs.get_selectedId() == this.clicked_id)
+      .forEach((obs) => {
+       tmp = obs.get_moveRight();
+      });
+
+    return tmp
+  }
+
+
+  handleGetCanMoveLeft():void{
+    let tmp;
+    this.model.observables
+      .filter((obs) => obs.get_selectedId() == this.clicked_id)
+      .forEach((obs) => {
+       tmp = obs.get_moveLeft();
+      });
+
+    return tmp
+  }
+
+  handleGetCanMoveUp():void{
+    let tmp;
+    this.model.observables
+      .filter((obs) => obs.get_selectedId() == this.clicked_id)
+      .forEach((obs) => {
+       tmp = obs.get_moveUp();
+      });
+
+    return tmp
+  }
+
+  handleGetCanMoveDown():void{
+    let tmp;
+    this.model.observables
+      .filter((obs) => obs.get_selectedId() == this.clicked_id)
+      .forEach((obs) => {
+       tmp = obs.get_moveDown();
+      });
+
+    return tmp
+  }
+
+
+
+  handleSetCanMoveRight(canMove:boolean):void{
+    this.model.observables
+    .filter((obs) => obs.get_selectedId() == this.clicked_id)
+    .forEach((obs) => {
+      obs.set_moveRight(canMove);
+    });
+  }
+
+
+  handleSetCanMoveLeft(canMove:boolean):void{
+    this.model.observables
+      .filter((obs) => obs.get_selectedId() == this.clicked_id)
+      .forEach((obs) => {
+        obs.set_moveLeft(canMove);
+      });
+  }
+
+  handleSetCanMoveUp(canMove:boolean):void{
+    this.model.observables
+      .filter((obs) => obs.get_selectedId() == this.clicked_id)
+      .forEach((obs) => {
+        obs.set_moveUp(canMove);
+      });
+  }
+
+  handleSetCanMoveDown(canMove:boolean):void{
+    this.model.observables
+      .filter((obs) => obs.get_selectedId() == this.clicked_id)
+      .forEach((obs) => {
+        obs.set_moveDown(canMove);
+      });
+  }
+
+
+
   handleClickPropertyConfirm(id: string) {
     /* Depending on the implementation of the above function  it can do one of two things/
     1.

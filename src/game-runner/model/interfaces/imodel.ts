@@ -23,6 +23,10 @@ export interface IModel {
   get_CollissionGroup():string;
   get_initialMovement():string;
   get_gravity():boolean;
+  get_moveRight(): boolean;
+  get_moveLeft(): boolean;
+  get_moveUp(): boolean;
+  get_moveDown(): boolean;
   i_am_dead(): void;
   am_i_dead(): boolean;
 
@@ -35,6 +39,10 @@ export interface IModel {
   set_CollissionGroup(collisionId: string):void;
   set_initialMovement(initialMovement:string):void;
   set_gravity(gravityOn: boolean):void;
+  set_moveRight(canMove:boolean): void
+  set_moveLeft(canMove:boolean): void
+  set_moveUp(canMove:boolean): void
+  set_moveDown(canMove:boolean): void
 
   set_move_behavior(moveBehavior: Behavior): void;
   set_external_controller(externalController: ExternalController): void;
