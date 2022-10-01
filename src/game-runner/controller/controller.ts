@@ -8,6 +8,7 @@ import { Size } from "../model/objects/isize";
 
 export class Controller {
   model: GameModel;
+  clicked_id: string;
   constructor(model: GameModel) {
     this.model = model;
   }
@@ -29,35 +30,36 @@ export class Controller {
     this.model.updateSelectedSpriteList();
   }
 
-  handleClickSpriteList(id: string) {
-    this.model.set_selectedId(id)
+  handleClickSpriteList(id: string, uniq_id: string) {
+    // I clicked at palette count
+    this.clicked_id = uniq_id;
 
-	const spriteHTMLElement = document.getElementById(`${event.target}`);
-	// TODO: change this. This is really, really hacky
-	if (document.getElementById("otherSpriteInteractionHelperText").style.display == 'block') {
-		console.log(`${id} selected: ${spriteHTMLElement}`);
-		document.getElementById("otherSpriteInteractionHelperText").style.display = 'none';
-	}
+	// // TODO: change this. This is really, really hacky
+	// const spriteHTMLElement = document.getElementById(`${event.target}`);
+	// if (document.getElementById("otherSpriteInteractionHelperText").style.display == 'block') {
+	// 	console.log(`${id} selected: ${spriteHTMLElement}`);
+	// 	document.getElementById("otherSpriteInteractionHelperText").style.display = 'none';
+	// }
   }
 
-  handleSetSize(xval:number,yval:number){
+  handleSetSize(xval: number, yval: number) {
     layout.clearScreen();
     this.model.observables
-      .filter((obs) => obs.get_id() == this.model.get_selectedId())
+      .filter((obs) => obs.get_selectedId() == this.clicked_id)
       .forEach((obs) => {
-        obs.set_size(new RectangleSize(xval,yval))
+        obs.set_size(new RectangleSize(xval, yval));
       });
   }
 
-  handleGetSize(): Size{
-    let tmp:Size;
+  handleGetSize(): Size {
+    let tmp: Size;
+    console.log(this.model.observables);
     this.model.observables
-      .filter((obs) => obs.get_id() == this.model.get_selectedId())
+      .filter((obs) => obs.get_selectedId() == this.clicked_id)
       .forEach((obs) => {
-        
-        tmp = obs.get_size()
+        tmp = obs.get_size();
       });
-    return tmp
+    return tmp;
   }
 
   handleClickPropertyConfirm(id: string) {
@@ -88,10 +90,8 @@ export class Controller {
     //i wonder what this one is gonna do?!??!?!
   }
 
-
-  getCorrectObservable(id: string): any{
+  getCorrectObservable(id: string): any {
     let tmp = null;
     return tmp;
   }
- 
 }

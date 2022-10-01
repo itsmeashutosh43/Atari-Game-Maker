@@ -4,7 +4,7 @@ import { IDrawable } from "../../view/idrawable";
 import { MoveBehavior } from "../../controller/MovementBehaviors/moveBehavior";
 import { ExternalController } from "../../controller/ExternalController/externalController";
 import { SoundBehavior } from "../../../sound-effects/SoundBehaviors/soundBehavior";
-
+import { Behavior } from "../../controller/MovementBehaviors/positionBehavior";
 export interface IModel {
   clone(
     drawable: IDrawable,
@@ -16,16 +16,20 @@ export interface IModel {
   get_position(): position;
   get_size(): Size;
   get_id(): string;
-  get_move_behavior(): MoveBehavior;
+  get_move_behavior(): Behavior;
   get_external_controller(): ExternalController;
   get_background_sound(): SoundBehavior;
+  get_selectedId(): string;
+  i_am_dead(): void;
+  am_i_dead(): boolean;
 
   set_drawable(drawable: IDrawable): void;
   set_size(size: Size): void;
   set_position(position: position): void;
   set_id(id: string): void;
   set_background_sound(backgroundSound: SoundBehavior): void;
+  set_selectedId(id: string): void;
 
-  set_move_behavior(moveBehavior: MoveBehavior): void;
+  set_move_behavior(moveBehavior: Behavior): void;
   set_external_controller(externalController: ExternalController): void;
 }
