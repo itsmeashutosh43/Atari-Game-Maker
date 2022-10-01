@@ -1,6 +1,6 @@
 import { Controller } from "../controller/controller";
 
-let viewControl: Controller;
+export let viewControl: Controller;
 export function initAssets(images:string [], selectionWindow: HTMLElement, control:Controller){
     viewControl = control
     images.forEach( (element) =>{

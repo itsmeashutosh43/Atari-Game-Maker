@@ -3,6 +3,8 @@ import { RectangleSize } from "../model/objects/rectangleSize";
 import { defaultImageDrawable } from "../view/imageDrawable";
 import { layout } from "../..";
 import { MusicBehavior } from "../../sound-effects/SoundBehaviors/MusicBehavior";
+import { tmpdir } from "os";
+import { Size } from "../model/objects/isize";
 
 export class Controller {
   model: GameModel;
@@ -28,39 +30,34 @@ export class Controller {
   }
 
   handleClickSpriteList(id: string) {
-    /*
-    this will handle the sprite that is being clicked in the sprite list.
-    When this is clicked a properties tab should appear which will allow the user to 
-    customize the properties of the sprite. 
+    this.model.set_selectedId(id)
 
-
-    This one is still up for debate however we could use this function to set onchangeEvent for each of those propertys
-    eliminating the need for the confirm button to send all the parameters and a need for giant if/switch statements 
-    making it easier to scale in the future and making the game dynamic so
-    
-    for example if you set the size to 40 the user dosen't have to click confirm to see the change in size.
-
-   */
-    //this.model.remove(id)
-
-    // movements
-    // keyboard inputs
-
-    layout.clearScreen();
-
-	// TODO: change this. This is really, really hacky
-	console.log(event.target);
 	const spriteHTMLElement = document.getElementById(`${event.target}`);
+	// TODO: change this. This is really, really hacky
 	if (document.getElementById("otherSpriteInteractionHelperText").style.display == 'block') {
 		console.log(`${id} selected: ${spriteHTMLElement}`);
 		document.getElementById("otherSpriteInteractionHelperText").style.display = 'none';
-	} else {
-		this.model.observables
-      .filter((obs) => obs.get_id() == id)
-      .forEach((obs) => {
-        obs.set_size(new RectangleSize(500, 500));
-      });
 	}
+  }
+
+  handleSetSize(xval:number,yval:number){
+    layout.clearScreen();
+    this.model.observables
+      .filter((obs) => obs.get_id() == this.model.get_selectedId())
+      .forEach((obs) => {
+        obs.set_size(new RectangleSize(xval,yval))
+      });
+  }
+
+  handleGetSize(): Size{
+    let tmp:Size;
+    this.model.observables
+      .filter((obs) => obs.get_id() == this.model.get_selectedId())
+      .forEach((obs) => {
+        
+        tmp = obs.get_size()
+      });
+    return tmp
   }
 
   handleClickPropertyConfirm(id: string) {
@@ -81,8 +78,6 @@ export class Controller {
   handleMainGameMusicChange(song: string) {
     //this one will display the audio to the game on repeat update the list of dictionarys in the model which will be used
     //for saving and loading.
-    // song is complete path to the song
-    this.model.set_background_sound(new MusicBehavior(song));
   }
 
   handleSaveEvent() {
@@ -92,4 +87,11 @@ export class Controller {
   handleLoadEvent() {
     //i wonder what this one is gonna do?!??!?!
   }
+
+
+  getCorrectObservable(id: string): any{
+    let tmp = null;
+    return tmp;
+  }
+ 
 }

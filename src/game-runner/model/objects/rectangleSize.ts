@@ -27,11 +27,11 @@ export class RectangleSize implements Size {
     return this.color;
   }
 
-  getX(): number {
+  getWidth(): number {
     return this.width;
   }
 
-  getY(): number {
+  getHeight(): number {
     return this.height;
   }
 }
