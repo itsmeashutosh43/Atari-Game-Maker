@@ -14,6 +14,7 @@ import { NoSoundBehavior } from "../../sound-effects/SoundBehaviors/noSoundBehav
 import { MODE } from "../..";
 import { NoMoveBehavior } from "../controller/MovementBehaviors/noMoveBehavior";
 import { NoController } from "../controller/ExternalController/noController";
+import { Colission } from "../controller/colission_detector/colission";
 export class GameModel implements Observables, IModel {
   drawable: IDrawable;
   position: position;
@@ -24,6 +25,7 @@ export class GameModel implements Observables, IModel {
   externalController: ExternalController;
   selectedId: string;
   count: number = 0;
+  dead: boolean = false;
 
   backgroundSound: SoundBehavior;
 
@@ -48,6 +50,14 @@ export class GameModel implements Observables, IModel {
     return o;
   }
 
+  i_am_dead(): void {
+    this.dead = true;
+  }
+
+  am_i_dead(): boolean {
+    return this.dead;
+  }
+
   add(obs: IModel): void {
     obs.set_selectedId(obs.get_id() + this.count++);
     this.observables.push(obs);
@@ -56,7 +66,8 @@ export class GameModel implements Observables, IModel {
 
   notify(mode: MODE): void {
     this.observables.forEach((obs) => {
-      obs.get_drawable().draw(obs.get_size(), obs.get_position());
+      if (!obs.am_i_dead())
+        obs.get_drawable().draw(obs.get_size(), obs.get_position());
     });
 
     // register to external events
@@ -65,10 +76,20 @@ export class GameModel implements Observables, IModel {
 
     if (mode == MODE.GAME) {
       this.observables.forEach((obs) => {
-        this.get_move_behavior().move(obs);
+        if (!obs.am_i_dead()) this.get_move_behavior().move(obs);
       });
 
-      //model1 , model2 ==> model1.do([]) , model2.do([])
+      this.observables.forEach((obs1) => {
+        if (!obs1.am_i_dead()) {
+          this.observables.forEach((obs2) => {
+            if (!obs2.am_i_dead()) {
+              if (obs1 != obs2) {
+                Colission.checkColissionAndHandleEffect(obs1, obs2);
+              }
+            }
+          });
+        }
+      });
     }
   }
 
