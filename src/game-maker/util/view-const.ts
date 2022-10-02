@@ -21,7 +21,21 @@ export let spriteList: string[] =
 "orangeghost",
 "pinkghost",
 "redghost",
-
+"bughead",
+"bugbody",
+"mushroom",
+"donkeykong",
+"barrel",
+"frog",
+"carblue",
+"caryellow",
+"carpolice",
+"firetruck",
+"semitruck",
+"log",
+"grass",
+"bush",
+"water",
 ];
 
 
