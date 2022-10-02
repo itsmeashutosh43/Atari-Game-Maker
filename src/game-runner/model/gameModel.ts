@@ -233,11 +233,13 @@ export class GameModel implements Observables, IModel {
   }
 
   set_CollissionGroup(collisionId: string): void {
+    // if it collides with its own colission group, then reflect
     this.set_interactions(collisionId, new ReflectEffect());
     this.collisionId = collisionId;
   }
 
   set_interactions(collisionId: string, effect: Effect) {
+    console.log("Setting collisions for id", this.id, collisionId, effect);
     this.interactions.set(collisionId, effect);
   }
 
@@ -246,7 +248,6 @@ export class GameModel implements Observables, IModel {
   }
 
   set_initialMovement(initialMovement: string): void {
-    console.log("setting movements", initialMovement);
     switch (initialMovement) {
       case "downMoveBehavior":
         this.set_move_behavior(new MoveVertical("down"));
@@ -316,7 +317,6 @@ export class GameModel implements Observables, IModel {
       .forEach((obs) => {
         idList.push(obs.get_drawable().get_source());
       });
-    console.log(`idList: ${idList}`);
     appendToSpriteList(idList);
   }
 }

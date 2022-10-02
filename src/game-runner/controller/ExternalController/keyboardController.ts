@@ -41,7 +41,6 @@ export class KeyboardController implements ExternalController {
   };
 
   handleKeyDown = (e: KeyboardEvent): void => {
-    console.log(e.code);
     if (e.code === "ArrowLeft" || e.code === "KeyA") {
       this.left = true;
     } else if (e.code === "ArrowRight" || e.code === "KeyD") {
@@ -54,7 +53,6 @@ export class KeyboardController implements ExternalController {
   };
 
   getMovement(model: IModel): MovementDirection {
-    console.log(this.left, this.right);
     let dir: MovementDirection = new MovementDirection();
     let pos: position = model.get_position();
     let x: number = pos.x;

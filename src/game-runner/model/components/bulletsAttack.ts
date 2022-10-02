@@ -30,7 +30,6 @@ export class BulletAttack implements Attack {
   }
 
   handleKeyUp = (e: KeyboardEvent): void => {
-    console.log("handling key down");
     if (e.code == "Space") {
       this.check_for_attack();
     }
@@ -53,7 +52,6 @@ export class BulletAttack implements Attack {
     }
 
     this.count -= 1;
-    console.log("Creating new bullets");
     let nullspriteModel: GameModel = new GameModel();
     nullspriteModel.set_drawable(this.draw);
     nullspriteModel.set_initialMovement("upMoveBehavior");
@@ -67,7 +65,6 @@ export class BulletAttack implements Attack {
     // only needs movement , position and drawable
   } // this build the object on each space button click and add this to the attacker queue; dont populate observables;
   register(): void {
-    console.log("Registered keyboard event");
     document.addEventListener("keydown", this.handleKeyUp);
     document.addEventListener("keyup", this.handleKeyboardUp);
   } // register the keyboard event

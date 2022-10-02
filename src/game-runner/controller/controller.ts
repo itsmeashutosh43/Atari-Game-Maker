@@ -72,15 +72,12 @@ export class Controller {
       document.getElementById("otherSpriteInteractionHelperText").style
         .display == "block"
     ) {
-      this.disableSelectOtherSpriteMode();
-    } else {
-      // Arrow function body wrapped with {} implicitly tries to return, which is bad for filter
-      console.log(this.model.observables);
       console.log(
         "clicked id for add interaction",
         this.selected_id,
         this.clicked_id
       );
+      this.disableSelectOtherSpriteMode();
 
       this.interacting_to_model = this.model.observables.filter(
         (obs: GameModel) => obs.get_selectedId() == this.selected_id
@@ -90,6 +87,11 @@ export class Controller {
         (obs: GameModel) => obs.get_selectedId() == this.clicked_id
       )[0]; // when I collide with this
 
+      // get colission group for the clicked this
+      document.getElementById(
+        "otherSpriteInteractionHelperText"
+      ).style.display = "none";
+    } else {
       // Arrow function body wrapped with {} implicitly tries to return, which is bad for filter
       this.selected_id = uniq_id;
       fetchFromModel.updateFormFieldsFromModel(
@@ -99,11 +101,6 @@ export class Controller {
           )[0]
         )
       );
-
-      // get colission group for the clicked this
-      document.getElementById(
-        "otherSpriteInteractionHelperText"
-      ).style.display = "none";
     }
   }
 
@@ -470,20 +467,24 @@ export class Controller {
   }
 
   handleCloneSprite(): void {
-	// TODO call method from model
+    // TODO call method from model
   }
 
   hideBuilderElements(): void {
-	["options", "property"].forEach(div => {
-	  (<HTMLElement[]> Array.from(document.getElementById(div).children)).forEach(child => child.style.display = "none");
-    document.getElementById(div).style.backgroundColor = "black";
-	});
-  document.getElementById("appTitle").innerHTML = "GamePlayer";
+    ["options", "property"].forEach((div) => {
+      (<HTMLElement[]>(
+        Array.from(document.getElementById(div).children)
+      )).forEach((child) => (child.style.display = "none"));
+      document.getElementById(div).style.backgroundColor = "black";
+    });
+    document.getElementById("appTitle").innerHTML = "GamePlayer";
   }
 
   showBuilderElements(): void {
-    ["options", "property"].forEach(div => {
-      (<HTMLElement[]> Array.from(document.getElementById(div).children)).forEach(child => child.style.display = "flex");
+    ["options", "property"].forEach((div) => {
+      (<HTMLElement[]>(
+        Array.from(document.getElementById(div).children)
+      )).forEach((child) => (child.style.display = "flex"));
       document.getElementById(div).style.backgroundColor = "#DFD3C3";
     });
     document.getElementById("appTitle").innerHTML = "GameBuilder";
