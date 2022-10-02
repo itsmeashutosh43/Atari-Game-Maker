@@ -8,6 +8,7 @@ export class userInterfaceListeners {
     this.addBehaviorConfigListeners();
     this.addInteractionConfigListeners();
     this.addSettingsConfigListeners();
+	this.addBottomButtonListeners();
   }
 
   private static addFormTabListeners(): void {
@@ -224,5 +225,15 @@ export class userInterfaceListeners {
         console.log(newValue); // your logic goes here
         viewControl.set_game_background(newValue);
       });
+  }
+
+  private static addBottomButtonListeners(): void {
+		// Deselect sprite
+		document.getElementById("deselectSpriteButton")
+			.addEventListener("click", () => {
+				viewControl.handleDeselectSprite();
+			});
+		
+		// "Delete" sprite
   }
 }

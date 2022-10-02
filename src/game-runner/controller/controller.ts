@@ -310,4 +310,9 @@ export class Controller {
   handleLoadEvent() {
     //i wonder what this one is gonna do?!??!?!
   }
+
+  handleDeselectSprite() {
+	this.clicked_id = '';
+	this.handleClickSpriteList('', '');
+  }
 }

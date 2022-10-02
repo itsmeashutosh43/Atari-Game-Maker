@@ -117,8 +117,9 @@ p, label {
   align-items: left;
   flex-direction: row;
   border: 4px solid black;
-  height: 20vh;
+  height: 15vh;
   overflow-x: auto;
+  overflow-y:hidden;
   background-color: #DFD3C3;
 }
 
@@ -146,7 +147,7 @@ p, label {
   align-items: left;
   flex-direction: row;
   border: 3px solid black;
-  height: 20vh;
+  height: 12vh;
   overflow-x: auto;
   background-color: #DFD3C3;
 }
