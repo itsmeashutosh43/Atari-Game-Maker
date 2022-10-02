@@ -53,4 +53,5 @@ export interface IModel {
   set_interactions(collisionId: string, effect: Effect): void;
   set_attack(c: string): void;
   set_attacker(attack: Attack): void;
+  save(): IModel[];
 }

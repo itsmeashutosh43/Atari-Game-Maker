@@ -319,4 +319,12 @@ export class GameModel implements Observables, IModel {
       });
     appendToSpriteList(idList);
   }
+
+  save(): IModel[] {
+    let arr: IModel[] = [];
+    this.observables.forEach((obs) => {
+      arr.push(obs.clone(obs));
+    });
+    return arr;
+  }
 }

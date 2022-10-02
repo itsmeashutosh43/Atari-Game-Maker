@@ -14,6 +14,8 @@ import {
 import { initAssets, viewControl } from "./game-runner/view/intitlization";
 import { Controller } from "./game-runner/controller/controller";
 import { userInterfaceListeners } from "./game-runner/view/userInterfaceListeners";
+import { IModel } from "./game-runner/model/interfaces/imodel";
+let savedGames: Map<string, IModel[]> = new Map<string, IModel[]>();
 
 const iconSize = 50;
 
@@ -48,11 +50,14 @@ const startButtonImage = document.getElementById("start") as HTMLImageElement;
 startButtonImage.addEventListener("click", () => {
   if (mode == MODE.GAME) {
     mode = MODE.BUILD;
+
+    let loadedGame = savedGames.get("last_game");
+    gamemodel.observables = loadedGame;
     startButtonImage.src = "./src/interface-icons/play.svg";
     startButtonImage.width = iconSize;
     startButtonImage.height = iconSize;
     gamemodel.get_background_sound().pause_sound();
-	viewControl.showBuilderElements();
+    viewControl.showBuilderElements();
     // TODO: de-register external events
   } else {
     // register to external events
@@ -64,9 +69,10 @@ startButtonImage.addEventListener("click", () => {
     gamemodel.get_background_sound().make_sound();
     gamemodel.get_external_controller().register();
     mode = MODE.GAME;
+    savedGames.set("last_game", gamemodel.save());
     startButtonImage.src = "./src/interface-icons/stop.svg";
-	startButtonImage.width = iconSize;
-	startButtonImage.height = iconSize;
-	viewControl.hideBuilderElements();
+    startButtonImage.width = iconSize;
+    startButtonImage.height = iconSize;
+    viewControl.hideBuilderElements();
   }
 });
