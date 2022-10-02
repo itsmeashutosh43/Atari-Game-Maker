@@ -5,6 +5,7 @@ import { ExternalController } from "../../controller/ExternalController/external
 import { SoundBehavior } from "../../../sound-effects/SoundBehaviors/soundBehavior";
 import { Behavior } from "../../controller/MovementBehaviors/positionBehavior";
 import { Effect } from "../../controller/MovementBehaviors/ieffects";
+import { Attack } from "../components/iattack";
 export interface IModel {
   clone(
     drawable: IDrawable,
@@ -30,9 +31,12 @@ export interface IModel {
   get_playerMove(): boolean;
   get_keybinds(): string;
   get_interactions(id: string): Effect;
+  get_attacker(): Attack;
+  get_affected_by_bullets(): boolean;
   i_am_dead(): void;
   am_i_dead(): boolean;
 
+  set_affected_by_bullets(b: boolean): void;
   set_drawable(drawable: IDrawable): void;
   set_size(size: Size): void;
   set_position(position: position): void;
@@ -48,7 +52,9 @@ export interface IModel {
   set_moveDown(canMove: boolean): void;
   set_playerMove(canMove: boolean): void;
   set_move_behavior(moveBehavior: Behavior): void;
-  set_keyBinds(keybind:string): void;
+  set_keyBinds(keybind: string): void;
   set_external_controller(externalController: ExternalController): void;
   set_interactions(collisionId: string, effect: Effect): void;
+  set_attack(c: string): void;
+  set_attacker(attack: Attack): void;
 }

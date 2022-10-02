@@ -179,10 +179,28 @@ export class userInterfaceListeners {
       viewControl.handleSetGravity(newValue);
     });
 
-    document.getElementById("playerMoveBehavior").addEventListener("change", (e) => {
-      const newValue = (<HTMLInputElement>e.currentTarget).value;
-      viewControl.handleSetKeyBinds(newValue);
+    // Gravity toggle
+    document.getElementById("attack").addEventListener("change", (e) => {
+      const newValue = (<HTMLInputElement>e.currentTarget).checked;
+      if (newValue) {
+        viewControl.handleSetAttack("bullets");
+      } else {
+        viewControl.handleSetAttack("");
+      }
     });
+
+    document
+      .getElementById("affectedByAttacke")
+      .addEventListener("change", (e) => {
+        const newValue = (<HTMLInputElement>e.currentTarget).checked;
+        viewControl.handleSetAffected(newValue);
+      });
+    document
+      .getElementById("playerMoveBehavior")
+      .addEventListener("change", (e) => {
+        const newValue = (<HTMLInputElement>e.currentTarget).value;
+        viewControl.handleSetKeyBinds(newValue);
+      });
   }
 
   private static addInteractionConfigListeners(): void {

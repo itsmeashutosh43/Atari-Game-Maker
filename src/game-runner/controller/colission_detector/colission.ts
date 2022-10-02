@@ -1,5 +1,6 @@
 import { BoundingBox } from "../../drawables/drawable";
 import { IModel } from "../../model/interfaces/imodel";
+import { Death } from "../MovementBehaviors/death";
 
 export class Colission {
   public static checkColissionAndHandleEffect(model1: IModel, model2: IModel) {
@@ -10,6 +11,7 @@ export class Colission {
       )
     ) {
       // get all effects and do something!
+
       model1.get_interactions(model2.get_CollissionGroup()).do(model1);
       model2.get_interactions(model1.get_CollissionGroup()).do(model2);
     }

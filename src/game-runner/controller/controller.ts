@@ -6,7 +6,7 @@ import { MusicBehavior } from "../../sound-effects/SoundBehaviors/MusicBehavior"
 import { Size } from "../model/objects/isize";
 import { position } from "../model/objects/iposition";
 import { gameCanvas } from "../../game-maker/util/view-const";
-
+import { IModel } from "../model/interfaces/imodel";
 
 import { fetchFromModel } from "../view/fetchFromModel";
 import { KeyboardController } from "./ExternalController/keyboardController";
@@ -17,6 +17,7 @@ import { MoveVertical } from "./MovementBehaviors/moveVertical";
 import { MoveHorizontal } from "./MovementBehaviors/moveHorizontal";
 import { Block } from "./MovementBehaviors/block";
 import { NoEffect } from "./MovementBehaviors/noEffect";
+import { BulletAttack } from "../model/components/bulletsAttack";
 
 export class Controller {
   model: GameModel;
@@ -24,9 +25,20 @@ export class Controller {
   selected_id: string;
   interacting_vs_model: IModel;
   interacting_to_model: IModel;
+  attacker: BulletAttack;
 
   constructor(model: GameModel) {
     this.model = model;
+    let drawable = new defaultImageDrawable("./src/sprites/laserBlue01.png");
+
+    this.attacker = new BulletAttack(
+      drawable,
+      "upMoveBehavior",
+      "bullets",
+      this.model.observables
+    );
+
+    this.model.set_attacker(this.attacker);
   }
 
   handleSpriteSelection(id: string) {
@@ -126,6 +138,36 @@ export class Controller {
         tmp = obs.get_position();
       });
     return tmp;
+  }
+
+  handleSetAttack(attack: string) {
+    //lines of code draws to the GameCanvas
+
+    this.model.observables
+      .filter((obs) => obs.get_selectedId() == this.clicked_id)
+      .forEach((obs) => {
+        switch (attack) {
+          case "bullets":
+            console.log("This is not affected by bullets");
+            obs.set_affected_by_bullets(false);
+            this.attacker.set_curr_model(obs);
+            break;
+          default:
+            break;
+        }
+      });
+  }
+
+  handleSetAffected(check: boolean) {
+    this.model.observables
+      .filter((obs) => obs.get_selectedId() == this.clicked_id)
+      .forEach((obs) => {
+        if (check) {
+          console.log("This is affected by bullets");
+          obs.set_affected_by_bullets(true);
+          obs.set_interactions("bullets", new Death());
+        }
+      });
   }
 
   handleSetGravity(isGravity: boolean) {
@@ -340,16 +382,13 @@ export class Controller {
     gameCanvas.style.background = image;
   }
 
-
-
-  handleSetKeyBinds(keybinds:string){
+  handleSetKeyBinds(keybinds: string) {
     this.model.observables
-    .filter((obs) => obs.get_selectedId() == this.clicked_id)
-    .forEach((obs) => {
-      obs.set_keyBinds(keybinds);
-    });
+      .filter((obs) => obs.get_selectedId() == this.clicked_id)
+      .forEach((obs) => {
+        obs.set_keyBinds(keybinds);
+      });
   }
-
 
   handleGetKeyBinds(): void {
     let tmp;

@@ -19,6 +19,8 @@ import { MoveVertical } from "../controller/MovementBehaviors/moveVertical";
 import { MoveHorizontal } from "../controller/MovementBehaviors/moveHorizontal";
 import { Effect } from "../controller/MovementBehaviors/ieffects";
 import { NoEffect } from "../controller/MovementBehaviors/noEffect";
+import { Attack } from "./components/iattack";
+import { NoAttack } from "./components/noAttack";
 export class GameModel implements Observables, IModel {
   drawable: IDrawable;
   position: position;
@@ -40,6 +42,9 @@ export class GameModel implements Observables, IModel {
   count: number = 0;
   dead: boolean = false;
   keybindSet: string;
+  attack: Attack;
+  game_counter: number = 0;
+  affected_by_bullets: boolean = true;
 
   backgroundSound: SoundBehavior;
 
@@ -54,6 +59,7 @@ export class GameModel implements Observables, IModel {
     this.backgroundSound = new NoSoundBehavior();
     this.collisionId = id; // at the beginning each thing is it own colission group
     this.interactions = new Map<string, Effect>();
+    this.attack = new NoAttack();
   }
 
   clone(drawable: IDrawable, position: position, size: Size, id: string) {
@@ -91,6 +97,11 @@ export class GameModel implements Observables, IModel {
     // move only in mode == game
 
     if (mode == MODE.GAME) {
+      this.game_counter++;
+
+      if (this.game_counter + (1 % 10) == 0) {
+        this.observables = this.observables.filter((e) => !e.am_i_dead());
+      }
       this.observables.forEach((obs) => {
         if (!obs.am_i_dead()) {
           obs.get_move_behavior().move(obs);
@@ -168,14 +179,25 @@ export class GameModel implements Observables, IModel {
     return this.collisionId;
   }
 
-
   get_keybinds(): string {
     return this.keybindSet;
   }
 
+  get_attacker(): Attack {
+    return this.attack;
+  }
+  get_affected_by_bullets(): boolean {
+    return this.affected_by_bullets;
+  }
+  set_affected_by_bullets(b: boolean): void {
+    this.affected_by_bullets = b;
+  }
+  set_attack(c: string): void {
+    c;
+  }
 
   set_keyBinds(keybind: string): void {
-    this.keybindSet = keybind
+    this.keybindSet = keybind;
   }
 
   set_drawable(drawable: IDrawable): void {
@@ -269,6 +291,10 @@ export class GameModel implements Observables, IModel {
   }
   set_external_controller(externalController: ExternalController): void {
     this.externalController = externalController;
+  }
+
+  set_attacker(attack: Attack): void {
+    this.attack = attack;
   }
 
   updateSelectedSpriteList(): void {
