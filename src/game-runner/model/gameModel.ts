@@ -255,6 +255,7 @@ export class GameModel implements Observables, IModel {
 	.forEach((obs) => {
       idList.push(obs.get_drawable().get_source());
     });
+	console.log(`idList: ${idList}`);
     appendToSpriteList(idList);
   }
 }

@@ -40,11 +40,10 @@ export class Controller {
   // Handles clicks on sprite divs in the bottom view
   handleClickSpriteList(id: string, uniq_id: string) {
     this.clicked_id = uniq_id;
+	console.log(uniq_id);
 	// Update highlight for selected sprite
-    const spriteHTMLElement = document.getElementsByName(uniq_id)[0];
-	const spritesInBottom = <HTMLElement[]> Array.from(document.getElementById("bottomSprites").children);
-	spritesInBottom.forEach(elem => elem.style.border = '0');
-	spriteHTMLElement.style.border = '1px solid blue'
+	this.undrawSelectedBorders();
+	this.drawSelectedBorder();
 	// Here we could tell the model to draw its own bounding box to display highlights...
 
 	// A hacky solution: whether or not we're in "select other sprite mode" depends on display style of the helper text
@@ -52,12 +51,10 @@ export class Controller {
       document.getElementById("otherSpriteInteractionHelperText").style
         .display == "block"
     ) {
-      console.log(`${id} selected: ${spriteHTMLElement}`);
-      document.getElementById(
-        "otherSpriteInteractionHelperText"
-      ).style.display = "none";
+      this.disableSelectOtherSpriteMode();
     } else {
       // Arrow function body wrapped with {} implicitly tries to return, which is bad for filter
+	  console.log(this.model.observables);
       fetchFromModel.updateFormFieldsFromModel(
         <GameModel>(
           this.model.observables.filter(
@@ -311,12 +308,12 @@ export class Controller {
     //i wonder what this one is gonna do?!??!?!
   }
 
-  handleDeselectSprite() {
+  handleDeselectSprite(): void {
 	this.clicked_id = '';
-	this.handleClickSpriteList('', '');
+	this.undrawSelectedBorders();
   }
 
-  handleDeleteSprite() {
+  handleDeleteSprite(): void {
 	console.log("ok");
 	// "Deletes" the sprite.
 	// 1. Inform the model this sprite is dead, so it won't check collisions, etc.
@@ -329,10 +326,22 @@ export class Controller {
 	const targetNode: Node = document.getElementsByName(this.clicked_id)[0];
 	document.getElementById("bottomSprites").removeChild(targetNode);
 
-	// 3. Deselect the nonexistent sprite
-	this.clicked_id = '';
-	
-	// 4. Update the bottom sprite list. This may be unnecessary
-	
+	// 3. Deselect the nonexistent sprite, and disable "select other sprite" mode in case it was active
+	this.handleDeselectSprite();
+	this.disableSelectOtherSpriteMode();
+  }
+
+  undrawSelectedBorders(): void {
+	const spritesInBottom = <HTMLElement[]> Array.from(document.getElementById("bottomSprites").children);
+	spritesInBottom.forEach(elem => elem.style.border = '0');
+  }
+
+  drawSelectedBorder(): void {
+	const spriteHTMLElement = document.getElementsByName(this.clicked_id)[0];
+	spriteHTMLElement.style.border = '1px solid blue';
+  }
+
+  disableSelectOtherSpriteMode(): void {
+	document.getElementById("otherSpriteInteractionHelperText").style.display = "none";
   }
 }
