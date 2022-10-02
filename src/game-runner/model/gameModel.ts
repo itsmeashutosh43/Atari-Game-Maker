@@ -5,7 +5,7 @@ import { Observables } from "./interfaces/observable";
 import { IDrawable } from "../view/idrawable";
 import { RectangleSize } from "./objects/rectangleSize";
 import { defaultImageDrawable } from "../view/imageDrawable";
-import { appendToSpriteList } from "./components/addToSpriteList";
+//import { appendToSpriteList } from "./components/addToSpriteList";
 import { Drawable } from "../drawables/drawable";
 import { MoveBehavior } from "../controller/MovementBehaviors/moveBehavior";
 import { ExternalController } from "../controller/ExternalController/externalController";
@@ -15,6 +15,7 @@ import { MODE } from "../..";
 import { NoMoveBehavior } from "../controller/MovementBehaviors/noMoveBehavior";
 import { NoController } from "../controller/ExternalController/noController";
 import { Colission } from "../controller/colission_detector/colission";
+import { JSDOM} from "jsdom";
 export class GameModel implements Observables, IModel {
   drawable: IDrawable;
   position: position;
@@ -155,6 +156,6 @@ export class GameModel implements Observables, IModel {
     this.observables.forEach((obs) => {
       idList.push(obs.get_drawable().get_source());
     });
-    appendToSpriteList(idList);
+    //appendToSpriteList(idList);
   }
 }
