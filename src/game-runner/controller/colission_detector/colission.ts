@@ -1,10 +1,24 @@
+import { layout } from "../../..";
 import { BoundingBox } from "../../drawables/drawable";
 import { IModel } from "../../model/interfaces/imodel";
 import { Death } from "../MovementBehaviors/death";
+import { ReflectEffect } from "../MovementBehaviors/reflectEffect";
 
 export class Colission {
   public static checkColissionAndHandleEffect(model1: IModel, model2: IModel) {
     if (
+      Colission.isCollidingWithCanvas(
+        model1.get_size().getBoundingBox(model1.get_position())
+      )
+    ) {
+      model1.get_interactions("boundary").do(model1);
+    } else if (
+      Colission.isCollidingWithCanvas(
+        model2.get_size().getBoundingBox(model2.get_position())
+      )
+    ) {
+      model2.get_interactions("boundary").do(model2);
+    } else if (
       Colission.isColliding(
         model1.get_size().getBoundingBox(model1.get_position()),
         model2.get_size().getBoundingBox(model2.get_position())
@@ -15,6 +29,18 @@ export class Colission {
       model1.get_interactions(model2.get_CollissionGroup()).do(model1);
       model2.get_interactions(model1.get_CollissionGroup()).do(model2);
     }
+  }
+
+  static isCollidingWithCanvas(boundingBox: BoundingBox): boolean {
+    if (
+      boundingBox.up <= 0 ||
+      boundingBox.left <= 0 ||
+      boundingBox.right >= layout.getCanvasWidth() ||
+      boundingBox.down >= layout.getCanvasHeight()
+    ) {
+      return true;
+    }
+    return false;
   }
 
   static isColliding(b1: BoundingBox, b2: BoundingBox): boolean {

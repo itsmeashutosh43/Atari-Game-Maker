@@ -13,14 +13,14 @@ export class defaultImageDrawable {
     let height: number = size.height;
     let image = document.createElement("img");
     image.src = this.source;
-    CanvasLayout.getInstance().beginPath();
-    CanvasLayout.getInstance().rect(
-      pos.x,
-      pos.y,
-      size.getWidth(),
-      size.getHeight()
-    );
-    CanvasLayout.getInstance().stroke();
+    //CanvasLayout.getInstance().beginPath();
+    //CanvasLayout.getInstance().rect(
+    //  pos.x,
+    //  pos.y,
+    //  size.getWidth(),
+    //  size.getHeight()
+    //);
+    //CanvasLayout.getInstance().stroke();
     CanvasLayout.getInstance().drawImage(image, pos.x, pos.y, width, height);
   }
 

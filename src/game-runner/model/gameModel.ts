@@ -21,6 +21,8 @@ import { Effect } from "../controller/MovementBehaviors/ieffects";
 import { NoEffect } from "../controller/MovementBehaviors/noEffect";
 import { Attack } from "./components/iattack";
 import { NoAttack } from "./components/noAttack";
+import { Death } from "../controller/MovementBehaviors/death";
+import { ReflectEffect } from "../controller/MovementBehaviors/reflectEffect";
 
 export class GameModel implements Observables, IModel {
   drawable: IDrawable;
@@ -61,6 +63,7 @@ export class GameModel implements Observables, IModel {
     this.collisionId = id; // at the beginning each thing is it own colission group
     this.interactions = new Map<string, Effect>();
     this.attack = new NoAttack();
+    this.set_interactions("boundary", new ReflectEffect());
   }
 
   clone(drawable: IDrawable, position: position, size: Size, id: string) {
@@ -224,6 +227,7 @@ export class GameModel implements Observables, IModel {
   }
 
   set_CollissionGroup(collisionId: string): void {
+    this.set_interactions(collisionId, new ReflectEffect());
     this.collisionId = collisionId;
   }
 

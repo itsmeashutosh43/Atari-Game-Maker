@@ -32,7 +32,7 @@ export enum MODE {
 let mode: MODE = MODE.BUILD;
 
 let loop = () => {
-  //layout.clearScreen();
+  layout.clearScreen();
 
   gamemodel.notify(mode);
   window.requestAnimationFrame(loop);

@@ -1,3 +1,4 @@
+import { ReflectEffect } from "../../controller/MovementBehaviors/reflectEffect";
 import { IDrawable } from "../../view/idrawable";
 import { GameModel } from "../gameModel";
 import { IModel } from "../interfaces/imodel";
@@ -58,6 +59,7 @@ export class BulletAttack implements Attack {
     nullspriteModel.set_initialMovement("upMoveBehavior");
     nullspriteModel.set_CollissionGroup("bullets");
     nullspriteModel.set_position(this.curr_model.get_position());
+    nullspriteModel.set_interactions("boundary", new ReflectEffect());
     this.observables.push(nullspriteModel);
     this.activate = false;
     // add this to the full game observables here
