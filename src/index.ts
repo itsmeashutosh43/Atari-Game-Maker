@@ -11,11 +11,11 @@ import {
   propertys,
   spriteList,
 } from "./game-maker/util/view-const";
-import { initAssets } from "./game-runner/view/intitlization";
+import { initAssets, viewControl } from "./game-runner/view/intitlization";
 import { Controller } from "./game-runner/controller/controller";
 import { userInterfaceListeners } from "./game-runner/view/userInterfaceListeners";
 
-const iconSize = 60;
+const iconSize = 50;
 
 let gamemodel: GameModel = new GameModel();
 
@@ -52,6 +52,7 @@ startButtonImage.addEventListener("click", () => {
     startButtonImage.width = iconSize;
     startButtonImage.height = iconSize;
     gamemodel.get_background_sound().pause_sound();
+	viewControl.showBuilderElements();
     // TODO: de-register external events
   } else {
     // register to external events
@@ -63,9 +64,9 @@ startButtonImage.addEventListener("click", () => {
     gamemodel.get_background_sound().make_sound();
     gamemodel.get_external_controller().register();
     mode = MODE.GAME;
-    console.log(startButtonImage.src);
     startButtonImage.src = "./src/interface-icons/stop.svg";
-    startButtonImage.width = iconSize;
-    startButtonImage.height = iconSize;
+	startButtonImage.width = iconSize;
+	startButtonImage.height = iconSize;
+	viewControl.hideBuilderElements();
   }
 });

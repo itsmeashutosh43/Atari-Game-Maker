@@ -259,5 +259,11 @@ export class userInterfaceListeners {
 			.addEventListener("click", () => {
 				viewControl.handleDeleteSprite();
 			});
+
+		// "Delete" sprite button
+		document.getElementById("cloneSpriteButton")
+		.addEventListener("click", () => {
+			viewControl.handleCloneSprite();
+		});
   }
 }

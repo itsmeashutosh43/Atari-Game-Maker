@@ -48,7 +48,20 @@ export class fetchFromModel {
 		(<HTMLInputElement>document.getElementById("hasGravity")).checked = model.get_gravity();
 
 		// Interactions menu
-		// Model does not have interactions functionality
-
+		// Generate new children
+		console.log(document.getElementById("interactionsList").children);
+		let oldNode = (<Node>document.getElementById("interactionsList").children[0]);
+		const newChildren: Node[] = [];
+		console.log((<HTMLElement>oldNode.cloneNode(true)).children);
+		model.interactions.forEach((k, v) => {
+			// Tech debt: This is highly prone to breaking on changes to the HTML of an interaction list element
+			// index | element                      | type
+			// 1     | eventChoice                  | select
+			// 4     | otherSpriteInteractionButton | button
+			// 8     | selfEffect                   | select
+			const copiedNodeAsElement = <HTMLElement>oldNode.cloneNode(true);
+			// copiedNodeAsElement.children[4]
+		});
+		// document.getElementById("interactionsList").replaceChildren(newChildren); // might be the wrong method to use
 	}
 }
