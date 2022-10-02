@@ -315,4 +315,24 @@ export class Controller {
 	this.clicked_id = '';
 	this.handleClickSpriteList('', '');
   }
+
+  handleDeleteSprite() {
+	console.log("ok");
+	// "Deletes" the sprite.
+	// 1. Inform the model this sprite is dead, so it won't check collisions, etc.
+	this.model.observables
+      .filter((obs) => obs.get_selectedId() == this.clicked_id)
+      .forEach((obs) => {
+        obs.i_am_dead();
+      });
+	// 2. Remove the associated HTML element from the bottom sprite list
+	const targetNode: Node = document.getElementsByName(this.clicked_id)[0];
+	document.getElementById("bottomSprites").removeChild(targetNode);
+
+	// 3. Deselect the nonexistent sprite
+	this.clicked_id = '';
+	
+	// 4. Update the bottom sprite list. This may be unnecessary
+	
+  }
 }

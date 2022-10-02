@@ -42,7 +42,6 @@ initAssets(spriteList, spriteSelection, control);
 userInterfaceListeners.addAllEventListeners();
 
 const startButtonImage = document.getElementById("start") as HTMLImageElement;
-console.log(startButtonImage);
 startButtonImage.addEventListener("click", () => {
   if (mode == MODE.GAME) {
     mode = MODE.BUILD;

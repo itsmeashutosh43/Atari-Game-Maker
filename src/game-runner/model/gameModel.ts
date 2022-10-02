@@ -250,7 +250,9 @@ export class GameModel implements Observables, IModel {
   updateSelectedSpriteList(): void {
     const idList: string[] = [];
 
-    this.observables.forEach((obs) => {
+    this.observables
+	.filter(obs => !obs.am_i_dead())
+	.forEach((obs) => {
       idList.push(obs.get_drawable().get_source());
     });
     appendToSpriteList(idList);

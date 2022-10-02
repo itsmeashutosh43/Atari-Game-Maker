@@ -8,7 +8,7 @@ export class userInterfaceListeners {
     this.addBehaviorConfigListeners();
     this.addInteractionConfigListeners();
     this.addSettingsConfigListeners();
-	this.addBottomButtonListeners();
+		this.addBottomButtonListeners();
   }
 
   private static addFormTabListeners(): void {
@@ -228,12 +228,16 @@ export class userInterfaceListeners {
   }
 
   private static addBottomButtonListeners(): void {
-		// Deselect sprite
+		// Deselect sprite button
 		document.getElementById("deselectSpriteButton")
 			.addEventListener("click", () => {
 				viewControl.handleDeselectSprite();
 			});
 		
-		// "Delete" sprite
+		// "Delete" sprite button
+		document.getElementById("deleteSpriteButton")
+			.addEventListener("click", () => {
+				viewControl.handleDeleteSprite();
+			});
   }
 }
