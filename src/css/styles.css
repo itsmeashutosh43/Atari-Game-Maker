@@ -109,6 +109,11 @@ p, label {
 #gameView {
   flex: 3;
   border: 2px solid black;
+  background-color: transparent;
+}
+
+#gamewindow {
+  border: 2px double white;
   background-color: #7D6E83;
 }
 
@@ -188,10 +193,6 @@ p, label {
   background-color: #DFD3C3;
 }
 
-#objectConfigTab {
-  flex: 1;
-}
-
 #objectConfigButton {
   width: 100%;
 }
@@ -208,12 +209,19 @@ p, label {
 
 }
 
+#objectConfigTab {
+  flex: 1;
+  background-color: #688bb7;
+}
+
 #behaviorConfigTab {
   flex: 1;
+  background-color: #a05a5a;
 }
 
 #interactionsConfigTab {
   flex: 1;
+  background-color: #68b779;
 }
 
 #blankConfigMenu {
@@ -230,14 +238,17 @@ p, label {
 
 #objectConfigMenu {
   display: none;
+  background-color: #688bb7;
 }
 
 #behaviorConfigMenu {
   display: none;
+  background-color: #a05a5a;
 }
 
 #interactionsConfigMenu {
   display: none;
+  background-color: #68b779;
 }
 
 #settingsConfigMenu {

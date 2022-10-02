@@ -461,4 +461,20 @@ export class Controller {
   handleCloneSprite(): void {
 	// TODO call method from model
   }
+
+  hideBuilderElements(): void {
+	["options", "property"].forEach(div => {
+	  (<HTMLElement[]> Array.from(document.getElementById(div).children)).forEach(child => child.style.display = "none");
+    document.getElementById(div).style.backgroundColor = "black";
+	});
+  document.getElementById("appTitle").innerHTML = "GamePlayer";
+  }
+
+  showBuilderElements(): void {
+    ["options", "property"].forEach(div => {
+      (<HTMLElement[]> Array.from(document.getElementById(div).children)).forEach(child => child.style.display = "flex");
+      document.getElementById(div).style.backgroundColor = "#DFD3C3";
+    });
+    document.getElementById("appTitle").innerHTML = "GameBuilder";
+  }
 }
