@@ -344,4 +344,8 @@ export class Controller {
   disableSelectOtherSpriteMode(): void {
 	document.getElementById("otherSpriteInteractionHelperText").style.display = "none";
   }
+
+  handleCloneSprite(): void {
+	// TODO call method from model
+  }
 }
