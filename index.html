@@ -113,24 +113,27 @@
           <div id="interactionsConfigMenu">
             <h3>Interactions Configuration</h3>
             <form>
-              <label for="eventChoice">When</label>
-              <select id="eventChoice" name="eventChoice">
-                <option value="collidesInteraction">I collide</option>
-              </select><br />
-              <label for="otherSpriteInteractionButton">with</label> <!-- TODO: also allow a collision group to be selected here -->
-              <button id="otherSpriteInteractionButton" type="button">...</button><br /> <!-- TODO: insert image of other sprite here when selected, or label of CGroup -->
-              <p id="otherSpriteInteractionHelperText">Now choose another Sprite...</p>
-              <label for="">I will</label>
-              <select id="selfEffect">
-                <option value="destroyEffect">be destroyed</option>
-                <option value="moveUpEffect">move up</option>
-                <option value="moveLeftEffect">move left</option>
-                <option value="moveRightEffect">move right</option>
-                <option value="moveDownEffect">move down</option>
-                <option value="blockEffect">block</option>
-                <!-- TODO: add more -->
-              </select><br />
-              <input type="submit" value="Update" />
+              <div id="interactionsList">
+                <div name="interactionListElement">
+                  <label for="eventChoice">When</label>
+                  <select id="eventChoice" name="eventChoice">
+                    <option value="collidesInteraction">I collide</option>
+                  </select><br />
+                  <label for="otherSpriteInteractionButton">with</label> <!-- TODO: also allow a collision group to be selected here -->
+                  <button id="otherSpriteInteractionButton" type="button">...</button><br /> <!-- TODO: insert image of other sprite here when selected, or label of CGroup -->
+                  <p id="otherSpriteInteractionHelperText">Now choose another Sprite...</p>
+                  <label for="">I will</label>
+                  <select id="selfEffect">
+                    <option value="destroyEffect">be destroyed</option>
+                    <option value="moveUpEffect">move up</option>
+                    <option value="moveLeftEffect">move left</option>
+                    <option value="moveRightEffect">move right</option>
+                    <option value="moveDownEffect">move down</option>
+                    <option value="blockEffect">block</option>
+                  <!-- TODO: add more -->
+                  </select><br />
+                </div>
+              </div>
             </form>
           </div>
           <div id="settingsConfigMenu">
