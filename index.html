@@ -21,12 +21,12 @@
         <h1 id="appTitle">GameBuilder</h1>
       </div>
       <div id="playPauseButtons" class="flex-one text-center">
-        <img src="src/interface-icons/play.svg" id="start" width="40px" height="40px"/>
-        <img src="src/interface-icons/setting.svg" id="settingsConfigButton" width="40px" height="40px"/>
+        <img src="src/interface-icons/play.svg" id="start" width="50px" height="50px"/>
+        <img src="src/interface-icons/setting.svg" id="settingsConfigButton" width="50px" height="50px"/>
       </div>
       <div id="saveLoadButtons" class="flex-one text-right">
-        <img src="src/interface-icons/download.svg" id="save" width="40px" height="40px" />
-        <img src="src/interface-icons/upload.svg" id="load" width="40px" height="40px" />
+        <img src="src/interface-icons/download.svg" id="save" width="50px" height="50px" />
+        <img src="src/interface-icons/upload.svg" id="load" width="50px" height="50px" />
       </div>
     </div>
     <!-- Three columns for palette, canvas, and properties -->
@@ -43,20 +43,20 @@
       <div id="property" class="container vertical">
         <div id="propertyTabs" class="container">
           <div id="objectConfigTab">
-            <img src="src/interface-icons/appearance.svg" id="objectConfigButton" width="40px" height="40px" />
+            <img src="src/interface-icons/appearance.svg" id="objectConfigButton" width="50px" height="50px" />
           </div>
           <div id="behaviorConfigTab">
-            <img src="src/interface-icons/behavior.svg" id="behaviorConfigButton" width="40px" height="40px" />
+            <img src="src/interface-icons/behavior.svg" id="behaviorConfigButton" width="50px" height="50px" />
           </div>
           <div id="interactionsConfigTab">
-            <img src="src/interface-icons/interaction.svg" id="interactionsConfigButton" width="40px" height="40px" />
+            <img src="src/interface-icons/interaction.svg" id="interactionsConfigButton" width="50px" height="50px" />
           </div>
         </div>
         <!-- end tabs div -->
         <!-- Overall property menu div. Inside are several divs, only one of which is displayed at a time for the current form -->
         <div id="propertyMenus">
           <div id="objectConfigMenu">
-            <h3>Object Appearance Configuration</h3>
+            <h3>Appearance Configuration</h3>
             <form>
               <label for="xPosition">X Position:</label>
               <input type="number" id="xPosition" name="xPosition" /><br />
@@ -125,7 +125,7 @@
             </form>
           </div>
           <div id="settingsConfigMenu">
-            <p>Game Settings Configuration</p>
+            <h3>Game Settings Configuration</h3>
             <form>
               <label for="backgroundImageSelect">Canvas Background Image:</label>
               <select id="backgroundImageSelect">
@@ -144,7 +144,7 @@
             </form>
           </div>
           <div id="blankConfigMenu">
-            <p class="text-center">Select a Sprite to configure its properties here, or choose the game configuration menu.</p>
+            <p id="blankConfigMenuText" class="text-center">Select a Sprite to configure its properties here, or choose the game configuration menu.</p>
           </div>
         </div>
       </div>

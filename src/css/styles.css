@@ -1,5 +1,5 @@
 #app {
-  margin: 1%;
+  margin: 0.5%;
 }
 
 body{
@@ -54,10 +54,11 @@ h3 {
 #appTitle {
   font-family:'Arial Wide', Arial, sans-serif;
   margin: 0;
+  vertical-align: bottom;
 }
 
 #top {
-  height: 10vh;
+  height: 18vh;
 }
 
 #paletteCanvasPropertiesContainer {
@@ -99,8 +100,6 @@ h3 {
 #nav {
   height: 5vh;
 }
-
-
 
 #displayedImg {
   width: 100%;
@@ -160,6 +159,18 @@ h3 {
 
 #interactionsConfigTab {
   flex: 1;
+}
+
+#blankConfigMenu {
+  margin: 50% auto 50% auto;
+}
+
+#blankConfigMenuText {
+  top: 50%;
+}
+
+#propertyMenus {
+  height: 100%;
 }
 
 #objectConfigMenu {

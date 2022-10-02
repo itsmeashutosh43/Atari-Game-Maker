@@ -15,7 +15,7 @@ import { initAssets } from "./game-runner/view/intitlization";
 import { Controller } from "./game-runner/controller/controller";
 import { userInterfaceListeners } from "./game-runner/view/userInterfaceListeners";
 
-const iconSize = 40;
+const iconSize = 60;
 
 let gamemodel: GameModel = new GameModel();
 
