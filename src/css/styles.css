@@ -120,7 +120,24 @@ p, label {
   height: 20vh;
   overflow-x: auto;
   background-color: #DFD3C3;
-  
+}
+
+#deselectSpriteButton {
+  background-image: "../interface-icons/deselect.svg";
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+#deleteSpriteButton {
+  background-image: "../interface-icons/deselect.svg";
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+#bottomButtons {
+  border-right: 1px solid black;
 }
 
 #nav {

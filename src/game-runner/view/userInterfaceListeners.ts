@@ -13,8 +13,6 @@ export class userInterfaceListeners {
   private static addFormTabListeners(): void {
     // TODO: needs some logic to restrict changing tabs unless an object is selected
     //       clicking the first three buttons should just display the blank menu
-    // TODO: should populate each tab with correct values from model
-    //       this population should happen automatically when an object is selected, then they'll be visible when a tab is selected
 
     // Object appearance config tab
     document
@@ -193,7 +191,6 @@ export class userInterfaceListeners {
       console.log(newValue); // your logic goes here
     });
 
-    // TODO:
     // Other sprite
     document
       .getElementById("otherSpriteInteractionButton")

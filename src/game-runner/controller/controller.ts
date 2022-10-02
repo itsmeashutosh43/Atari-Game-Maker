@@ -40,10 +40,14 @@ export class Controller {
   // Handles clicks on sprite divs in the bottom view
   handleClickSpriteList(id: string, uniq_id: string) {
     this.clicked_id = uniq_id;
-
-    // TODO: change this. This is really, really hacky
+	// Update highlight for selected sprite
     const spriteHTMLElement = document.getElementsByName(uniq_id)[0];
-    //console.log(spriteHTMLElement);
+	const spritesInBottom = <HTMLElement[]> Array.from(document.getElementById("bottom").children);
+	spritesInBottom.forEach(elem => elem.style.border = '0');
+	spriteHTMLElement.style.border = '1px solid blue'
+	// Here we could tell the model to draw its own bounding box to display highlights...
+
+	// A hacky solution: whether or not we're in "select other sprite mode" depends on display style of the helper text
     if (
       document.getElementById("otherSpriteInteractionHelperText").style
         .display == "block"
