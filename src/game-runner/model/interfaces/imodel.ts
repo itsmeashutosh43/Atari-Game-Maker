@@ -28,6 +28,7 @@ export interface IModel {
   get_moveUp(): boolean;
   get_moveDown(): boolean;
   get_playerMove(): boolean;
+  get_keybinds(): string;
   i_am_dead(): void;
   am_i_dead(): boolean;
 
@@ -46,5 +47,6 @@ export interface IModel {
   set_moveDown(canMove:boolean): void;
   set_playerMove(canMove:boolean): void;
   set_move_behavior(moveBehavior: Behavior): void;
+  set_keyBinds(keybind:string): void;
   set_external_controller(externalController: ExternalController): void;
 }

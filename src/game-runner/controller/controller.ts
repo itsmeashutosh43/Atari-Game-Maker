@@ -3,12 +3,12 @@ import { RectangleSize } from "../model/objects/rectangleSize";
 import { defaultImageDrawable } from "../view/imageDrawable";
 import { layout } from "../..";
 import { MusicBehavior } from "../../sound-effects/SoundBehaviors/MusicBehavior";
-import { tmpdir } from "os";
+
 import { Size } from "../model/objects/isize";
 import { position } from "../model/objects/iposition";
 import { gameCanvas } from "../../game-maker/util/view-const";
 
-import { IModel } from "../model/interfaces/imodel";
+
 import { fetchFromModel } from "../view/fetchFromModel";
 import { KeyboardController } from "./ExternalController/keyboardController";
 import { MouseController } from "./ExternalController/mouseController";
@@ -279,19 +279,31 @@ export class Controller {
       });
   }
 
-  handleClickPropertyConfirm(id: string) {
-    /* Depending on the implementation of the above function  it can do one of two things/
-    1.
-    This should delegate to setter functions that belong to the sprite in order to updates its values
-    and redraw to the screen. IE setting collission group and redefining properties should be done here.
-
-    2. This function closes the properties tab and then deletes the sprite and redraws/appends to the saves list and or map.
-    */
-  }
-
   handleBackGroundChange(image: string) {
     console.log(image);
     gameCanvas.style.background = image;
+  }
+
+
+
+  handleSetKeyBinds(keybinds:string){
+    this.model.observables
+    .filter((obs) => obs.get_selectedId() == this.clicked_id)
+    .forEach((obs) => {
+      obs.set_keyBinds(keybinds);
+    });
+  }
+
+
+  handleGetKeyBinds(): void {
+    let tmp;
+    this.model.observables
+      .filter((obs) => obs.get_selectedId() == this.clicked_id)
+      .forEach((obs) => {
+        tmp = obs.get_keybinds();
+      });
+
+    return tmp;
   }
 
   handleMainGameMusicChange(song: string) {

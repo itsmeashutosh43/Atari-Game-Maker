@@ -36,6 +36,7 @@ export class GameModel implements Observables, IModel {
   canPlayerMove: boolean;
   count: number = 0;
   dead: boolean = false;
+  keybindSet: string;
 
   backgroundSound: SoundBehavior;
 
@@ -160,6 +161,16 @@ export class GameModel implements Observables, IModel {
 
   get_CollissionGroup(): string {
     return this.collisionId;
+  }
+
+
+  get_keybinds(): string {
+    return this.keybindSet;
+  }
+
+
+  set_keyBinds(keybind: string): void {
+    this.keybindSet = keybind
   }
 
   set_drawable(drawable: IDrawable): void {

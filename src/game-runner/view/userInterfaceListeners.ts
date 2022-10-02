@@ -106,7 +106,6 @@ export class userInterfaceListeners {
     document.getElementById("spriteHeight").addEventListener("input", (e) => {
       const newValue = (<HTMLInputElement>e.currentTarget).value;
       let store = viewControl.handleGetSize();
-
       viewControl.handleSetSize(store.getWidth(), parseInt(newValue));
     });
   }
@@ -115,7 +114,6 @@ export class userInterfaceListeners {
     // Movement behavior
     document.getElementById("moveBehavior").addEventListener("change", (e) => {
       const newValue = (<HTMLInputElement>e.currentTarget).value;
-
       viewControl.handleSetInitialMovement(newValue);
     });
 
@@ -137,7 +135,6 @@ export class userInterfaceListeners {
       .getElementById("playerMoveBehavior")
       .addEventListener("change", (e) => {
         const newValue = (<HTMLInputElement>e.currentTarget).value;
-        console.log(newValue); // your logic goes here
         viewControl.handlePlayerMoveInput(newValue);
       });
 
@@ -164,7 +161,6 @@ export class userInterfaceListeners {
     document
       .getElementById("playerMoveDown")
       .addEventListener("change", (e) => {
-        console.log("down");
         const newValue = (<HTMLInputElement>e.currentTarget).checked;
         viewControl.handleSetCanMoveDown(newValue);
       });
@@ -181,6 +177,11 @@ export class userInterfaceListeners {
     document.getElementById("hasGravity").addEventListener("change", (e) => {
       const newValue = (<HTMLInputElement>e.currentTarget).checked;
       viewControl.handleSetGravity(newValue);
+    });
+
+    document.getElementById("playerMoveBehavior").addEventListener("change", (e) => {
+      const newValue = (<HTMLInputElement>e.currentTarget).value;
+      viewControl.handleSetKeyBinds(newValue);
     });
   }
 
