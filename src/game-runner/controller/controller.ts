@@ -90,20 +90,20 @@ export class Controller {
         (obs: GameModel) => obs.get_selectedId() == this.clicked_id
       )[0]; // when I collide with this
 
+	// Arrow function body wrapped with {} implicitly tries to return, which is bad for filter
+	this.selected_id = uniq_id;
+	fetchFromModel.updateFormFieldsFromModel(
+		<GameModel>(
+		this.model.observables.filter(
+			(obs: GameModel) => obs.get_selectedId() == this.clicked_id
+		)[0]
+		)
+	);
+
       // get colission group for the clicked this
       document.getElementById(
         "otherSpriteInteractionHelperText"
       ).style.display = "none";
-    } else {
-      // Arrow function body wrapped with {} implicitly tries to return, which is bad for filter
-      this.selected_id = uniq_id;
-      fetchFromModel.updateFormFieldsFromModel(
-        <GameModel>(
-          this.model.observables.filter(
-            (obs: GameModel) => obs.get_selectedId() == this.clicked_id
-          )[0]
-        )
-      );
     }
   }
 
