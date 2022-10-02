@@ -234,6 +234,7 @@ p, label {
 
 #propertyMenus {
   height: 100%;
+  display: flex;
 }
 
 #objectConfigMenu {

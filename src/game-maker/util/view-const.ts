@@ -10,13 +10,18 @@ export let sizetests = document.querySelectorAll("test")
 export let gameCanvas = document.getElementById("gamewindow") as HTMLElement;
 export let spriteList: string[] = 
 [
-"enemyBlack1",
 "playerShip2_red",
 "playerShip3_blue",
 "laserBlue01",
 "enemyBlack1",
 "enemyBlack2",
-"enemyBlack3"
+"enemyBlack3",
+"pacman",
+"blueghost",
+"orangeghost",
+"pinkghost",
+"redghost",
+
 ];
 
 
