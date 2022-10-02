@@ -42,7 +42,7 @@ export class Controller {
     this.clicked_id = uniq_id;
 	// Update highlight for selected sprite
     const spriteHTMLElement = document.getElementsByName(uniq_id)[0];
-	const spritesInBottom = <HTMLElement[]> Array.from(document.getElementById("bottom").children);
+	const spritesInBottom = <HTMLElement[]> Array.from(document.getElementById("bottomSprites").children);
 	spritesInBottom.forEach(elem => elem.style.border = '0');
 	spriteHTMLElement.style.border = '1px solid blue'
 	// Here we could tell the model to draw its own bounding box to display highlights...
