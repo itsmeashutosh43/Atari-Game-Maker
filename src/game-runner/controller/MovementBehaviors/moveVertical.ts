@@ -6,10 +6,16 @@ import { SoundBehavior } from "../../../sound-effects/SoundBehaviors/soundBehavi
 import { MusicBehavior } from "../../../sound-effects/SoundBehaviors/MusicBehavior";
 
 export class MoveVertical implements Behavior, Effect {
+  dx: number = 2;
   dy: number = 2;
   reverse: boolean = false;
   soundBehavior: SoundBehavior;
-  constructor() {
+  constructor(move_direction: string) {
+    if (move_direction == "up") {
+      this.dy = -2;
+    } else {
+      this.dy = 2;
+    }
     this.soundBehavior = new MusicBehavior("./src/sound-effects/collision.wav");
   }
 

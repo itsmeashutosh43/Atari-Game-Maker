@@ -7,9 +7,15 @@ import { MusicBehavior } from "../../../sound-effects/SoundBehaviors/MusicBehavi
 
 export class MoveHorizontal implements Behavior, Effect {
   dx: number = 2;
+  dy: number = 2;
   reverse: boolean = false;
   soundBehavior: SoundBehavior;
-  constructor() {
+  constructor(move_direction: string) {
+    if (move_direction == "left") {
+      this.dx = -2;
+    } else {
+      this.dx = 2;
+    }
     this.soundBehavior = new MusicBehavior("./src/sound-effects/collision.wav");
   }
 

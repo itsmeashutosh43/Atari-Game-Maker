@@ -23,6 +23,7 @@
       <div id="playPauseButtons" class="flex-one"> <!-- center-horizontal container -->
         <button id = "start"> Start Game</button>
         <button id = "stop"> Stop Game</button>
+        <button id="settingsConfigButton" type="button">Game Settings</button>
       </div>
       <div id="saveLoadButtons" class="flex-one"> <!-- center-horizontal container -->
         <button id = "save">Save Game</button>
@@ -51,9 +52,6 @@
           <div id="interactionsConfigTab">
             <button id="interactionsConfigButton">I</button>
           </div>
-          <div id="settingsConfigTab">
-            <button id="settingsConfigButton">S</button>
-          </div>
         </div>
         <!-- end tabs div -->
         <!-- Overall property menu div. Inside are several divs, only one of which is displayed at a time for the current form -->
@@ -76,20 +74,39 @@
             <form>
               <label for="moveBehavior">Initial Movement Behavior:</label>
               <select id="moveBehavior" name="moveBehavior">
-                <option value="noMoveBehavior">Still</option>
+                <option id = "" value="noMoveBehavior">Still</option>
                 <option value="rightMoveBehavior">Moves Right</option>
                 <option value="leftMoveBehavior">Moves Left</option>
                 <option value="upMoveBehavior">Moves Up</option>
                 <option value="downMoveBehavior">Moves Down</option>
               </select><br />
-              <label for="playerMoveBehavior">Sprite Control Scheme:</label>
-              <select id="playerMoveBehavior" name="playerMoveBehavior">
-                <option value="wasdSpace">WASD: Move, Space: Fire</option>
-                <option value="mouseLMB">Mouse: Move, Click: Fire</option>
-                <!-- TODO: more? -->
-              </select><br />
+              <label for="playerMoveEnabled">Sprite is Controlled by Player</label>
+              <input type="checkbox" id="playerMoveEnabled" name="playerMoveEnabled" />
+              <br />
+              <div id="playerMoveOptions">
+                <label for="playerMoveBehavior">Sprite Control Scheme:</label>
+                <select id="playerMoveBehavior" name="playerMoveBehavior">
+                  <option value="wasdSpace">WASD: Move, Space: Fire</option>
+                  <option value="mouseLMB">Mouse: Move, Click: Fire</option>
+                  <!-- TODO: more? -->
+                </select><br />
+                <label for="playerMoveRight">Move Right</label>
+                <input type="checkbox" id="playerMoveRight" name="playerMoveRight" /><br />
+                <label for="playerMoveLeft">Move Left</label>
+                <input type="checkbox" id="playerMoveLeft" name="playerMoveLeft" /><br />
+                <label for="playerMoveUp">Move Up</label>
+                <input type="checkbox" id="playerMoveUp" name="playerMoveUp" /><br />
+                <label for="playerMoveDown">Move Down</label>
+                <input type="checkbox" id="playerMoveDown" name="playerMoveDown" /><br />
+              </div>
               <label for="collisionGroupTag">Collision Group Tag:</label>
               <input type="text" id="collisionGroupTag" name="collisionGroupTag" /><br />
+              <label for="Attack">Attack</label>
+              <input type="checkbox" id="attack" name="attack" /><br />
+              
+              <label for="affectedByAttacke">Affected by Attacker</label>
+              <input type="checkbox" id="affectedByAttacke" name="affectedByAttacke" /><br />
+              
               <label for="hasGravity">Affected by Gravity?</label>
               <input type="checkbox" id="hasGravity" name="hasGravity" /><br />
             </form>
@@ -106,9 +123,12 @@
               <p id="otherSpriteInteractionHelperText">Now choose another Sprite...</p>
               <label for="">I will</label>
               <select id="selfEffect">
-                <option value="reflectEffect">reflect</option>
                 <option value="destroyEffect">be destroyed</option>
                 <option value="moveUpEffect">move up</option>
+                <option value="moveLeftEffect">move left</option>
+                <option value="moveRightEffect">move right</option>
+                <option value="moveDownEffect">move down</option>
+                <option value="blockEffect">block</option>
                 <!-- TODO: add more -->
               </select><br />
               <input type="submit" value="Update" />
@@ -117,7 +137,20 @@
           <div id="settingsConfigMenu">
             <p>Game Settings Configuration</p>
             <form>
-
+              <label for="backgroundImageSelect">Canvas Background Image:</label>
+              <select id="backgroundImageSelect">
+                <option value="white">white</option>
+                <option value="black">black</option>
+                <!-- TODO add more -->
+              </select><br />
+              <label for="backgroundMusicSelect">Background Music:</label>
+              <select id="backgroundMusicSelect">
+                <option value="noMusic">No Music</option>
+                <option value="sound1">Song 1</option>
+                <option value="sound2">Song 2</option>
+                <option value="sound3">Song 3</option>
+                <!-- TODO add more-->
+              </select><br />
             </form>
           </div>
           <div id="blankConfigMenu">

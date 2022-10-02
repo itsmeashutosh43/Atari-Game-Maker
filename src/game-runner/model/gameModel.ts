@@ -16,6 +16,13 @@ import { NoMoveBehavior } from "../controller/MovementBehaviors/noMoveBehavior";
 import { NoController } from "../controller/ExternalController/noController";
 import { Colission } from "../controller/colission_detector/colission";
 import { JSDOM} from "jsdom";
+import { MoveVertical } from "../controller/MovementBehaviors/moveVertical";
+import { MoveHorizontal } from "../controller/MovementBehaviors/moveHorizontal";
+import { Effect } from "../controller/MovementBehaviors/ieffects";
+import { NoEffect } from "../controller/MovementBehaviors/noEffect";
+import { Attack } from "./components/iattack";
+import { NoAttack } from "./components/noAttack";
+
 export class GameModel implements Observables, IModel {
   drawable: IDrawable;
   position: position;
@@ -24,9 +31,22 @@ export class GameModel implements Observables, IModel {
   observables: IModel[];
   moveBehavior: MoveBehavior;
   externalController: ExternalController;
+  interactions: Map<string, Effect>;
   selectedId: string;
+  gravity: boolean;
+  collisionId: string;
+  initialMovement: string;
+  moveLeft: boolean;
+  moveRight: boolean;
+  moveUp: boolean;
+  moveDown: boolean;
+  canPlayerMove: boolean;
   count: number = 0;
   dead: boolean = false;
+  keybindSet: string;
+  attack: Attack;
+  game_counter: number = 0;
+  affected_by_bullets: boolean = true;
 
   backgroundSound: SoundBehavior;
 
@@ -39,6 +59,9 @@ export class GameModel implements Observables, IModel {
     this.moveBehavior = new NoMoveBehavior();
     this.externalController = new NoController();
     this.backgroundSound = new NoSoundBehavior();
+    this.collisionId = id; // at the beginning each thing is it own colission group
+    this.interactions = new Map<string, Effect>();
+    this.attack = new NoAttack();
   }
 
   clone(drawable: IDrawable, position: position, size: Size, id: string) {
@@ -76,8 +99,16 @@ export class GameModel implements Observables, IModel {
     // move only in mode == game
 
     if (mode == MODE.GAME) {
+      this.game_counter++;
+
+      if (this.game_counter + (1 % 10) == 0) {
+        this.observables = this.observables.filter((e) => !e.am_i_dead());
+      }
       this.observables.forEach((obs) => {
-        if (!obs.am_i_dead()) this.get_move_behavior().move(obs);
+        if (!obs.am_i_dead()) {
+          obs.get_move_behavior().move(obs);
+          obs.get_external_controller().getMovement(obs);
+        }
       });
 
       this.observables.forEach((obs1) => {
@@ -120,6 +151,56 @@ export class GameModel implements Observables, IModel {
   get_selectedId(): string {
     return this.selectedId;
   }
+  get_initialMovement(): string {
+    return this.initialMovement;
+  }
+
+  get_gravity(): boolean {
+    return this.gravity;
+  }
+
+  get_moveDown(): boolean {
+    return this.moveUp;
+  }
+
+  get_playerMove(): boolean {
+    return this.canPlayerMove;
+  }
+
+  get_moveRight(): boolean {
+    return this.moveRight;
+  }
+  get_moveUp(): boolean {
+    return this.moveUp;
+  }
+  get_moveLeft(): boolean {
+    return this.moveLeft;
+  }
+
+  get_CollissionGroup(): string {
+    return this.collisionId;
+  }
+
+  get_keybinds(): string {
+    return this.keybindSet;
+  }
+
+  get_attacker(): Attack {
+    return this.attack;
+  }
+  get_affected_by_bullets(): boolean {
+    return this.affected_by_bullets;
+  }
+  set_affected_by_bullets(b: boolean): void {
+    this.affected_by_bullets = b;
+  }
+  set_attack(c: string): void {
+    c;
+  }
+
+  set_keyBinds(keybind: string): void {
+    this.keybindSet = keybind;
+  }
 
   set_drawable(drawable: IDrawable): void {
     this.drawable = drawable;
@@ -135,6 +216,47 @@ export class GameModel implements Observables, IModel {
     this.id = id;
   }
 
+  set_gravity(gravityOn: boolean): void {
+    this.gravity = gravityOn;
+  }
+
+  set_playerMove(canMove: boolean): void {
+    this.canPlayerMove = canMove;
+  }
+
+  set_CollissionGroup(collisionId: string): void {
+    this.collisionId = collisionId;
+  }
+
+  set_interactions(collisionId: string, effect: Effect) {
+    this.interactions.set(collisionId, effect);
+  }
+
+  get_interactions(collisionId: string): Effect {
+    return this.interactions.get(collisionId) || new NoEffect();
+  }
+
+  set_initialMovement(initialMovement: string): void {
+    console.log("setting movements", initialMovement);
+    switch (initialMovement) {
+      case "downMoveBehavior":
+        this.set_move_behavior(new MoveVertical("down"));
+        break;
+      case "upMoveBehavior":
+        this.set_move_behavior(new MoveVertical("up"));
+        break;
+      case "rightMoveBehavior":
+        this.set_move_behavior(new MoveHorizontal("right"));
+        break;
+      case "leftMoveBehavior":
+        this.set_move_behavior(new MoveHorizontal("left"));
+        break;
+      default:
+        this.set_move_behavior(new NoMoveBehavior());
+    }
+    this.initialMovement = initialMovement;
+  }
+
   set_background_sound(backgroundSound: SoundBehavior): void {
     this.backgroundSound = backgroundSound;
   }
@@ -146,8 +268,35 @@ export class GameModel implements Observables, IModel {
   set_move_behavior(moveBehavior: MoveBehavior): void {
     this.moveBehavior = moveBehavior;
   }
+
+  set_moveDown(canMove: boolean): void {
+    this.externalController.getMovementDirection().down = canMove;
+    console.log(this);
+    this.moveDown = canMove;
+  }
+
+  set_moveRight(canMove: boolean): void {
+    // these are for the external controllers
+    this.externalController.getMovementDirection().right = canMove;
+    this.moveRight = canMove;
+  }
+  set_moveUp(canMove: boolean): void {
+    this.externalController.getMovementDirection().up = canMove;
+    // these are for the external controllers
+    this.moveUp = canMove;
+  }
+  set_moveLeft(canMove: boolean): void {
+    // these are for the external controllers
+
+    this.externalController.getMovementDirection().left = canMove;
+    this.moveLeft = canMove;
+  }
   set_external_controller(externalController: ExternalController): void {
     this.externalController = externalController;
+  }
+
+  set_attacker(attack: Attack): void {
+    this.attack = attack;
   }
 
   updateSelectedSpriteList(): void {

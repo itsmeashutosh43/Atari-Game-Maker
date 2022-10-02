@@ -2,44 +2,41 @@ import { Cooridnates } from "../drawables/drawable";
 //import { Entity } from "../entities/entity";
 
 export enum DIRECTION {
-    LEFT = "LEFT",
-    RIGHT = "RIGHT",
-    UP = "UP",
-    DOWN = "DOWN",
-    TOPLEFT = "TOPLEFT",
-    TOPRIGHT = "TOPRIGHT",
-    BOTTOMLEFT = "BOTTOMLEFT",
-    BOTTOMRIGHT = "BOTTOMRIGHT",
-    NOWHERE = "NOWHERE",
+  LEFT = "LEFT",
+  RIGHT = "RIGHT",
+  UP = "UP",
+  DOWN = "DOWN",
+  TOPLEFT = "TOPLEFT",
+  TOPRIGHT = "TOPRIGHT",
+  BOTTOMLEFT = "BOTTOMLEFT",
+  BOTTOMRIGHT = "BOTTOMRIGHT",
+  NOWHERE = "NOWHERE",
 }
 
-
-
 export abstract class Behavior {
-    executionComplete: Boolean;
-    dir: DIRECTION = DIRECTION.NOWHERE;
-    //abstract execute(e: Entity): void;
-    abstract resetBehavior(): void;
+  executionComplete: Boolean;
+  dir: DIRECTION = DIRECTION.NOWHERE;
+  //abstract execute(e: Entity): void;
+  abstract resetBehavior(): void;
 }
 
 export class DoNothing extends Behavior {
-    //execute(e: Entity): void { }
-    resetBehavior(): void { }
+  //execute(e: Entity): void { }
+  resetBehavior(): void {}
 }
 
 export class SetPosition extends Behavior {
+  coords: Cooridnates;
+  constructor(coords: Cooridnates) {
+    super();
+    this.executionComplete = false;
+    this.coords = coords;
+  }
 
-    coords: Cooridnates
-    constructor(coords: Cooridnates) {
-        super();
-        this.executionComplete = false;
-        this.coords = coords;
-    }
-
-    resetBehavior(): void {
-        this.executionComplete = true;
-    }
-/*
+  resetBehavior(): void {
+    this.executionComplete = true;
+  }
+  /*
     execute(e: Entity): void {
         if (this.executionComplete)
             return;
@@ -50,27 +47,26 @@ export class SetPosition extends Behavior {
 }
 
 export class Move extends Behavior {
+  displacement: number;
+  traveled: number;
+  speed: number;
+  dir: DIRECTION;
 
-    displacement: number;
-    traveled: number;
-    speed: number;
-    dir: DIRECTION;
+  constructor(displacement: number, dir: DIRECTION, speed?: number) {
+    super();
 
-    constructor(displacement: number, dir: DIRECTION, speed?: number) {
-        super();
+    this.displacement = displacement;
+    this.traveled = 0;
+    this.dir = dir;
+    this.speed = speed ? speed : 1;
+    this.executionComplete = false;
+  }
 
-        this.displacement = displacement;
-        this.traveled = 0;
-        this.dir = dir;
-        this.speed = speed ? speed : 1;
-        this.executionComplete = false;
-    }
-
-    resetBehavior(): void {
-        this.executionComplete = true;
-        this.traveled = 0;
-    }
-    /*
+  resetBehavior(): void {
+    this.executionComplete = true;
+    this.traveled = 0;
+  }
+  /*
     execute(e: Entity): void {
         if (this.executionComplete)
             return
@@ -121,5 +117,4 @@ export class Move extends Behavior {
         }
     }
     */
-
 }
