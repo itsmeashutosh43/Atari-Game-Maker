@@ -5,7 +5,7 @@ import { Observables } from "./interfaces/observable";
 import { IDrawable } from "../view/idrawable";
 import { RectangleSize } from "./objects/rectangleSize";
 import { defaultImageDrawable } from "../view/imageDrawable";
-//import { appendToSpriteList } from "./components/addToSpriteList";
+import { appendToSpriteList } from "./components/addToSpriteList";
 import { Drawable } from "../drawables/drawable";
 import { MoveBehavior } from "../controller/MovementBehaviors/moveBehavior";
 import { ExternalController } from "../controller/ExternalController/externalController";
