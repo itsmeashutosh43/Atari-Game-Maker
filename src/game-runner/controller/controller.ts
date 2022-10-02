@@ -61,13 +61,13 @@ export class Controller {
   // Handles clicks on sprite divs in the bottom view
   handleClickSpriteList(id: string, uniq_id: string) {
     this.clicked_id = uniq_id;
-	console.log(uniq_id);
-	// Update highlight for selected sprite
-	this.undrawSelectedBorders();
-	this.drawSelectedBorder();
-	// Here we could tell the model to draw its own bounding box to display highlights...
+    console.log(uniq_id);
+    // Update highlight for selected sprite
+    this.undrawSelectedBorders();
+    this.drawSelectedBorder();
+    // Here we could tell the model to draw its own bounding box to display highlights...
 
-	// A hacky solution: whether or not we're in "select other sprite mode" depends on display style of the helper text
+    // A hacky solution: whether or not we're in "select other sprite mode" depends on display style of the helper text
     if (
       document.getElementById("otherSpriteInteractionHelperText").style
         .display == "block"
@@ -75,7 +75,7 @@ export class Controller {
       this.disableSelectOtherSpriteMode();
     } else {
       // Arrow function body wrapped with {} implicitly tries to return, which is bad for filter
-	  console.log(this.model.observables);
+      console.log(this.model.observables);
       console.log(
         "clicked id for add interaction",
         this.selected_id,
@@ -90,21 +90,29 @@ export class Controller {
         (obs: GameModel) => obs.get_selectedId() == this.clicked_id
       )[0]; // when I collide with this
 
-	// Arrow function body wrapped with {} implicitly tries to return, which is bad for filter
-	this.selected_id = uniq_id;
-	fetchFromModel.updateFormFieldsFromModel(
-		<GameModel>(
-		this.model.observables.filter(
-			(obs: GameModel) => obs.get_selectedId() == this.clicked_id
-		)[0]
-		)
-	);
+      // Arrow function body wrapped with {} implicitly tries to return, which is bad for filter
+      this.selected_id = uniq_id;
+      fetchFromModel.updateFormFieldsFromModel(
+        <GameModel>(
+          this.model.observables.filter(
+            (obs: GameModel) => obs.get_selectedId() == this.clicked_id
+          )[0]
+        )
+      );
 
       // get colission group for the clicked this
       document.getElementById(
         "otherSpriteInteractionHelperText"
       ).style.display = "none";
     }
+  }
+
+  handleClone(b: boolean) {
+    this.model.observables
+      .filter((obs) => obs.get_selectedId() == this.clicked_id)
+      .forEach((obs) => {
+        this.model.add(obs.clone(obs));
+      });
   }
 
   handleSetSize(xval: number, yval: number) {
@@ -422,40 +430,43 @@ export class Controller {
   }
 
   handleDeselectSprite(): void {
-	this.clicked_id = '';
-	this.undrawSelectedBorders();
+    this.clicked_id = "";
+    this.undrawSelectedBorders();
   }
 
   handleDeleteSprite(): void {
-	console.log("ok");
-	// "Deletes" the sprite.
-	// 1. Inform the model this sprite is dead, so it won't check collisions, etc.
-	this.model.observables
+    console.log("ok");
+    // "Deletes" the sprite.
+    // 1. Inform the model this sprite is dead, so it won't check collisions, etc.
+    this.model.observables
       .filter((obs) => obs.get_selectedId() == this.clicked_id)
       .forEach((obs) => {
         obs.i_am_dead();
       });
-	// 2. Remove the associated HTML element from the bottom sprite list
-	const targetNode: Node = document.getElementsByName(this.clicked_id)[0];
-	document.getElementById("bottomSprites").removeChild(targetNode);
+    // 2. Remove the associated HTML element from the bottom sprite list
+    const targetNode: Node = document.getElementsByName(this.clicked_id)[0];
+    document.getElementById("bottomSprites").removeChild(targetNode);
 
-	// 3. Deselect the nonexistent sprite, and disable "select other sprite" mode in case it was active
-	this.handleDeselectSprite();
-	this.disableSelectOtherSpriteMode();
+    // 3. Deselect the nonexistent sprite, and disable "select other sprite" mode in case it was active
+    this.handleDeselectSprite();
+    this.disableSelectOtherSpriteMode();
   }
 
   undrawSelectedBorders(): void {
-	const spritesInBottom = <HTMLElement[]> Array.from(document.getElementById("bottomSprites").children);
-	spritesInBottom.forEach(elem => elem.style.border = '0');
+    const spritesInBottom = <HTMLElement[]>(
+      Array.from(document.getElementById("bottomSprites").children)
+    );
+    spritesInBottom.forEach((elem) => (elem.style.border = "0"));
   }
 
   drawSelectedBorder(): void {
-	const spriteHTMLElement = document.getElementsByName(this.clicked_id)[0];
-	spriteHTMLElement.style.border = '1px solid blue';
+    const spriteHTMLElement = document.getElementsByName(this.clicked_id)[0];
+    spriteHTMLElement.style.border = "1px solid blue";
   }
 
   disableSelectOtherSpriteMode(): void {
-	document.getElementById("otherSpriteInteractionHelperText").style.display = "none";
+    document.getElementById("otherSpriteInteractionHelperText").style.display =
+      "none";
   }
 
   handleCloneSprite(): void {

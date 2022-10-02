@@ -31,10 +31,13 @@ export enum MODE {
 
 let mode: MODE = MODE.BUILD;
 
-setInterval(() => {
+let loop = () => {
   layout.clearScreen();
-  gamemodel.notify(mode), 1000 / 60;
-});
+
+  gamemodel.notify(mode);
+  window.requestAnimationFrame(loop);
+};
+loop();
 let control: Controller = new Controller(gamemodel);
 
 initAssets(spriteList, spriteSelection, control);
@@ -46,8 +49,8 @@ startButtonImage.addEventListener("click", () => {
   if (mode == MODE.GAME) {
     mode = MODE.BUILD;
     startButtonImage.src = "./src/interface-icons/play.svg";
-	startButtonImage.width = iconSize;
-	startButtonImage.height = iconSize;
+    startButtonImage.width = iconSize;
+    startButtonImage.height = iconSize;
     gamemodel.get_background_sound().pause_sound();
 	viewControl.showBuilderElements();
     // TODO: de-register external events

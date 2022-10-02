@@ -15,13 +15,14 @@ import { MODE } from "../..";
 import { NoMoveBehavior } from "../controller/MovementBehaviors/noMoveBehavior";
 import { NoController } from "../controller/ExternalController/noController";
 import { Colission } from "../controller/colission_detector/colission";
-import { JSDOM} from "jsdom";
 import { MoveVertical } from "../controller/MovementBehaviors/moveVertical";
 import { MoveHorizontal } from "../controller/MovementBehaviors/moveHorizontal";
 import { Effect } from "../controller/MovementBehaviors/ieffects";
 import { NoEffect } from "../controller/MovementBehaviors/noEffect";
 import { Attack } from "./components/iattack";
 import { NoAttack } from "./components/noAttack";
+import { Death } from "../controller/MovementBehaviors/death";
+import { ReflectEffect } from "../controller/MovementBehaviors/reflectEffect";
 
 export class GameModel implements Observables, IModel {
   drawable: IDrawable;
@@ -62,15 +63,22 @@ export class GameModel implements Observables, IModel {
     this.collisionId = id; // at the beginning each thing is it own colission group
     this.interactions = new Map<string, Effect>();
     this.attack = new NoAttack();
+    this.set_interactions("boundary", new ReflectEffect());
   }
 
-  clone(drawable: IDrawable, position: position, size: Size, id: string) {
+  clone(obs: IModel): IModel {
     let o = new GameModel();
-
-    o.set_drawable(drawable);
-    o.set_position(position);
-    o.set_size(size);
-    o.set_id(id);
+    o.set_drawable(obs.get_drawable());
+    o.set_position(obs.get_position());
+    o.set_size(obs.get_size());
+    o.set_id(obs.get_id());
+    o.set_move_behavior(obs.get_move_behavior());
+    o.interactions.forEach((v, k) => {
+      o.set_interactions(k, v);
+    });
+    o.set_selectedId(o.get_selectedId());
+    o.set_CollissionGroup(o.get_CollissionGroup());
+    o.set_affected_by_bullets(o.get_affected_by_bullets());
     return o;
   }
 
@@ -225,6 +233,7 @@ export class GameModel implements Observables, IModel {
   }
 
   set_CollissionGroup(collisionId: string): void {
+    this.set_interactions(collisionId, new ReflectEffect());
     this.collisionId = collisionId;
   }
 
@@ -303,11 +312,11 @@ export class GameModel implements Observables, IModel {
     const idList: string[] = [];
 
     this.observables
-	.filter(obs => !obs.am_i_dead())
-	.forEach((obs) => {
-      idList.push(obs.get_drawable().get_source());
-    });
-	console.log(`idList: ${idList}`);
+      .filter((obs) => !obs.am_i_dead())
+      .forEach((obs) => {
+        idList.push(obs.get_drawable().get_source());
+      });
+    console.log(`idList: ${idList}`);
     appendToSpriteList(idList);
   }
 }
