@@ -9,7 +9,7 @@ export class Death implements Effect {
     this.soundBehavior = new MusicBehavior("./src/sound-effects/collision.wav");
   }
 
-  do(model: IModel): void {
+  do(model: IModel, model1: IModel): void {
     model.i_am_dead();
 
     this.soundBehavior.make_sound();

@@ -19,7 +19,7 @@ export class MoveHorizontal implements Behavior, Effect {
     this.soundBehavior = new MusicBehavior("./src/sound-effects/collision.wav");
   }
 
-  do(model: IModel) {
+  do(model: IModel, model1: IModel) {
     this.move(model);
 
     this.soundBehavior.make_sound();

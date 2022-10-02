@@ -11,13 +11,13 @@ export class Colission {
         model1.get_size().getBoundingBox(model1.get_position())
       )
     ) {
-      model1.get_interactions("boundary").do(model1);
+      model1.get_interactions("boundary").do(model1, model1);
     } else if (
       Colission.isCollidingWithCanvas(
         model2.get_size().getBoundingBox(model2.get_position())
       )
     ) {
-      model2.get_interactions("boundary").do(model2);
+      model2.get_interactions("boundary").do(model2, model2);
     } else if (
       Colission.isColliding(
         model1.get_size().getBoundingBox(model1.get_position()),
@@ -26,8 +26,8 @@ export class Colission {
     ) {
       // get all effects and do something!
 
-      model1.get_interactions(model2.get_CollissionGroup()).do(model1);
-      model2.get_interactions(model1.get_CollissionGroup()).do(model2);
+      model1.get_interactions(model2.get_CollissionGroup()).do(model1, model2);
+      model2.get_interactions(model1.get_CollissionGroup()).do(model2, model1);
     }
   }
 

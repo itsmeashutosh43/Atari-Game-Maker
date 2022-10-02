@@ -18,6 +18,7 @@ import { MoveHorizontal } from "./MovementBehaviors/moveHorizontal";
 import { Block } from "./MovementBehaviors/block";
 import { NoEffect } from "./MovementBehaviors/noEffect";
 import { BulletAttack } from "../model/components/bulletsAttack";
+import { Attach } from "./MovementBehaviors/attach";
 
 export class Controller {
   model: GameModel;
@@ -102,14 +103,6 @@ export class Controller {
         )
       );
     }
-  }
-
-  handleClone(b: boolean) {
-    this.model.observables
-      .filter((obs) => obs.get_selectedId() == this.clicked_id)
-      .forEach((obs) => {
-        this.model.add(obs.clone(obs));
-      });
   }
 
   handleSetSize(xval: number, yval: number) {
@@ -355,6 +348,9 @@ export class Controller {
       case "blockEffect":
         gameEffect = new Block();
         break;
+      case "attachEffect":
+        gameEffect = new Attach();
+        break;
       default:
         gameEffect = new NoEffect();
     }
@@ -468,6 +464,11 @@ export class Controller {
 
   handleCloneSprite(): void {
     // TODO call method from model
+    this.model.observables
+      .filter((obs) => obs.get_selectedId() == this.clicked_id)
+      .forEach((obs) => {
+        this.model.add(obs.clone(obs));
+      });
   }
 
   hideBuilderElements(): void {

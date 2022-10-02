@@ -3,5 +3,5 @@ import { SoundBehavior } from "../../../sound-effects/SoundBehaviors/soundBehavi
 import { MusicBehavior } from "../../../sound-effects/SoundBehaviors/MusicBehavior";
 
 export interface Effect {
-  do(model: IModel): void;
+  do(model: IModel, model1: IModel): void;
 }

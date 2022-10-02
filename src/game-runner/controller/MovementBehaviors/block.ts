@@ -10,7 +10,7 @@ export class Block implements Effect {
     this.soundBehavior = new MusicBehavior("./src/sound-effects/collision.wav");
   }
 
-  do(model: IModel): void {
+  do(model: IModel, model1: IModel): void {
     model.set_move_behavior(new NoMoveBehavior());
     this.soundBehavior.make_sound();
   }
