@@ -10,6 +10,32 @@ body{
 h3 {
   font-family:'Arial Wide', Arial, sans-serif;
   margin: 0;
+  font-size: 22pt;
+}
+
+p, label {
+  display: inline-block;
+  font-size: 22pt;
+  padding: 2% 0.01% 2% 4%;
+}
+
+.inputField {
+  display: inline-block;
+  background-color: transparent;
+  border: 0;
+  border-bottom: 1px solid black;
+  text-align: center;
+  width: 100px;
+}
+
+.inputSelectLine {
+  display: inline-block;
+  background-color: transparent;
+  border: 0;
+  border-bottom: 1px solid black;
+  text-align: center;
+  margin: 2% 14% 2% 14%;
+  width: 70%;
 }
 
 .container {

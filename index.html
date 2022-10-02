@@ -59,32 +59,32 @@
             <h3>Appearance Configuration</h3>
             <form>
               <label for="xPosition">X Position:</label>
-              <input type="number" id="xPosition" name="xPosition" /><br />
+              <input type="number" id="xPosition" class="inputField" name="xPosition" /><br />
               <label for="yPosition">Y Position:</label>
-              <input type="number" id="yPosition" name="yPosition" /><br />
+              <input type="number" id="yPosition" class="inputField" name="yPosition" /><br />
               <label for="spriteWidth">Sprite Width:</label>
-              <input type="number" id="spriteWidth" name="spriteWidth" /><br />
+              <input type="number" id="spriteWidth" class="inputField" name="spriteWidth" /><br />
               <label for="">Sprite Height:</label>
-              <input type="number" id="spriteHeight" name="spriteHeight" /><br />
+              <input type="number" id="spriteHeight" class="inputField" name="spriteHeight" /><br />
             </form>
           </div>
           <div id="behaviorConfigMenu">
             <h3>Behavior Configuration</h3>
             <form>
-              <label for="moveBehavior">Initial Movement Behavior:</label>
-              <select id="moveBehavior" name="moveBehavior">
+              <label for="moveBehavior">Initial Movement Behavior:</label><br />
+              <select id="moveBehavior" name="moveBehavior" class="inputSelectLine">
                 <option id = "" value="noMoveBehavior">Still</option>
                 <option value="rightMoveBehavior">Moves Right</option>
                 <option value="leftMoveBehavior">Moves Left</option>
                 <option value="upMoveBehavior">Moves Up</option>
                 <option value="downMoveBehavior">Moves Down</option>
               </select><br />
-              <label for="playerMoveEnabled">Sprite is Controlled by Player</label>
+              <label for="playerMoveEnabled">Sprite Controlled by Player</label>
               <input type="checkbox" id="playerMoveEnabled" name="playerMoveEnabled" />
               <br />
               <div id="playerMoveOptions">
                 <label for="playerMoveBehavior">Sprite Control Scheme:</label>
-                <select id="playerMoveBehavior" name="playerMoveBehavior">
+                <select id="playerMoveBehavior" name="playerMoveBehavior" class="inputSelectLine">
                   <option value="wasdSpace">WASD: Move, Space: Fire</option>
                   <option value="mouseLMB">Mouse: Move, Click: Fire</option>
                   <!-- TODO: more? -->
@@ -125,7 +125,7 @@
             </form>
           </div>
           <div id="settingsConfigMenu">
-            <h3>Game Settings Configuration</h3>
+            <h3>Game Settings</h3>
             <form>
               <label for="backgroundImageSelect">Canvas Background Image:</label>
               <select id="backgroundImageSelect">
