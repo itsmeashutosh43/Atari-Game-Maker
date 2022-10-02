@@ -10,7 +10,8 @@ export class Colission {
       )
     ) {
       // get all effects and do something!
-      console.log("Two objects are colliding");
+      model1.get_interactions(model2.get_CollissionGroup()).do(model1);
+      model2.get_interactions(model1.get_CollissionGroup()).do(model2);
     }
   }
 

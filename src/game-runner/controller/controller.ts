@@ -3,7 +3,6 @@ import { RectangleSize } from "../model/objects/rectangleSize";
 import { defaultImageDrawable } from "../view/imageDrawable";
 import { layout } from "../..";
 import { MusicBehavior } from "../../sound-effects/SoundBehaviors/MusicBehavior";
-
 import { Size } from "../model/objects/isize";
 import { position } from "../model/objects/iposition";
 import { gameCanvas } from "../../game-maker/util/view-const";
@@ -12,10 +11,20 @@ import { gameCanvas } from "../../game-maker/util/view-const";
 import { fetchFromModel } from "../view/fetchFromModel";
 import { KeyboardController } from "./ExternalController/keyboardController";
 import { MouseController } from "./ExternalController/mouseController";
+import { Effect } from "./MovementBehaviors/ieffects";
+import { Death } from "./MovementBehaviors/death";
+import { MoveVertical } from "./MovementBehaviors/moveVertical";
+import { MoveHorizontal } from "./MovementBehaviors/moveHorizontal";
+import { Block } from "./MovementBehaviors/block";
+import { NoEffect } from "./MovementBehaviors/noEffect";
 
 export class Controller {
   model: GameModel;
   clicked_id: string;
+  selected_id: string;
+  interacting_vs_model: IModel;
+  interacting_to_model: IModel;
+
   constructor(model: GameModel) {
     this.model = model;
   }
@@ -48,12 +57,27 @@ export class Controller {
       document.getElementById("otherSpriteInteractionHelperText").style
         .display == "block"
     ) {
-      console.log(`${id} selected: ${spriteHTMLElement}`);
+      console.log(
+        "clicked id for add interaction",
+        this.selected_id,
+        this.clicked_id
+      );
+
+      this.interacting_to_model = this.model.observables.filter(
+        (obs: GameModel) => obs.get_selectedId() == this.selected_id
+      )[0]; // I am changing behavior of this object
+
+      this.interacting_vs_model = this.model.observables.filter(
+        (obs: GameModel) => obs.get_selectedId() == this.clicked_id
+      )[0]; // when I collide with this
+
+      // get colission group for the clicked this
       document.getElementById(
         "otherSpriteInteractionHelperText"
       ).style.display = "none";
     } else {
       // Arrow function body wrapped with {} implicitly tries to return, which is bad for filter
+      this.selected_id = uniq_id;
       fetchFromModel.updateFormFieldsFromModel(
         <GameModel>(
           this.model.observables.filter(
@@ -252,6 +276,38 @@ export class Controller {
 
     this.model.set_background_sound(
       new MusicBehavior(`./src/sound-effects/${sound}.mp3`)
+    );
+  }
+
+  set_effect(effect: string): void {
+    let gameEffect: Effect;
+
+    switch (effect) {
+      case "destroyEffect":
+        gameEffect = new Death();
+        break;
+      case "moveUpEffect":
+        gameEffect = new MoveVertical("up");
+        break;
+      case "moveLeftEffect":
+        gameEffect = new MoveHorizontal("left");
+        break;
+      case "moveRightEffect":
+        gameEffect = new MoveHorizontal("right");
+        break;
+      case "moveDownEffect":
+        gameEffect = new MoveVertical("down");
+        break;
+      case "blockEffect":
+        gameEffect = new Block();
+        break;
+      default:
+        gameEffect = new NoEffect();
+    }
+
+    this.interacting_to_model.set_interactions(
+      this.interacting_vs_model.get_CollissionGroup(),
+      gameEffect
     );
   }
 
