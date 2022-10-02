@@ -36,6 +36,12 @@ export let spriteList: string[] =
 "grass",
 "bush",
 "water",
+"solidred",
+"solidgreen",
+"solidblue",
+"solidtransparent",
+"solidblack",
+"solidwhite",
 ];
 
 
