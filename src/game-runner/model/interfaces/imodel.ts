@@ -6,18 +6,14 @@ import { SoundBehavior } from "../../../sound-effects/SoundBehaviors/soundBehavi
 import { Behavior } from "../../controller/MovementBehaviors/positionBehavior";
 import { Effect } from "../../controller/MovementBehaviors/ieffects";
 import { Attack } from "../components/iattack";
+import { MoveBehavior } from "../../controller/MovementBehaviors/moveBehavior";
 export interface IModel {
-  clone(
-    drawable: IDrawable,
-    position: position,
-    size: Size,
-    id: string
-  ): IModel;
+  clone(obs: IModel): IModel;
   get_drawable(): IDrawable;
   get_position(): position;
   get_size(): Size;
   get_id(): string;
-  get_move_behavior(): Behavior;
+  get_move_behavior(): MoveBehavior;
   get_external_controller(): ExternalController;
   get_background_sound(): SoundBehavior;
   get_selectedId(): string;

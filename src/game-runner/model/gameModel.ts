@@ -66,13 +66,19 @@ export class GameModel implements Observables, IModel {
     this.set_interactions("boundary", new ReflectEffect());
   }
 
-  clone(drawable: IDrawable, position: position, size: Size, id: string) {
+  clone(obs: IModel): IModel {
     let o = new GameModel();
-
-    o.set_drawable(drawable);
-    o.set_position(position);
-    o.set_size(size);
-    o.set_id(id);
+    o.set_drawable(obs.get_drawable());
+    o.set_position(obs.get_position());
+    o.set_size(obs.get_size());
+    o.set_id(obs.get_id());
+    o.set_move_behavior(obs.get_move_behavior());
+    o.interactions.forEach((v, k) => {
+      o.set_interactions(k, v);
+    });
+    o.set_selectedId(o.get_selectedId());
+    o.set_CollissionGroup(o.get_CollissionGroup());
+    o.set_affected_by_bullets(o.get_affected_by_bullets());
     return o;
   }
 

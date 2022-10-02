@@ -107,6 +107,14 @@ export class Controller {
     }
   }
 
+  handleClone(b: boolean) {
+    this.model.observables
+      .filter((obs) => obs.get_selectedId() == this.clicked_id)
+      .forEach((obs) => {
+        this.model.add(obs.clone(obs));
+      });
+  }
+
   handleSetSize(xval: number, yval: number) {
     layout.clearScreen();
     this.model.observables
