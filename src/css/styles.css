@@ -4,6 +4,12 @@
 
 body{
   background-color: #DFD3C3;
+  font-family:Arial, Helvetica, sans-serif
+}
+
+h3 {
+  font-family:'Arial Wide', Arial, sans-serif;
+  margin: 0;
 }
 
 .container {
@@ -20,7 +26,10 @@ body{
 
 .text-center {
   text-align: center;
-  margin: 50% auto 50% auto;
+}
+
+.text-right {
+  text-align: right;
 }
 
 .center-horizontal {
@@ -40,6 +49,11 @@ body{
 
 .flex-one {
   flex: 1;
+}
+
+#appTitle {
+  font-family:'Arial Wide', Arial, sans-serif;
+  margin: 0;
 }
 
 #top {
@@ -137,7 +151,7 @@ body{
 }
 
 #settingsConfigButton {
-  
+
 }
 
 #behaviorConfigTab {

@@ -1,5 +1,4 @@
 export let startBtn = document.getElementById("start") as HTMLElement;
-export let stopBtn = document.getElementById("stop") as HTMLElement;
 export let saveBtn = document.getElementById("save") as HTMLElement;
 export let loadBtn = document.getElementById("load") as HTMLElement;
 export let changeBackgroundBtn = document.getElementById("backgroundImage") as HTMLElement;
