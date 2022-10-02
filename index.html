@@ -18,16 +18,15 @@
     <!-- Nav bar -->
     <div id="nav" class="container">
       <div id="title" class="flex-one">
-        <p>GameBuilder</p>
+        <h1 id="appTitle">GameBuilder</h1>
       </div>
-      <div id="playPauseButtons" class="flex-one"> <!-- center-horizontal container -->
-        <button id = "start"> Start Game</button>
-        <button id = "stop"> Stop Game</button>
-        <button id="settingsConfigButton" type="button">Game Settings</button>
+      <div id="playPauseButtons" class="flex-one text-center">
+        <img src="src/interface-icons/play.svg" id="start" width="50px" height="50px"/>
+        <img src="src/interface-icons/setting.svg" id="settingsConfigButton" width="50px" height="50px"/>
       </div>
-      <div id="saveLoadButtons" class="flex-one"> <!-- center-horizontal container -->
-        <button id = "save">Save Game</button>
-        <button id = "load">Load Game</button>
+      <div id="saveLoadButtons" class="flex-one text-right">
+        <img src="src/interface-icons/download.svg" id="save" width="50px" height="50px" />
+        <img src="src/interface-icons/upload.svg" id="load" width="50px" height="50px" />
       </div>
     </div>
     <!-- Three columns for palette, canvas, and properties -->
@@ -38,54 +37,54 @@
       </div>
       <!-- div for canvas -->
       <div id="gameView">
-        <canvas id="gamewindow" width="800" height="800"></canvas>
+        <canvas id="gamewindow" width="1000" height="800"></canvas>
       </div>
       <!-- properties multi-tab view -->
       <div id="property" class="container vertical">
         <div id="propertyTabs" class="container">
           <div id="objectConfigTab">
-            <button id="objectConfigButton" onclick="">O</button>
+            <img src="src/interface-icons/appearance.svg" id="objectConfigButton" width="50px" height="50px" />
           </div>
           <div id="behaviorConfigTab">
-            <button id="behaviorConfigButton">B</button>
+            <img src="src/interface-icons/behavior.svg" id="behaviorConfigButton" width="50px" height="50px" />
           </div>
           <div id="interactionsConfigTab">
-            <button id="interactionsConfigButton">I</button>
+            <img src="src/interface-icons/interaction.svg" id="interactionsConfigButton" width="50px" height="50px" />
           </div>
         </div>
         <!-- end tabs div -->
         <!-- Overall property menu div. Inside are several divs, only one of which is displayed at a time for the current form -->
         <div id="propertyMenus">
           <div id="objectConfigMenu">
-            <p>Object Appearance Configuration</p>
+            <h3>Appearance Configuration</h3>
             <form>
               <label for="xPosition">X Position:</label>
-              <input type="number" id="xPosition" name="xPosition" /><br />
+              <input type="number" id="xPosition" class="inputField" name="xPosition" /><br />
               <label for="yPosition">Y Position:</label>
-              <input type="number" id="yPosition" name="yPosition" /><br />
+              <input type="number" id="yPosition" class="inputField" name="yPosition" /><br />
               <label for="spriteWidth">Sprite Width:</label>
-              <input type="number" id="spriteWidth" name="spriteWidth" /><br />
+              <input type="number" id="spriteWidth" class="inputField" name="spriteWidth" /><br />
               <label for="">Sprite Height:</label>
-              <input type="number" id="spriteHeight" name="spriteHeight" /><br />
+              <input type="number" id="spriteHeight" class="inputField" name="spriteHeight" /><br />
             </form>
           </div>
           <div id="behaviorConfigMenu">
-            <p>Behavior Configuration</p>
+            <h3>Behavior Configuration</h3>
             <form>
-              <label for="moveBehavior">Initial Movement Behavior:</label>
-              <select id="moveBehavior" name="moveBehavior">
+              <label for="moveBehavior">Initial Movement Behavior:</label><br />
+              <select id="moveBehavior" name="moveBehavior" class="inputSelectLine">
                 <option id = "" value="noMoveBehavior">Still</option>
                 <option value="rightMoveBehavior">Moves Right</option>
                 <option value="leftMoveBehavior">Moves Left</option>
                 <option value="upMoveBehavior">Moves Up</option>
                 <option value="downMoveBehavior">Moves Down</option>
               </select><br />
-              <label for="playerMoveEnabled">Sprite is Controlled by Player</label>
+              <label for="playerMoveEnabled">Sprite Controlled by Player</label>
               <input type="checkbox" id="playerMoveEnabled" name="playerMoveEnabled" />
               <br />
               <div id="playerMoveOptions">
                 <label for="playerMoveBehavior">Sprite Control Scheme:</label>
-                <select id="playerMoveBehavior" name="playerMoveBehavior">
+                <select id="playerMoveBehavior" name="playerMoveBehavior" class="inputSelectLine">
                   <option value="wasdSpace">WASD: Move, Space: Fire</option>
                   <option value="mouseLMB">Mouse: Move, Click: Fire</option>
                   <!-- TODO: more? -->
@@ -112,7 +111,7 @@
             </form>
           </div>
           <div id="interactionsConfigMenu">
-            <p>Interactions Configuration</p>
+            <h3>Interactions Configuration</h3>
             <form>
               <label for="eventChoice">When</label>
               <select id="eventChoice" name="eventChoice">
@@ -135,7 +134,7 @@
             </form>
           </div>
           <div id="settingsConfigMenu">
-            <p>Game Settings Configuration</p>
+            <h3>Game Settings</h3>
             <form>
               <label for="backgroundImageSelect">Canvas Background Image:</label>
               <select id="backgroundImageSelect">
@@ -154,13 +153,21 @@
             </form>
           </div>
           <div id="blankConfigMenu">
-            <p class="text-center">Select a Sprite to configure its properties here, or choose the game configuration menu.</p>
+            <p id="blankConfigMenuText" class="text-center">Select a Sprite to configure its properties here, or choose the game configuration menu.</p>
           </div>
         </div>
       </div>
     </div>
-    <!-- Bottom panel -->
-    <div id="bottom"> </div>
+    <!-- Bottom panel, automatically populated with the sprites on screen as well as "deselect" and "delete" buttons -->
+    <div id="bottom">
+      <div id="bottomButtons">
+        <img src="src/interface-icons/deselect.svg" id="deselectSpriteButton" width="40px" height="40px" />
+        <img src="src/interface-icons/delete.svg" id="deleteSpriteButton" width="40px" height="40px" />
+      </div>
+      <div id="bottomSprites">
+
+      </div>
+    </div>
   </div>
   <script src="./dist/main.js"></script>
   <script>

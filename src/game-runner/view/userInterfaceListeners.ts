@@ -8,13 +8,12 @@ export class userInterfaceListeners {
     this.addBehaviorConfigListeners();
     this.addInteractionConfigListeners();
     this.addSettingsConfigListeners();
+		this.addBottomButtonListeners();
   }
 
   private static addFormTabListeners(): void {
     // TODO: needs some logic to restrict changing tabs unless an object is selected
     //       clicking the first three buttons should just display the blank menu
-    // TODO: should populate each tab with correct values from model
-    //       this population should happen automatically when an object is selected, then they'll be visible when a tab is selected
 
     // Object appearance config tab
     document
@@ -212,7 +211,6 @@ export class userInterfaceListeners {
       console.log(newValue); // your logic goes here
     });
 
-    // TODO:
     // Other sprite
     document
       .getElementById("otherSpriteInteractionButton")
@@ -247,5 +245,19 @@ export class userInterfaceListeners {
         console.log(newValue); // your logic goes here
         viewControl.set_game_background(newValue);
       });
+  }
+
+  private static addBottomButtonListeners(): void {
+		// Deselect sprite button
+		document.getElementById("deselectSpriteButton")
+			.addEventListener("click", () => {
+				viewControl.handleDeselectSprite();
+			});
+		
+		// "Delete" sprite button
+		document.getElementById("deleteSpriteButton")
+			.addEventListener("click", () => {
+				viewControl.handleDeleteSprite();
+			});
   }
 }

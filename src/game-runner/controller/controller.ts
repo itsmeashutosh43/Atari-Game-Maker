@@ -61,14 +61,21 @@ export class Controller {
   // Handles clicks on sprite divs in the bottom view
   handleClickSpriteList(id: string, uniq_id: string) {
     this.clicked_id = uniq_id;
+	console.log(uniq_id);
+	// Update highlight for selected sprite
+	this.undrawSelectedBorders();
+	this.drawSelectedBorder();
+	// Here we could tell the model to draw its own bounding box to display highlights...
 
-    // TODO: change this. This is really, really hacky
-    const spriteHTMLElement = document.getElementsByName(uniq_id)[0];
-    //console.log(spriteHTMLElement);
+	// A hacky solution: whether or not we're in "select other sprite mode" depends on display style of the helper text
     if (
       document.getElementById("otherSpriteInteractionHelperText").style
         .display == "block"
     ) {
+      this.disableSelectOtherSpriteMode();
+    } else {
+      // Arrow function body wrapped with {} implicitly tries to return, which is bad for filter
+	  console.log(this.model.observables);
       console.log(
         "clicked id for add interaction",
         this.selected_id,
@@ -412,5 +419,42 @@ export class Controller {
 
   handleLoadEvent() {
     //i wonder what this one is gonna do?!??!?!
+  }
+
+  handleDeselectSprite(): void {
+	this.clicked_id = '';
+	this.undrawSelectedBorders();
+  }
+
+  handleDeleteSprite(): void {
+	console.log("ok");
+	// "Deletes" the sprite.
+	// 1. Inform the model this sprite is dead, so it won't check collisions, etc.
+	this.model.observables
+      .filter((obs) => obs.get_selectedId() == this.clicked_id)
+      .forEach((obs) => {
+        obs.i_am_dead();
+      });
+	// 2. Remove the associated HTML element from the bottom sprite list
+	const targetNode: Node = document.getElementsByName(this.clicked_id)[0];
+	document.getElementById("bottomSprites").removeChild(targetNode);
+
+	// 3. Deselect the nonexistent sprite, and disable "select other sprite" mode in case it was active
+	this.handleDeselectSprite();
+	this.disableSelectOtherSpriteMode();
+  }
+
+  undrawSelectedBorders(): void {
+	const spritesInBottom = <HTMLElement[]> Array.from(document.getElementById("bottomSprites").children);
+	spritesInBottom.forEach(elem => elem.style.border = '0');
+  }
+
+  drawSelectedBorder(): void {
+	const spriteHTMLElement = document.getElementsByName(this.clicked_id)[0];
+	spriteHTMLElement.style.border = '1px solid blue';
+  }
+
+  disableSelectOtherSpriteMode(): void {
+	document.getElementById("otherSpriteInteractionHelperText").style.display = "none";
   }
 }

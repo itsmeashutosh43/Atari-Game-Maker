@@ -4,7 +4,6 @@ import {
   saveBtn,
   loadBtn,
   startBtn,
-  stopBtn,
   changeBackgroundSoundBtn,
   changeBackgroundBtn,
   spriteSelection,
@@ -15,6 +14,8 @@ import {
 import { initAssets } from "./game-runner/view/intitlization";
 import { Controller } from "./game-runner/controller/controller";
 import { userInterfaceListeners } from "./game-runner/view/userInterfaceListeners";
+
+const iconSize = 60;
 
 let gamemodel: GameModel = new GameModel();
 
@@ -39,14 +40,14 @@ let control: Controller = new Controller(gamemodel);
 initAssets(spriteList, spriteSelection, control);
 
 userInterfaceListeners.addAllEventListeners();
-const gameStartButton: HTMLButtonElement = document.getElementById(
-  "start"
-) as HTMLButtonElement;
 
-gameStartButton.addEventListener("click", () => {
+const startButtonImage = document.getElementById("start") as HTMLImageElement;
+startButtonImage.addEventListener("click", () => {
   if (mode == MODE.GAME) {
     mode = MODE.BUILD;
-    gameStartButton.innerHTML = "play";
+    startButtonImage.src = "./src/interface-icons/play.svg";
+	startButtonImage.width = iconSize;
+	startButtonImage.height = iconSize;
     gamemodel.get_background_sound().pause_sound();
     // TODO: de-register external events
   } else {
@@ -59,6 +60,9 @@ gameStartButton.addEventListener("click", () => {
     gamemodel.get_background_sound().make_sound();
     gamemodel.get_external_controller().register();
     mode = MODE.GAME;
-    gameStartButton.innerHTML = "build";
+	console.log(startButtonImage.src);
+    startButtonImage.src = "./src/interface-icons/stop.svg";
+	startButtonImage.width = iconSize;
+	startButtonImage.height = iconSize;
   }
 });
