@@ -55,6 +55,7 @@ startButtonImage.addEventListener("click", () => {
     gamemodel.observables.forEach((obs) =>
       obs.get_external_controller().register()
     );
+    gamemodel.attack.register();
     // play music here
     gamemodel.get_background_sound().make_sound();
     gamemodel.get_external_controller().register();
