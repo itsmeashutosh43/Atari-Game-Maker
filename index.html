@@ -100,6 +100,12 @@
               </div>
               <label for="collisionGroupTag">Collision Group Tag:</label>
               <input type="text" id="collisionGroupTag" name="collisionGroupTag" /><br />
+              <label for="Attack">Attack</label>
+              <input type="checkbox" id="attack" name="attack" /><br />
+              
+              <label for="affectedByAttacke">Affected by Attacker</label>
+              <input type="checkbox" id="affectedByAttacke" name="affectedByAttacke" /><br />
+              
               <label for="hasGravity">Affected by Gravity?</label>
               <input type="checkbox" id="hasGravity" name="hasGravity" /><br />
             </form>
@@ -116,9 +122,12 @@
               <p id="otherSpriteInteractionHelperText">Now choose another Sprite...</p>
               <label for="">I will</label>
               <select id="selfEffect">
-                <option value="reflectEffect">reflect</option>
                 <option value="destroyEffect">be destroyed</option>
                 <option value="moveUpEffect">move up</option>
+                <option value="moveLeftEffect">move left</option>
+                <option value="moveRightEffect">move right</option>
+                <option value="moveDownEffect">move down</option>
+                <option value="blockEffect">block</option>
                 <!-- TODO: add more -->
               </select><br />
               <input type="submit" value="Update" />

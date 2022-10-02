@@ -96,6 +96,7 @@ export function loadFIle(f: string): [string, GameVariable]{
     }
     //userevent
     let userevents = data["ue"];
+    
     //create a list of KeyBoardEvents named ue
     let ue: UserKeydownEvent[] = [];
     for(let i = 0 ; i < userevents.length ;i++){

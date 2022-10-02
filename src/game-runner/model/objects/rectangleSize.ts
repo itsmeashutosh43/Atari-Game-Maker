@@ -17,9 +17,9 @@ export class RectangleSize implements Size {
   }
   getBoundingBox(pos: position): BoundingBox {
     return {
-      up: pos.y - this.height,
+      up: pos.y,
       down: pos.y + this.height,
-      left: pos.x - this.width,
+      left: pos.x,
       right: pos.x + this.width,
     };
   }

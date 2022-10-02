@@ -105,7 +105,6 @@ export class userInterfaceListeners {
     document.getElementById("spriteHeight").addEventListener("input", (e) => {
       const newValue = (<HTMLInputElement>e.currentTarget).value;
       let store = viewControl.handleGetSize();
-
       viewControl.handleSetSize(store.getWidth(), parseInt(newValue));
     });
   }
@@ -114,7 +113,6 @@ export class userInterfaceListeners {
     // Movement behavior
     document.getElementById("moveBehavior").addEventListener("change", (e) => {
       const newValue = (<HTMLInputElement>e.currentTarget).value;
-
       viewControl.handleSetInitialMovement(newValue);
     });
 
@@ -136,7 +134,6 @@ export class userInterfaceListeners {
       .getElementById("playerMoveBehavior")
       .addEventListener("change", (e) => {
         const newValue = (<HTMLInputElement>e.currentTarget).value;
-        console.log(newValue); // your logic goes here
         viewControl.handlePlayerMoveInput(newValue);
       });
 
@@ -163,7 +160,6 @@ export class userInterfaceListeners {
     document
       .getElementById("playerMoveDown")
       .addEventListener("change", (e) => {
-        console.log("down");
         const newValue = (<HTMLInputElement>e.currentTarget).checked;
         viewControl.handleSetCanMoveDown(newValue);
       });
@@ -181,6 +177,29 @@ export class userInterfaceListeners {
       const newValue = (<HTMLInputElement>e.currentTarget).checked;
       viewControl.handleSetGravity(newValue);
     });
+
+    // Gravity toggle
+    document.getElementById("attack").addEventListener("change", (e) => {
+      const newValue = (<HTMLInputElement>e.currentTarget).checked;
+      if (newValue) {
+        viewControl.handleSetAttack("bullets");
+      } else {
+        viewControl.handleSetAttack("");
+      }
+    });
+
+    document
+      .getElementById("affectedByAttacke")
+      .addEventListener("change", (e) => {
+        const newValue = (<HTMLInputElement>e.currentTarget).checked;
+        viewControl.handleSetAffected(newValue);
+      });
+    document
+      .getElementById("playerMoveBehavior")
+      .addEventListener("change", (e) => {
+        const newValue = (<HTMLInputElement>e.currentTarget).value;
+        viewControl.handleSetKeyBinds(newValue);
+      });
   }
 
   private static addInteractionConfigListeners(): void {
@@ -205,6 +224,7 @@ export class userInterfaceListeners {
     document.getElementById("selfEffect").addEventListener("change", (e) => {
       const newValue = (<HTMLInputElement>e.currentTarget).value;
       console.log(newValue); // your logic goes here
+      viewControl.set_effect(newValue);
     });
   }
 
