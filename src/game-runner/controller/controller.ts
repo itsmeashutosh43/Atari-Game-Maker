@@ -19,6 +19,7 @@ import { Block } from "./MovementBehaviors/block";
 import { NoEffect } from "./MovementBehaviors/noEffect";
 import { BulletAttack } from "../model/components/bulletsAttack";
 import { Attach } from "./MovementBehaviors/attach";
+import { ReflectEffect } from "./MovementBehaviors/reflectEffect";
 
 export class Controller {
   model: GameModel;
@@ -350,6 +351,9 @@ export class Controller {
         break;
       case "attachEffect":
         gameEffect = new Attach();
+        break;
+      case "reflectEffect":
+        gameEffect = new ReflectEffect();
         break;
       default:
         gameEffect = new NoEffect();
